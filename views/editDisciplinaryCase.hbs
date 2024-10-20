@@ -1,0 +1,38 @@
+<h1>Edit Disciplinary Case</h1>
+
+<form action="/module/disciplinary-cases/edit/{{case._id}}" method="POST">
+    <label for="complainantId">Complainant ID:</label>
+    <input type="text" id="complainantId" name="complainantId" value="{{case.complainantId}}" required>
+
+    <label for="complainantName">Complainant Name:</label>
+    <input type="text" id="complainantName" name="complainantName" value="{{case.complainantName}}" required>
+
+    <label for="complainantEmail">Complainant Email:</label>
+    <input type="email" id="complainantEmail" name="complainantEmail" value="{{case.complainantEmail}}" required>
+
+    <label for="respondentId">Respondent ID:</label>
+    <input type="text" id="respondentId" name="respondentId" value="{{case.respondentId}}" required>
+
+    <label for="respondentName">Respondent Name:</label>
+    <input type="text" id="respondentName" name="respondentName" value="{{case.respondentName}}" required>
+
+    <label for="respondentEmail">Respondent Email:</label>
+    <input type="email" id="respondentEmail" name="respondentEmail" value="{{case.respondentEmail}}" required>
+
+    <label for="currentLevelOfEscalation">Current Level of Escalation:</label>
+    <select id="currentLevelOfEscalation" name="currentLevelOfEscalation" required>
+        <option value="Investigation" {{#if (eq case.currentLevelOfEscalation "Investigation")}}selected{{/if}}>Investigation</option>
+        <option value="Further Assessment" {{#if (eq case.currentLevelOfEscalation "Further Assessment")}}selected{{/if}}>Further Assessment</option>
+        <option value="Evaluation" {{#if (eq case.currentLevelOfEscalation "Evaluation")}}selected{{/if}}>Evaluation</option>
+        <option value="Hearing" {{#if (eq case.currentLevelOfEscalation "Hearing")}}selected{{/if}}>Hearing</option>
+        <option value="Mediation" {{#if (eq case.currentLevelOfEscalation "Mediation")}}selected{{/if}}>Mediation</option>
+        <option value="On-Going" {{#if (eq case.currentLevelOfEscalation "On-Going")}}selected{{/if}}>On-Going</option>
+        <option value="Solved" {{#if (eq case.currentLevelOfEscalation "Solved")}}selected{{/if}}>Solved</option>
+    </select>
+
+    <label for="confirmedBy">Confirmed By:</label>
+    <input type="text" id="confirmedBy" name="confirmedBy" value="{{case.confirmedBy}}" required>
+
+    <button type="submit">Update Case</button>
+    <a href="/module/disciplinary-cases" class="btn">Cancel</a>
+</form>

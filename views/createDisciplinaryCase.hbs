@@ -1,0 +1,38 @@
+<h1>Create Disciplinary Case</h1>
+
+<form action="/module/disciplinary-cases/create" method="POST">
+    <label for="complainantId">Complainant ID:</label>
+    <input type="text" id="complainantId" name="complainantId" required>
+
+    <label for="complainantName">Complainant Name:</label>
+    <input type="text" id="complainantName" name="complainantName" required>
+
+    <label for="complainantEmail">Complainant Email:</label>
+    <input type="email" id="complainantEmail" name="complainantEmail" required>
+
+    <label for="respondentId">Respondent ID:</label>
+    <input type="text" id="respondentId" name="respondentId" required>
+
+    <label for="respondentName">Respondent Name:</label>
+    <input type="text" id="respondentName" name="respondentName" required>
+
+    <label for="respondentEmail">Respondent Email:</label>
+    <input type="email" id="respondentEmail" name="respondentEmail" required>
+
+    <label for="currentLevelOfEscalation">Current Level of Escalation:</label>
+    <select id="currentLevelOfEscalation" name="currentLevelOfEscalation" required>
+        <option value="Investigation">Investigation</option>
+        <option value="Further Assessment">Further Assessment</option>
+        <option value="Evaluation">Evaluation</option>
+        <option value="Hearing">Hearing</option>
+        <option value="Mediation">Mediation</option>
+        <option value="On-Going">On-Going</option>
+        <option value="Solved">Solved</option>
+    </select>
+
+    <label for="confirmedBy">Confirmed By:</label>
+    <input type="text" id="confirmedBy" name="confirmedBy" required>
+
+    <button type="submit">Create Case</button>
+    <a href="/module/disciplinary-cases" class="btn">Cancel</a>
+</form>

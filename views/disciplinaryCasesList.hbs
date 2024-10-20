@@ -1,0 +1,29 @@
+<h1>Disciplinary Cases</h1>
+
+<a href="/module/disciplinary-cases/create" class="btn">Create New Case</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Case Title</th>
+            <th>Details</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each cases}}
+        <tr>
+            <td>{{this._id}}</td>
+            <td>{{this.caseTitle}}</td>
+            <td>{{this.details}}</td>
+            <td>
+                <a href="/module/disciplinary-cases/edit/{{this._id}}" class="btn">Edit</a>
+                <form action="/module/disciplinary-cases/delete/{{this._id}}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

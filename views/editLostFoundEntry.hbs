@@ -1,0 +1,36 @@
+<h1>Edit Lost and Found Entry</h1>
+
+<form action="/module/lost-found/edit/{{entry._id}}" method="POST">
+    <label for="itemId">Item ID:</label>
+    <input type="text" id="itemId" name="itemId" value="{{entry.itemId}}" required>
+
+    <label for="itemName">Item Name:</label>
+    <input type="text" id="itemName" name="itemName" value="{{entry.itemName}}" required>
+
+    <label for="locationFound">Location Found:</label>
+    <input type="text" id="locationFound" name="locationFound" value="{{entry.locationFound}}" required>
+
+    <label for="dateTimeFound">Date and Time Found:</label>
+    <input type="datetime-local" id="dateTimeFound" name="dateTimeFound" value="{{entry.dateTimeFound}}" required>
+
+    <label for="confirmedBy">Confirmed By:</label>
+    <input type="text" id="confirmedBy" name="confirmedBy" value="{{entry.confirmedBy}}" required>
+
+    <label for="claimed">Claimed:</label>
+    <select id="claimed" name="claimed" required>
+        <option value="true" {{#if (eq entry.claimed true)}}selected{{/if}}>Yes</option>
+        <option value="false" {{#if (eq entry.claimed false)}}selected{{/if}}>No</option>
+    </select>
+
+    <label for="claimedBy">Claimed By (optional):</label>
+    <input type="text" id="claimedBy" name="claimedBy" value="{{entry.claimedBy}}">
+
+    <label for="claimConfirmedBy">Claim Confirmed By (optional):</label>
+    <input type="text" id="claimConfirmedBy" name="claimConfirmedBy" value="{{entry.claimConfirmedBy}}">
+
+    <label for="dateClaimed">Date Claimed (optional):</label>
+    <input type="date" id="dateClaimed" name="dateClaimed" value="{{entry.dateClaimed}}">
+
+    <button type="submit">Update Entry</button>
+    <a href="/module/lost-found" class="btn">Cancel</a>
+</form>

@@ -1,0 +1,36 @@
+<h1>Create Lost and Found Entry</h1>
+
+<form action="/module/lost-found/create" method="POST">
+    <label for="itemId">Item ID:</label>
+    <input type="text" id="itemId" name="itemId" required>
+
+    <label for="itemName">Item Name:</label>
+    <input type="text" id="itemName" name="itemName" required>
+
+    <label for="locationFound">Location Found:</label>
+    <input type="text" id="locationFound" name="locationFound" required>
+
+    <label for="dateTimeFound">Date and Time Found:</label>
+    <input type="datetime-local" id="dateTimeFound" name="dateTimeFound" required>
+
+    <label for="confirmedBy">Confirmed By:</label>
+    <input type="text" id="confirmedBy" name="confirmedBy" required>
+
+    <label for="claimed">Claimed:</label>
+    <select id="claimed" name="claimed" required>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
+
+    <label for="claimedBy">Claimed By (optional):</label>
+    <input type="text" id="claimedBy" name="claimedBy">
+
+    <label for="claimConfirmedBy">Claim Confirmed By (optional):</label>
+    <input type="text" id="claimConfirmedBy" name="claimConfirmedBy">
+
+    <label for="dateClaimed">Date Claimed (optional):</label>
+    <input type="date" id="dateClaimed" name="dateClaimed">
+
+    <button type="submit">Create Entry</button>
+    <a href="/module/lost-found" class="btn">Cancel</a>
+</form>

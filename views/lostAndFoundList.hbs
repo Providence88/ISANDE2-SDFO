@@ -1,0 +1,29 @@
+<h1>Lost and Found</h1>
+
+<a href="/module/lost-and-found/create" class="btn">Create New Entry</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Item Name</th>
+            <th>Details</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each entries}}
+        <tr>
+            <td>{{this._id}}</td>
+            <td>{{this.itemName}}</td>
+            <td>{{this.details}}</td>
+            <td>
+                <a href="/module/lost-and-found/edit/{{this._id}}" class="btn">Edit</a>
+                <form action="/module/lost-and-found/delete/{{this._id}}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

@@ -1,0 +1,32 @@
+<!-- views/nonFraternityContractsList.hbs -->
+<h1>Non Fraternity Contracts</h1>
+
+<!-- Button to Create a New Non Fraternity Contract -->
+<a href="/module/non-fraternity-contracts/create" class="btn">Create New Contract</a>
+
+<!-- Table to Display Existing Contracts -->
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Details</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each contracts}}
+        <tr>
+            <td>{{this._id}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.details}}</td>
+            <td>
+                <a href="/module/non-fraternity-contracts/edit/{{this._id}}" class="btn">Edit</a>
+                <form action="/module/non-fraternity-contracts/delete/{{this._id}}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
