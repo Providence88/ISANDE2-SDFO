@@ -16,9 +16,9 @@ mongoose.connect('mongodb://localhost/student-discipline', { useNewUrlParser: tr
     .then(() => console.log('MongoDB connected...'))
     .catch(err => console.error('MongoDB connection error:', err));
 
-// Root route to redirect to login page
+// Root route to redirect to main page
 app.get('/', (req, res) => {
-    res.redirect('/login'); // Redirect to the login page
+    res.redirect('/main'); // Redirect to the main page
 });
 
 // Routes
@@ -27,18 +27,22 @@ const mainRoute = require('./routes/main');
 const moduleRoute = require('./routes/module');
 
 // Add specific module routes
-const nonFraternityContractRoute = require('./routes/nonFraternityContract');  
-const drugTestConsentRoute = require('./routes/drugTestConsent');  
-const lostAndFoundRoute = require('./routes/lostAndFound');  
-const disciplinaryCasesRoute = require('./routes/disciplinaryCases');  
+const nonFraternityContractRoute = require('./routes/nonFraternity');  
+const drugTestConsentRoute = require('./routes/drugTest');  
+const lostAndFoundRoute = require('./routes/lostFound');  
+const disciplinaryCasesRoute = require('./routes/disciplinary');
 
 // Route handling
 app.use('/', loginRoute);
-app.use('/', mainRoute);
+app.use('/main', mainRoute); // Ensure main route is mounted
 app.use('/module/non-fraternity-contracts', nonFraternityContractRoute);  
 app.use('/module/drug-test-consents', drugTestConsentRoute);  
 app.use('/module/lost-and-found', lostAndFoundRoute);  
 app.use('/module/disciplinary-cases', disciplinaryCasesRoute);  
 
-// Start server
-app.listen(3000, () => console.log('Server running on port 3000'));
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running at http://localhost:${PORT}`);
+  console.log(`Listening at port ${PORT}`);
+});
