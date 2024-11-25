@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nanum+Gothic&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet');
+@import url('https://fonts.googleapis.com/css?family=JetBrains Mono');
+
+body {
+    font-family: "Noto Sans", "Nanum Gothic", "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 300;
+
+    color: #fff;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+        url('/public/images/dlsuwallpaper.jpg') no-repeat center center;
+
+    background-size: cover;
+    background-attachment: fixed; 
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    margin: 0; 
+}
+
+.body-container {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    height: 100%;
+    margin-left: -5rem;
+}
+
+.welcome-container {
+    font-size: 4rem;
+    font-weight: bold;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 0, 0, 0.5);
+    margin-right: 4rem;
+}
+
+.login-container {
+    font-size: 4rem;
+    font-weight: bold;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    width: 50%;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 0, 0, 0.5);
+}
+
+  .forms {
+    max-width: 500px;
+    width: 95%;
+    margin: 2rem ;
+    margin-left: -1rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .form h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #fff;
+    font-weight: 300;
+
+  }
+  
+  .input_group {
+    margin-bottom: 1rem;
+  }
+  
+  .input_group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    text-shadow: 0 50px 30px rgba(0, 0, 0, 1.5); 
+  }
+  
+  .input_group input {
+    width: 25rem;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: "Noto Sans", "Nanum Gothic", "Inter", sans-serif;
+  }
+  
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    background: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.6s;
+    font-family: "Noto Sans", "Nanum Gothic", "Inter", sans-serif;
+    font-size: 14px;
+    margin-top: 2rem;
+  }
+  
+  .btn:hover {
+    background: #69f06d;
+  }
+  
+  p {
+    text-align: center;
+  }
+  
+  p a {
+    color: #69f06d;
+    text-decoration: none;
+    font-weight: 800;
+  }
+  
