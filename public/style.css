@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nanum+Gothic&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet');
+@import url('https://fonts.googleapis.com/css?family=JetBrains Mono');
 
 body {
     font-family: "Noto Sans", "Nanum Gothic", "Inter", sans-serif;
@@ -258,8 +259,8 @@ h1, h2 {
 
 .main-body h3 {
     color: #333;
-    font-size: 32px;
-    margin-bottom: 15px;
+    font-size: 42px;
+    margin-bottom: 10px;
     text-align: center;
     font-weight: 250;
 }
@@ -431,3 +432,93 @@ input:focus, select:focus {
     background-color: #69f06d;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
+.report-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.report-container h1 {
+    font-size: 24px;
+    color: #333;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.report-table th,
+.report-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.report-table td {
+    font-family: 'JetBrains Mono';
+    font-size: 13px;
+}
+
+
+.report-table th {
+    background-color: #f2f2f2;
+    font-weight: 600;
+    color: #555;
+}
+
+.report-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.report-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.report-table td {
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .report-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .report-table th,
+    .report-table td {
+        font-size: 12px;
+        padding: 10px;
+    }
+}
+
+.btn-edit {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 600;
+}
+
+.btn-edit:hover {
+    background-color: #69f06d; /* Darker green when hovering */
+}
+

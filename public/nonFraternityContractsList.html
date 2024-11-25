@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Non-Fraternity Contracts</title>
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="/public/images/anunalogo-final.png" alt="Logo">
+            <h1>M y S D F O</h1>
+        </div>
+        <div class="module-links">
+            <div class="module-link">
+                <img src="/public/images/home.png" alt="Home">
+                Home
+            </div>
+            <div class="module-link">
+                <img src="/public/images/fraternity.png" alt="Non Fraternity Contract">
+                Non Fraternity Contract
+            </div>
+            <div class="module-link">
+                <img src="/public/images/drug-test.png" alt="Drug Test Consent Form">
+                Drug Test Consent Form
+            </div>
+            <div class="module-link">
+                <img src="/public/images/lost-luggage.png" alt="Lost and Found">
+                Lost and Found
+            </div>
+            <div class="module-link">
+                <img src="/public/images/gavel.png" alt="Disciplinary Cases">
+                Disciplinary Cases
+            </div>
+            <div class="module-link">
+                <img src="/public/images/settings.png" alt="Settings">
+                Settings
+            </div>
+            <div class="module-link">
+                <img src="/public/images/log-out.png" alt="Log Out">
+                Log Out
+            </div>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="search__container">
+            <input class="search__input" type="text" placeholder="Search">
+        </div> 
+
+        <div class="profile-link">
+            <img src="/public/images/profiletemp.png" alt="Profile">
+            Profile
+        </div>
+    </div>
+
+    <div class="main-body">
+
+        <div class="main-body-header">
+            <h3>Non Fraternity Contracts</h3>
+            <p class="welcome-message">View all non-fraternity contracts</p>
+        </div>
+
+        <div class="report-container">
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th>ID Number</th>
+                        <th>Full Name</th>
+                        <th>College</th>
+                        <th>Cellphone Number</th>
+                        <th>School Email</th>
+                        <th>Signature</th>
+                        <th>Submitted</th>
+                        <th>Action</th> <!-- New column for Edit button -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example row 1 -->
+                    <tr>
+                        <td>123456</td>
+                        <td>John Doe</td>
+                        <td>BAGCED</td>
+                        <td>09123456789</td>
+                        <td>johndoe@example.com</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td><button class="btn-edit" onclick="editEntry(123456)">Edit</button></td> <!-- Edit button -->
+                    </tr>
+                    <!-- Example row 2 -->
+                    <tr>
+                        <td>789012</td>
+                        <td>Jane Smith</td>
+                        <td>CCS</td>
+                        <td>09234567890</td>
+                        <td>janesmith@example.com</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td><button class="btn-edit" onclick="editEntry(789012)">Edit</button></td> <!-- Edit button -->
+                    </tr>
+                    <!-- More rows can be added dynamically -->
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</body>
+</html>

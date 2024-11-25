@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Create Non-Fraternity Contract</title>
+    <title>Lost and Found</title>
     <link rel="stylesheet" href="/public/style.css">
 </head>
 <body>
@@ -56,53 +56,59 @@
     <div class="main-body">
 
         <div class="main-body-header">
-            <h3>Edit Non Fraternity Contract</h3>
-            <p class="welcome-message">Here you can start a edit a non-fraternity contract</p>
+            <h3>Lost and Found</h3>
+            <p class="welcome-message">View the current Lost and Found</p>
         </div>
 
         <div class="form-container">
             <div class="report-container">
-                <h1>Non-Fraternity Contracts Report</h1>
                 <table class="report-table">
                     <thead>
                         <tr>
-                            <th>ID Number</th>
-                            <th>Full Name</th>
-                            <th>College</th>
-                            <th>Cellphone Number</th>
-                            <th>School Email</th>
-                            <th>Signature</th>
-                            <th>Submitted</th>
-                            <th>Edit</th> <!-- New column for Edit button -->
+                            <th>Item ID</th>
+                            <th>Item Name</th>
+                            <th>Location Found</th>
+                            <th>Date and Time Found</th>
+                            <th>Confirmed By</th>
+                            <th>Claimed</th>
+                            <th>Claimed By</th>
+                            <th>Confirmed By</th>
+                            <th>Date Claimed</th>
+                            <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- Example row 1 -->
                         <tr>
-                            <td>123456</td>
+                            <td>1</td>
+                            <td>Wallet</td>
+                            <td>Main Lobby</td>
+                            <td>2024-11-20 10:30 AM</td>
                             <td>John Doe</td>
-                            <td>BAGCED</td>
-                            <td>09123456789</td>
-                            <td>johndoe@example.com</td>
                             <td>Yes</td>
-                            <td>Yes</td>
-                            <td><button class="btn-edit" onclick="editEntry(123456)">Edit</button></td> <!-- Edit button -->
+                            <td>Jane Smith</td>
+                            <td>John Doe</td>
+                            <td>2024-11-21</td>
+                            <td><button class="btn-edit" onclick="editEntry(1)">Edit</button></td>
                         </tr>
                         <!-- Example row 2 -->
                         <tr>
-                            <td>789012</td>
+                            <td>2</td>
+                            <td>Backpack</td>
+                            <td>North Entrance</td>
+                            <td>2024-11-22 2:00 PM</td>
                             <td>Jane Smith</td>
-                            <td>CCS</td>
-                            <td>09234567890</td>
-                            <td>janesmith@example.com</td>
                             <td>No</td>
-                            <td>No</td>
-                            <td><button class="btn-edit" onclick="editEntry(789012)">Edit</button></td> <!-- Edit button -->
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><button class="btn-edit" onclick="editEntry(2)">Edit</button></td>
                         </tr>
                         <!-- More rows can be added dynamically -->
                     </tbody>
                 </table>
             </div>
+            
         </div>
     </div>
 </body>
