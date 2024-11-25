@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Create Disciplinary Case</title>
+    <title>Create Lost and Found Entry</title>
     <link rel="stylesheet" href="/public/style.css">
 </head>
 <body>
@@ -56,54 +56,31 @@
     <div class="main-body">
 
         <div class="main-body-header">
-            <h3>Create Disciplinary Case</h3>
-            <p class="welcome-message">Here you can start a new form for disciplinary cases</p>
+            <h3>Edit Lost and Found Entry</h3>
+            <p class="welcome-message">Here you can edit existing data for the lost and found repository</p>
         </div>
 
         <div class="form-container">
             <div class="form">
             <form action="/module/disciplinary-cases/create" method="POST">
                 <div class="form-group">
-                    <label for="complainantId">Complainant ID</label>
-                    <input type="text" id="complainantId" name="complainantId" required>
+                    <label for="itemId">Item ID</label>
+                    <input type="text" id="itemId" name="itemId" required>
                 </div>
         
                 <div class="form-group">
-                    <label for="complainantName">Complainant Name</label>
-                    <input type="text" id="complainantName" name="complainantName" required>
+                    <label for="itemName">Item Name</label>
+                    <input type="text" id="itemName" name="itemName" required>
                 </div>
         
                 <div class="form-group">
-                    <label for="complainantEmail">Complainant Email</label>
-                    <input type="email" id="complainantEmail" name="complainantEmail" required>
+                    <label for="locationFound">Location Found</label>
+                    <input type="text" id="locationFound" name="locationFound" required>
                 </div>
         
                 <div class="form-group">
-                    <label for="respondentId">Respondent ID</label>
-                    <input type="text" id="respondentId" name="respondentId" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="respondentName">Respondent Name</label>
-                    <input type="text" id="respondentName" name="respondentName" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="respondentEmail">Respondent Email</label>
-                    <input type="email" id="respondentEmail" name="respondentEmail" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="currentLevelOfEscalation">Current Level of Escalation</label>
-                    <select id="currentLevelOfEscalation" name="currentLevelOfEscalation" required>
-                        <option value="Investigation">Investigation</option>
-                        <option value="Further Assessment">Further Assessment</option>
-                        <option value="Evaluation">Evaluation</option>
-                        <option value="Hearing">Hearing</option>
-                        <option value="Mediation">Mediation</option>
-                        <option value="On-Going">On-Going</option>
-                        <option value="Solved">Solved</option>
-                    </select>
+                    <label for="dateTimeFound">Date and Time Found</label>
+                    <input type="datetime-local" id="dateTimeFound" name="dateTimeFound" required>
                 </div>
         
                 <div class="form-group">
@@ -111,8 +88,31 @@
                     <input type="text" id="confirmedBy" name="confirmedBy" required>
                 </div>
         
+                <div class="form-group">
+                    <label for="claimed">Claimed</label>
+                    <select id="claimed" name="claimed" required>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+        
+                <div class="form-group">
+                    <label for="claimedBy">Claimed By</label>
+                    <input type="text" id="claimedBy" name="claimedBy">
+                </div>
+        
+                <div class="form-group">
+                    <label for="claimConfirmedBy">Claim Confirmed By</label>
+                    <input type="text" id="claimConfirmedBy" name="claimConfirmedBy">
+                </div>
+
+                <div class="form-group">
+                    <label for="dateClaimed">Date Claimed</label>
+                    <input type="date" id="dateClaimed" name="dateClaimed">
+                </div>
+        
                 <div class="form-actions">
-                    <button type="submit" class="btn-submit">Create Case</button>
+                    <button type="submit" class="btn-submit">Save Changes</button>
                     <a href="/module/disciplinary-cases" class="btn-cancel">Cancel</a>
                 </div>
             </form>
