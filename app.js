@@ -18,7 +18,20 @@ mongoose.connect('mongodb://localhost/student-discipline', { useNewUrlParser: tr
 
 // Root route to redirect to main page
 app.get('/', (req, res) => {
-    res.redirect('/main'); // Redirect to the main page
+  res.render('signin', {
+    layout: 'signin',
+    title: 'Register | Sign Up',
+    css: 'signup.css'
+  });
+});
+
+app.get('/login', (req, res) => {
+  res.render('login', { 
+    error: null,
+    layout: 'login',
+    title: 'Log Into Existing Account',
+    css: 'signup.css'
+    }); // Render the login.hbs view
 });
 
 // Routes
