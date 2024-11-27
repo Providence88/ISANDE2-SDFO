@@ -1,32 +1,75 @@
-<!-- views/nonFraternityContractsList.hbs -->
-<h1>Non Fraternity Contracts</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Non-Fraternity Contracts</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="/images/anunalogo-final.png" alt="Logo">
+            <h1>M y S D F O</h1>
+        </div>
+        <div class="module-links">
+            {{#each moduleLinks}}
+            <div class="module-link">
+                <a href="{{this.link}}">
+                    <img src="/images/{{this.icon}}">
+                    {{this.name}}
+                </a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
 
-<!-- Button to Create a New Non Fraternity Contract -->
-<a href="/module/non-fraternity-contracts/create" class="btn">Create New Contract</a>
+    <div class="header">
+        <div class="search__container">
+            <input class="search__input" type="text" placeholder="Search">
+        </div> 
 
-<!-- Table to Display Existing Contracts -->
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Details</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each contracts}}
-        <tr>
-            <td>{{this._id}}</td>
-            <td>{{this.name}}</td>
-            <td>{{this.details}}</td>
-            <td>
-                <a href="/module/non-fraternity-contracts/edit/{{this._id}}" class="btn">Edit</a>
-                <form action="/module/non-fraternity-contracts/delete/{{this._id}}" method="POST" style="display:inline;">
-                    <button type="submit" class="btn">Delete</button>
-                </form>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+        <div class="profile-link">
+            <img src="/images/profiletemp.png" alt="Profile">
+            Profile
+        </div>
+    </div>
+
+    <div class="main-body">
+        <div class="main-body-header">
+            <h3>Non Fraternity Contracts</h3>
+            <p class="welcome-message">View all non-fraternity contracts</p>
+        </div>
+
+        <div class="report-container">
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th>ID Number</th>
+                        <th>Full Name</th>
+                        <th>College</th>
+                        <th>Cellphone Number</th>
+                        <th>School Email</th>
+                        <th>Signature</th>
+                        <th>Submitted</th>
+                        <th>Action</th> <!-- New column for Edit button -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each contracts}}
+                      <tr>
+                        <td>{{id}}</td>
+                        <td>{{name}}</td>
+                        <td>{{college}}</td>
+                        <td>{{phone}}</td>
+                        <td>{{email}}</td>
+                        <td>{{consent1}}</td>
+                        <td>{{consent2}}</td>
+                        <td><button class="btn-edit" onclick="editEntry({{id}})">Edit</button></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</body>
+</html>

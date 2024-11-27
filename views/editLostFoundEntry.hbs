@@ -1,36 +1,102 @@
-<h1>Edit Lost and Found Entry</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Lost and Found Entry</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="/public/images/anunalogo-final.png" alt="Logo">
+            <h1>M y S D F O</h1>
+        </div>
+        <div class="module-links">
+            {{#each moduleLinks}}
+            <div class="module-link">
+                <a href="{{this.link}}">
+                    <img src="/images/{{this.icon}}">
+                    {{this.name}}
+                </a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
 
-<form action="/module/lost-found/edit/{{entry._id}}" method="POST">
-    <label for="itemId">Item ID:</label>
-    <input type="text" id="itemId" name="itemId" value="{{entry.itemId}}" required>
+    <div class="header">
+        <div class="search__container">
+            <input class="search__input" type="text" placeholder="Search">
+        </div> 
 
-    <label for="itemName">Item Name:</label>
-    <input type="text" id="itemName" name="itemName" value="{{entry.itemName}}" required>
+        <div class="profile-link">
+            <img src="/public/images/profiletemp.png" alt="Profile">
+            Profile
+        </div>
+    </div>
 
-    <label for="locationFound">Location Found:</label>
-    <input type="text" id="locationFound" name="locationFound" value="{{entry.locationFound}}" required>
+    <div class="main-body">
+        <div class="main-body-header">
+            <h3>Edit Lost and Found Entry</h3>
+            <p class="welcome-message">Here you can edit existing data for the lost and found repository</p>
+        </div>
 
-    <label for="dateTimeFound">Date and Time Found:</label>
-    <input type="datetime-local" id="dateTimeFound" name="dateTimeFound" value="{{entry.dateTimeFound}}" required>
+        <div class="form-container">
+            <div class="form">
+                <form action="/module/lost-found/edit/{{entry._id}}" method="POST">
+                    <div class="form-group">
+                        <label for="itemId">Item ID</label>
+                        <input type="text" id="itemId" name="itemId" value="{{entry.itemId}}" required>
+                    </div>
 
-    <label for="confirmedBy">Confirmed By:</label>
-    <input type="text" id="confirmedBy" name="confirmedBy" value="{{entry.confirmedBy}}" required>
+                    <div class="form-group">
+                        <label for="itemName">Item Name</label>
+                        <input type="text" id="itemName" name="itemName" value="{{entry.itemName}}" required>
+                    </div>
 
-    <label for="claimed">Claimed:</label>
-    <select id="claimed" name="claimed" required>
-        <option value="true" {{#if (eq entry.claimed true)}}selected{{/if}}>Yes</option>
-        <option value="false" {{#if (eq entry.claimed false)}}selected{{/if}}>No</option>
-    </select>
+                    <div class="form-group">
+                        <label for="locationFound">Location Found</label>
+                        <input type="text" id="locationFound" name="locationFound" value="{{entry.locationFound}}" required>
+                    </div>
 
-    <label for="claimedBy">Claimed By (optional):</label>
-    <input type="text" id="claimedBy" name="claimedBy" value="{{entry.claimedBy}}">
+                    <div class="form-group">
+                        <label for="dateTimeFound">Date and Time Found</label>
+                        <input type="datetime-local" id="dateTimeFound" name="dateTimeFound" value="{{entry.dateTimeFound}}" required>
+                    </div>
 
-    <label for="claimConfirmedBy">Claim Confirmed By (optional):</label>
-    <input type="text" id="claimConfirmedBy" name="claimConfirmedBy" value="{{entry.claimConfirmedBy}}">
+                    <div class="form-group">
+                        <label for="confirmedBy">Confirmed By</label>
+                        <input type="text" id="confirmedBy" name="confirmedBy" value="{{entry.confirmedBy}}" required>
+                    </div>
 
-    <label for="dateClaimed">Date Claimed (optional):</label>
-    <input type="date" id="dateClaimed" name="dateClaimed" value="{{entry.dateClaimed}}">
+                    <div class="form-group">
+                        <label for="claimed">Claimed</label>
+                        <select id="claimed" name="claimed" required>
+                            <option value="true" {{#if (eq entry.claimed "true")}}selected{{/if}}>Yes</option>
+                            <option value="false" {{#if (eq entry.claimed "false")}}selected{{/if}}>No</option>
+                        </select>
+                    </div>
 
-    <button type="submit">Update Entry</button>
-    <a href="/module/lost-found" class="btn">Cancel</a>
-</form>
+                    <div class="form-group">
+                        <label for="claimedBy">Claimed By</label>
+                        <input type="text" id="claimedBy" name="claimedBy" value="{{entry.claimedBy}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="claimConfirmedBy">Claim Confirmed By</label>
+                        <input type="text" id="claimConfirmedBy" name="claimConfirmedBy" value="{{entry.claimConfirmedBy}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateClaimed">Date Claimed</label>
+                        <input type="date" id="dateClaimed" name="dateClaimed" value="{{entry.dateClaimed}}">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit">Save Changes</button>
+                        <a href="/main" class="btn-cancel">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
