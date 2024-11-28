@@ -10,11 +10,13 @@
             <img src="/images/anunalogo-final.png" alt="Logo">
             <h1>My S D F O</h1>
         </div>
-        <div class="module-links">
+         <div class="module-links">
             {{#each moduleLinks}}
             <div class="module-link">
-                <img src="{{this.icon}}" alt="{{this.alt}}">
-                {{this.name}}
+                <a href="{{this.link}}">
+                    <img src="/images/{{this.icon}}">
+                    {{this.name}}
+                </a>
             </div>
             {{/each}}
         </div>
