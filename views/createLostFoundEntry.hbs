@@ -1,36 +1,103 @@
-<h1>Create Lost and Found Entry</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Lost and Found Entry</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="/images/anunalogo-final.png" alt="Logo">
+            <h1>M y S D F O</h1>
+        </div>
+         <div class="module-links">
+            {{#each moduleLinks}}
+            <div class="module-link">
+                <a href="{{this.link}}">
+                    <img src="/images/{{this.icon}}">
+                    {{this.name}}
+                </a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
 
-<form action="/module/lost-found/create" method="POST">
-    <label for="itemId">Item ID:</label>
-    <input type="text" id="itemId" name="itemId" required>
+    <div class="header">
+        <div class="search__container">
+            <input class="search__input" type="text" placeholder="Search">
+        </div> 
 
-    <label for="itemName">Item Name:</label>
-    <input type="text" id="itemName" name="itemName" required>
+        <div class="profile-link">
+            <img src="/images/profiletemp.png" alt="Profile">
+            Profile
+        </div>
+    </div>
 
-    <label for="locationFound">Location Found:</label>
-    <input type="text" id="locationFound" name="locationFound" required>
+    <div class="main-body">
 
-    <label for="dateTimeFound">Date and Time Found:</label>
-    <input type="datetime-local" id="dateTimeFound" name="dateTimeFound" required>
+        <div class="main-body-header">
+            <h3>Create Lost and Found Entry</h3>
+            <p class="welcome-message">Here you can enter new data for the lost and found repository</p>
+        </div>
 
-    <label for="confirmedBy">Confirmed By:</label>
-    <input type="text" id="confirmedBy" name="confirmedBy" required>
+        <div class="form-container">
+            <div class="form">
+            <form action="/module/disciplinary-cases/create" method="POST">
+                <div class="form-group">
+                    <label for="itemId">Item ID</label>
+                    <input type="text" id="itemId" name="itemId" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="itemName">Item Name</label>
+                    <input type="text" id="itemName" name="itemName" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="locationFound">Location Found</label>
+                    <input type="text" id="locationFound" name="locationFound" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="dateTimeFound">Date and Time Found</label>
+                    <input type="datetime-local" id="dateTimeFound" name="dateTimeFound" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="confirmedBy">Confirmed By</label>
+                    <input type="text" id="confirmedBy" name="confirmedBy" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="claimed">Claimed</label>
+                    <select id="claimed" name="claimed" required>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+        
+                <div class="form-group">
+                    <label for="claimedBy">Claimed By</label>
+                    <input type="text" id="claimedBy" name="claimedBy">
+                </div>
+        
+                <div class="form-group">
+                    <label for="claimConfirmedBy">Claim Confirmed By</label>
+                    <input type="text" id="claimConfirmedBy" name="claimConfirmedBy">
+                </div>
 
-    <label for="claimed">Claimed:</label>
-    <select id="claimed" name="claimed" required>
-        <option value="true">Yes</option>
-        <option value="false">No</option>
-    </select>
-
-    <label for="claimedBy">Claimed By (optional):</label>
-    <input type="text" id="claimedBy" name="claimedBy">
-
-    <label for="claimConfirmedBy">Claim Confirmed By (optional):</label>
-    <input type="text" id="claimConfirmedBy" name="claimConfirmedBy">
-
-    <label for="dateClaimed">Date Claimed (optional):</label>
-    <input type="date" id="dateClaimed" name="dateClaimed">
-
-    <button type="submit">Create Entry</button>
-    <a href="/module/lost-found" class="btn">Cancel</a>
-</form>
+                <div class="form-group">
+                    <label for="dateClaimed">Date Claimed</label>
+                    <input type="date" id="dateClaimed" name="dateClaimed">
+                </div>
+        
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Enter</button>
+                    <a href="/main" class="btn-cancel">Cancel</a>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

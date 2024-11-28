@@ -1,38 +1,100 @@
-<h1>Create Disciplinary Case</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Disciplinary Case</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="/images/anunalogo-final.png" alt="Logo">
+            <h1>My S D F O</h1>
+        </div>
+  <div class="module-links">
+            {{#each moduleLinks}}
+            <div class="module-link">
+                <a href="{{this.link}}">
+                    <img src="/images/{{this.icon}}">
+                    {{this.name}}
+                </a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
 
-<form action="/module/disciplinary-cases/create" method="POST">
-    <label for="complainantId">Complainant ID:</label>
-    <input type="text" id="complainantId" name="complainantId" required>
 
-    <label for="complainantName">Complainant Name:</label>
-    <input type="text" id="complainantName" name="complainantName" required>
+    <div class="header">
+        <div class="search__container">
+            <input class="search__input" type="text" placeholder="Search">
+        </div> 
 
-    <label for="complainantEmail">Complainant Email:</label>
-    <input type="email" id="complainantEmail" name="complainantEmail" required>
+        <div class="profile-link">
+            <img src="/images/profiletemp.png" alt="Profile">
+            Profile
+        </div>
+    </div>
 
-    <label for="respondentId">Respondent ID:</label>
-    <input type="text" id="respondentId" name="respondentId" required>
+    <div class="main-body">
 
-    <label for="respondentName">Respondent Name:</label>
-    <input type="text" id="respondentName" name="respondentName" required>
+        <div class="main-body-header">
+            <h3>Create Disciplinary Case</h3>
+            <p class="welcome-message">Here you can start a new form for disciplinary cases</p>
+        </div>
 
-    <label for="respondentEmail">Respondent Email:</label>
-    <input type="email" id="respondentEmail" name="respondentEmail" required>
-
-    <label for="currentLevelOfEscalation">Current Level of Escalation:</label>
-    <select id="currentLevelOfEscalation" name="currentLevelOfEscalation" required>
-        <option value="Investigation">Investigation</option>
-        <option value="Further Assessment">Further Assessment</option>
-        <option value="Evaluation">Evaluation</option>
-        <option value="Hearing">Hearing</option>
-        <option value="Mediation">Mediation</option>
-        <option value="On-Going">On-Going</option>
-        <option value="Solved">Solved</option>
-    </select>
-
-    <label for="confirmedBy">Confirmed By:</label>
-    <input type="text" id="confirmedBy" name="confirmedBy" required>
-
-    <button type="submit">Create Case</button>
-    <a href="/module/disciplinary-cases" class="btn">Cancel</a>
-</form>
+        <div class="form-container">
+            <div class="form">
+            <form action="/module/disciplinary-cases/create" method="POST">
+                <div class="form-group">
+                    <label for="complainantId">Complainant ID</label>
+                    <input type="text" id="complainantId" name="complainantId" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="complainantName">Complainant Name</label>
+                    <input type="text" id="complainantName" name="complainantName" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="complainantEmail">Complainant Email</label>
+                    <input type="email" id="complainantEmail" name="complainantEmail" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="respondentId">Respondent ID</label>
+                    <input type="text" id="respondentId" name="respondentId" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="respondentName">Respondent Name</label>
+                    <input type="text" id="respondentName" name="respondentName" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="respondentEmail">Respondent Email</label>
+                    <input type="email" id="respondentEmail" name="respondentEmail" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="currentLevelOfEscalation">Current Level of Escalation</label>
+                    <select id="currentLevelOfEscalation" name="currentLevelOfEscalation" required>
+                        {{#each escalationLevels}}
+                            <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+        
+                <div class="form-group">
+                    <label for="confirmedBy">Confirmed By</label>
+                    <input type="text" id="confirmedBy" name="confirmedBy" required>
+                </div>
+        
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Create Case</button>
+                    <a href="/main" class="btn-cancel">Cancel</a>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

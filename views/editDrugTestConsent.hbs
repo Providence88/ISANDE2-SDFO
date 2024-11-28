@@ -1,42 +1,114 @@
-<h1>Edit Drug Test Consent Form</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Drug Test Consent Form</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="/images/anunalogo-final.png" alt="Logo">
+            <h1>M y S D F O</h1>
+        </div>
+          <div class="module-links">
+            {{#each moduleLinks}}
+            <div class="module-link">
+                <a href="{{this.link}}">
+                    <img src="/images/{{this.icon}}">
+                    {{this.name}}
+                </a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
 
-<form action="/module/drug-test-consents/edit/{{consent._id}}" method="POST">
-    <label for="idNumber">ID Number:</label>
-    <input type="text" id="idNumber" name="idNumber" value="{{consent.idNumber}}" required>
+    <div class="header">
+        <div class="search__container">
+            <input class="search__input" type="text" placeholder="Search">
+        </div> 
 
-    <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName" name="lastName" value="{{consent.lastName}}" required>
+        <div class="profile-link">
+            <img src="/images/profiletemp.png" alt="Profile">
+            Profile
+        </div>
+    </div>
 
-    <label for="firstName">First Name:</label>
-    <input type="text" id="firstName" name="firstName" value="{{consent.firstName}}" required>
+    <div class="main-body">
 
-    <label for="middleInitial">Middle Initial:</label>
-    <input type="text" id="middleInitial" name="middleInitial" value="{{consent.middleInitial}}" required>
+        <div class="main-body-header">
+            <h3>Edit Drug Test Consent Form</h3>
+            <p class="welcome-message">Here you can edit a form for drug test consents</p>
+        </div>
 
-    <label for="cellphoneNumber">Cellphone Number:</label>
-    <input type="text" id="cellphoneNumber" name="cellphoneNumber" value="{{consent.cellphoneNumber}}" required>
+        <div class="form-container">
+            <div class="form">
+            <form action="/module/disciplinary-cases/create" method="POST">
+                <div class="form-group">
+                    <label for="ID Number">ID Number</label>
+                    <input type="text" id="idNumber" name="idNumber" value="{{idNumber}}" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" value="{{lastName}}" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" value="{{firstName}}" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="middleInitial">Middle Initial</label>
+                    <select id="middleInitial" name="middleInitial" required>
+                        <option value="" disabled {{#if middleInitial}}selected{{/if}}>Select</option>
+                        {{#each alphabet}}
+                            <option value="{{this}}" {{#ifCond middleInitial this}}selected{{/ifCond}}>{{this}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+        
+                <div class="form-group">
+                    <label for="cellphoneNumber">Cellphone Number</label>
+                    <input type="text" id="cellphoneNumber" name="cellphoneNumber" value="{{cellphoneNumber}}" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="schoolEmail">School Email</label>
+                    <input type="email" id="schoolEmail" name="schoolEmail" value="{{schoolEmail}}" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="signature">Signature?</label>
+                    <select id="signature" name="signature" required>
+                        <option value="true" {{#ifCond signature 'true'}}selected{{/ifCond}}>Yes</option>
+                        <option value="false" {{#ifCond signature 'false'}}selected{{/ifCond}}>No</option>
+                    </select>
+                </div>
+        
+                <div class="form-group">
+                    <label for="consent">Consent?</label>
+                    <select id="consent" name="consent" required>
+                        <option value="true" {{#ifCond consent 'true'}}selected{{/ifCond}}>Yes</option>
+                        <option value="false" {{#ifCond consent 'false'}}selected{{/ifCond}}>No</option>
+                    </select>
+                </div>
 
-    <label for="schoolEmail">School Email:</label>
-    <input type="email" id="schoolEmail" name="schoolEmail" value="{{consent.schoolEmail}}" required>
-
-    <label for="signature">Signature:</label>
-    <select id="signature" name="signature" required>
-        <option value="true" {{#if (eq consent.signature true)}}selected{{/if}}>Yes</option>
-        <option value="false" {{#if (eq consent.signature false)}}selected{{/if}}>No</option>
-    </select>
-
-    <label for="consent">Consent:</label>
-    <select id="consent" name="consent" required>
-        <option value="true" {{#if (eq consent.consent true)}}selected{{/if}}>Yes</option>
-        <option value="false" {{#if (eq consent.consent false)}}selected{{/if}}>No</option>
-    </select>
-
-    <label for="submitted">Submitted:</label>
-    <select id="submitted" name="submitted" required>
-        <option value="true" {{#if (eq consent.submitted true)}}selected{{/if}}>Yes</option>
-        <option value="false" {{#if (eq consent.submitted false)}}selected{{/if}}>No</option>
-    </select>
-
-    <button type="submit">Update Consent</button>
-    <a href="/module/drug-test-consents" class="btn">Cancel</a>
-</form>
+                <div class="form-group">
+                    <label for="submitted">Submitted?</label>
+                    <select id="submitted" name="submitted" required>
+                        <option value="true" {{#ifCond submitted 'true'}}selected{{/ifCond}}>Yes</option>
+                        <option value="false" {{#ifCond submitted 'false'}}selected{{/ifCond}}>No</option>
+                    </select>
+                </div>
+        
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Save Changes</button>
+                    <a href="/main" class="btn-cancel">Cancel</a>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

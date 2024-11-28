@@ -1,17 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Main Modules</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-    <h1>Student Disciplinary Formation Office</h1>
-    <ul>
-        <li><a href="/module/non-fraternity">Non Fraternity Contract</a></li>
-        <li><a href="/module/drug-test">Drug Test Consent Form</a></li>
-        <li><a href="/module/lost-found">Lost and Found</a></li>
-        <li><a href="/module/disciplinary-cases">Disciplinary Cases</a></li>
-    </ul>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="/images/anunalogo-final.png">
+            <h1>My S D F O</h1>
+        </div>
+        <div class="module-links">
+            {{#each moduleLinks}}
+            <div class="module-link">
+                <a href="{{this.link}}">
+                    <img src="/images/{{this.icon}}">
+                    {{this.name}}
+                </a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="search__container">
+            <input class="search__input" type="text" placeholder="Search">
+        </div> 
+
+        <div class="profile-link">
+            <img src="/images/profiletemp.png">
+            Profile
+        </div>
+    </div>
+
+    <div class="main-body">
+        <div class="main-body-header">
+            <h3>D A S H B O A R D</h3>
+            <p class="welcome-message">Here you can manage your settings, view contracts, and more - Use the sidebar to navigate through the options</p>
+        </div>
+
+        <div class="form-container">
+            {{#each modules}}
+            <div class="action-box">
+                <img src="/images/{{this.image}}" alt="{{this.title}}">
+                <h2 class="action-title">{{this.title}}</h2>
+                <div class="action-buttons">
+                    {{#each this.actions}}
+                        <a href="{{this.link}}" class="btn-action">{{this.label}}</a>
+                    {{/each}}
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
 </body>
 </html>

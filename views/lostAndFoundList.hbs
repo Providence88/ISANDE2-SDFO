@@ -1,29 +1,90 @@
-<h1>Lost and Found</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lost and Found</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="images/anunalogo-final.png" alt="Logo">
+            <h1>M y S D F O</h1>
+        </div>
+        <div class="module-links">
+            {{#each moduleLinks}}
+            <div class="module-link">
+                <a href="{{this.link}}">
+                    <img src="/images/{{this.icon}}">
+                    {{this.name}}
+                </a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
 
-<a href="/module/lost-and-found/create" class="btn">Create New Entry</a>
+    <div class="header">
+        <div class="search__container">
+            <input class="search__input" type="text" placeholder="Search">
+        </div> 
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Item Name</th>
-            <th>Details</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each entries}}
-        <tr>
-            <td>{{this._id}}</td>
-            <td>{{this.itemName}}</td>
-            <td>{{this.details}}</td>
-            <td>
-                <a href="/module/lost-and-found/edit/{{this._id}}" class="btn">Edit</a>
-                <form action="/module/lost-and-found/delete/{{this._id}}" method="POST" style="display:inline;">
-                    <button type="submit" class="btn">Delete</button>
-                </form>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+        <div class="profile-link">
+            <img src="images/profiletemp.png" alt="Profile">
+            Profile
+        </div>
+    </div>
+
+    <div class="main-body">
+
+        <div class="main-body-header">
+            <h3>Lost and Found</h3>
+            <p class="welcome-message">View the current Lost and Found</p>
+        </div>
+
+        <div class="form-container">
+            <div class="report-container">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>Item ID</th>
+                            <th>Item Name</th>
+                            <th>Location Found</th>
+                            <th>Date and Time Found</th>
+                            <th>Confirmed By</th>
+                            <th>Claimed</th>
+                            <th>Claimed By</th>
+                            <th>Confirmed By</th>
+                            <th>Date Claimed</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each entries}}
+                        <tr>
+                            <td>{{itemId}}</td>
+                            <td>{{itemName}}</td>
+                            <td>{{locationFound}}</td>
+                            <td>{{dateTimeFound}}</td>
+                            <td>{{confirmedBy}}</td>
+                            <td>{{#if claimed}}Yes{{else}}No{{/if}}</td>
+                            <td>{{claimedBy}}</td>
+                            <td>{{claimedConfirmedBy}}</td>
+                            <td>{{dateClaimed}}</td>
+                            <td>
+                                <button class="btn-edit" onclick="editEntry('{{_id}}')">Edit</button>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        function editEntry(id) {
+            window.location.href = `/module/lost-found/edit/${id}`;
+        }
+    </script>
+</body>
+</html>

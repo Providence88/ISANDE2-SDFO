@@ -1,38 +1,101 @@
-<h1>Edit Disciplinary Case</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Disciplinary Case</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="/images/anunalogo-final.png" alt="Logo">
+            <h1>My S D F O</h1>
+        </div>
+        <div class="module-links">
+            {{#each moduleLinks}}
+            <div class="module-link">
+                <a href="{{this.link}}">
+                    <img src="/images/{{this.icon}}">
+                    {{this.name}}
+                </a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
 
-<form action="/module/disciplinary-cases/edit/{{case._id}}" method="POST">
-    <label for="complainantId">Complainant ID:</label>
-    <input type="text" id="complainantId" name="complainantId" value="{{case.complainantId}}" required>
+    <div class="header">
+        <div class="search__container">
+            <input class="search__input" type="text" placeholder="Search">
+        </div> 
 
-    <label for="complainantName">Complainant Name:</label>
-    <input type="text" id="complainantName" name="complainantName" value="{{case.complainantName}}" required>
+        <div class="profile-link">
+            <img src="/images/profiletemp.png" alt="Profile">
+            Profile
+        </div>
+    </div>
 
-    <label for="complainantEmail">Complainant Email:</label>
-    <input type="email" id="complainantEmail" name="complainantEmail" value="{{case.complainantEmail}}" required>
+    <div class="main-body">
 
-    <label for="respondentId">Respondent ID:</label>
-    <input type="text" id="respondentId" name="respondentId" value="{{case.respondentId}}" required>
+        <div class="main-body-header">
+            <h3>Edit Disciplinary Case</h3>
+            <p class="welcome-message">Here you can edit a disciplinary case</p>
+        </div>
 
-    <label for="respondentName">Respondent Name:</label>
-    <input type="text" id="respondentName" name="respondentName" value="{{case.respondentName}}" required>
+        <div class="form-container">
+            <div class="form">
+            <!-- Removed the url helper and replaced with direct URL -->
+            <form action="/module/disciplinary-cases/create" method="POST">
+                <div class="form-group">
+                    <label for="complainantId">Complainant ID</label>
+                    <input type="text" id="complainantId" name="complainantId" value="{{complainantId}}" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="complainantName">Complainant Name</label>
+                    <input type="text" id="complainantName" name="complainantName" value="{{complainantName}}" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="complainantEmail">Complainant Email</label>
+                    <input type="email" id="complainantEmail" name="complainantEmail" value="{{complainantEmail}}" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="respondentId">Respondent ID</label>
+                    <input type="text" id="respondentId" name="respondentId" value="{{respondentId}}" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="respondentName">Respondent Name</label>
+                    <input type="text" id="respondentName" name="respondentName" value="{{respondentName}}" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="respondentEmail">Respondent Email</label>
+                    <input type="email" id="respondentEmail" name="respondentEmail" value="{{respondentEmail}}" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="currentLevelOfEscalation">Current Level of Escalation</label>
+                    <select id="currentLevelOfEscalation" name="currentLevelOfEscalation" required>
+                        {{#each escalationLevels}}
+                            <option value="{{this}}" {{#ifCond currentLevelOfEscalation this}}selected{{/ifCond}}>{{this}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+        
+                <div class="form-group">
+                    <label for="confirmedBy">Confirmed By</label>
+                    <input type="text" id="confirmedBy" name="confirmedBy" value="{{confirmedBy}}" required>
+                </div>
+        
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Save Changes</button>
+                    <a href="/main" class="btn-cancel">Cancel</a>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
 
-    <label for="respondentEmail">Respondent Email:</label>
-    <input type="email" id="respondentEmail" name="respondentEmail" value="{{case.respondentEmail}}" required>
-
-    <label for="currentLevelOfEscalation">Current Level of Escalation:</label>
-    <select id="currentLevelOfEscalation" name="currentLevelOfEscalation" required>
-        <option value="Investigation" {{#if (eq case.currentLevelOfEscalation "Investigation")}}selected{{/if}}>Investigation</option>
-        <option value="Further Assessment" {{#if (eq case.currentLevelOfEscalation "Further Assessment")}}selected{{/if}}>Further Assessment</option>
-        <option value="Evaluation" {{#if (eq case.currentLevelOfEscalation "Evaluation")}}selected{{/if}}>Evaluation</option>
-        <option value="Hearing" {{#if (eq case.currentLevelOfEscalation "Hearing")}}selected{{/if}}>Hearing</option>
-        <option value="Mediation" {{#if (eq case.currentLevelOfEscalation "Mediation")}}selected{{/if}}>Mediation</option>
-        <option value="On-Going" {{#if (eq case.currentLevelOfEscalation "On-Going")}}selected{{/if}}>On-Going</option>
-        <option value="Solved" {{#if (eq case.currentLevelOfEscalation "Solved")}}selected{{/if}}>Solved</option>
-    </select>
-
-    <label for="confirmedBy">Confirmed By:</label>
-    <input type="text" id="confirmedBy" name="confirmedBy" value="{{case.confirmedBy}}" required>
-
-    <button type="submit">Update Case</button>
-    <a href="/module/disciplinary-cases" class="btn">Cancel</a>
-</form>
+</body>
+</html>

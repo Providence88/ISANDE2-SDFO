@@ -2,12 +2,28 @@ const express = require('express');
 const DisciplinaryCase = require('../models/DisciplinaryCase');
 const router = express.Router();
 
-// Create Case
-router.post('/create', async (req, res) => {
+// Create Disciplinary Case (POST)
+router.post('/createDisciplinaryCase', async (req, res) => {
     try {
-        const caseEntry = new DisciplinaryCase(req.body);
-        await caseEntry.save();
-        res.redirect('/module/disciplinary-cases');
+        // Assuming req.body contains all the form data sent from the form
+        const { complainantId, complainantName, complainantEmail, respondentId, respondentName, respondentEmail, currentLevelOfEscalation, confirmedBy } = req.body;
+        
+        const newCase = new DisciplinaryCase({
+            complainantId,
+            complainantName,
+            complainantEmail,
+            respondentId,
+            respondentName,
+            respondentEmail,
+            currentLevelOfEscalation,
+            confirmedBy
+        });
+
+        // Save the new case to the database
+        await newCase.save();
+
+        // Redirect to the disciplinary cases list or another page
+        res.redirect('/createDisciplinaryCase');
     } catch (error) {
         res.status(400).send(error);
     }
@@ -17,7 +33,7 @@ router.post('/create', async (req, res) => {
 router.post('/edit/:id', async (req, res) => {
     try {
         await DisciplinaryCase.findByIdAndUpdate(req.params.id, req.body);
-        res.redirect('/module/disciplinary-cases');
+        res.redirect('editDisciplinaryCase');
     } catch (error) {
         res.status(400).send(error);
     }
@@ -27,7 +43,7 @@ router.post('/edit/:id', async (req, res) => {
 router.post('/delete/:id', async (req, res) => {
     try {
         await DisciplinaryCase.findByIdAndDelete(req.params.id);
-        res.redirect('/module/disciplinary-cases');
+        res.redirect('/createDisciplinaryCase');
     } catch (error) {
         res.status(400).send(error);
     }

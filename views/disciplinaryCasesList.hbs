@@ -1,29 +1,76 @@
-<h1>Disciplinary Cases</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="/images/anunalogo-final.png" alt="Logo">
+            <h1>My S D F O</h1>
+        </div>
+        <div class="module-links">
+            {{#each moduleLinks}}
+            <div class="module-link">
+                <img src="{{this.icon}}" alt="{{this.alt}}">
+                {{this.name}}
+            </div>
+            {{/each}}
+        </div>
+    </div>
 
-<a href="/module/disciplinary-cases/create" class="btn">Create New Case</a>
+    <div class="header">
+        <div class="search__container">
+            <input class="search__input" type="text" placeholder="Search">
+        </div> 
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Case Title</th>
-            <th>Details</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each cases}}
-        <tr>
-            <td>{{this._id}}</td>
-            <td>{{this.caseTitle}}</td>
-            <td>{{this.details}}</td>
-            <td>
-                <a href="/module/disciplinary-cases/edit/{{this._id}}" class="btn">Edit</a>
-                <form action="/module/disciplinary-cases/delete/{{this._id}}" method="POST" style="display:inline;">
-                    <button type="submit" class="btn">Delete</button>
-                </form>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+        <div class="profile-link">
+            <img src="/images/profiletemp.png" alt="Profile">
+            Profile
+        </div>
+    </div>
+
+    <div class="main-body">
+
+        <div class="main-body-header">
+            <h3>{{title}}</h3>
+            <p class="welcome-message">{{welcomeMessage}}</p>
+        </div>
+
+        <div class="report-container">
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th>Complainant ID</th>
+                        <th>Complainant Name</th>
+                        <th>Complainant Email</th>
+                        <th>Respondent ID</th>
+                        <th>Respondent Name</th>
+                        <th>Respondent Email</th>
+                        <th>Current Level of Escalation</th>
+                        <th>Confirmed By</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each entries}}
+                    <tr>
+                        <td>{{this.complainantId}}</td>
+                        <td>{{this.complainantName}}</td>
+                        <td>{{this.complainantEmail}}</td>
+                        <td>{{this.respondentId}}</td>
+                        <td>{{this.respondentName}}</td>
+                        <td>{{this.respondentEmail}}</td>
+                        <td>{{this.currentLevelOfEscalation}}</td>
+                        <td>{{this.confirmedBy}}</td>
+                        <td><button class="btn-edit" onclick="editEntry({{this._id}})">Edit</button></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</body>
+</html>
