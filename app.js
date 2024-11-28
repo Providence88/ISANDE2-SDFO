@@ -349,7 +349,7 @@ app.get('/editDrugTestConsent', (req, res) => {
     });
   });
 
-  app.get('/drugTestConsentList', (req, res) => {
+  app.get('/drugTestConsentsList', (req, res) => {
     try {
       res.render('drugTestConsentsList', {
         title: 'Drug Test Consents List',
