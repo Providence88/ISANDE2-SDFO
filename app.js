@@ -101,15 +101,12 @@ hbs.registerHelper('eq', function (a, b) {
 
 
     const moduleLinks = [
-      { name: "Logo", icon: "anunalogo-final.png" },
       { name: "Home", icon: "home.png", link: "/main" },
-      { name: "Non Fraternity Contract", icon: "fraternity.png", link: "/createNonFraternityContract" },
-      { name: "Drug Test Consent Form", icon: "drug-test.png", link: "/createDrugTestConsent" },
-      { name: "Lost and Found", icon: "lost-luggage.png", link: "/createLostFoundEntry" },
-      { name: "Disciplinary Cases", icon: "gavel.png", link: "/createDisciplinaryCase" },
-      { name: "Settings", icon: "settings.png", link: "/settings" },
+      { name: "Non Fraternity Contract", icon: "fraternity.png", link: "/nonFraternityContractsList" },
+      { name: "Drug Test Consent Form", icon: "drug-test.png", link: "/drugTestConsentsList" },
+      { name: "Lost and Found", icon: "lost-luggage.png", link: "/lostAndFoundList" },
+      { name: "Disciplinary Cases", icon: "gavel.png", link: "/disciplinaryCasesList" },
       { name: "Log Out", icon: "log-out.png", link: "/logout" },
-      { name: "Profile", icon: "profiletemp.png", link: "/profile" }
     ];
     
 
@@ -394,6 +391,17 @@ app.get('/disciplinaryCasesList', (req, res) => {
   } catch (error) {
     res.status(500).render('errorPage', { message: 'Error retrieving disciplinary case entries.' });
   }
+});
+
+app.get('/profile', (req, res) => {
+  res.render('profile', {
+      title: 'Edit Non Fraternity Contract',
+      contracts: fratSamples,
+      modules,
+      moduleLinks,
+      colleges: colleges, 
+      alphabet: alphabet
+  });
 });
 
 

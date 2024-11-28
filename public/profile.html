@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Profile</title>
+        <link rel="stylesheet" href ="style.css" />
+      </head>
+<body>
+    <div class="sidebar">
+    <div class="logo">
+        <img src="/public/images/anunalogo-final.png">
+        <h1>M y S D F O</h1>
+    </div>
+        <div class="module-links">
+            <div class="module-link">
+                <img src="/public/images/home.png">
+                Home
+            </div>
+            <div class="module-link">
+                <img src="/public/images/fraternity.png">
+                Non Fraternity Contract
+            </div>
+            <div class="module-link">
+                <img src="/public/images/drug-test.png">
+                Drug Test Consent Form
+            </div>
+            <div class="module-link">
+                <img src="/public/images/lost-luggage.png">
+                Lost and Found
+            </div>
+            <div class="module-link">
+                <img src="/public/images/gavel.png">
+                Disciplinary Cases
+            </div>
+            <div class="module-link">
+                <img src="/public/images/settings.png">
+                Settings
+            </div>
+            <div class="module-link">
+                <img src="/public/images/log-out.png">
+                Log Out
+            </div>
+    </div>
+    </div>
+
+    <div class="header">
+        <div class="search__container">
+            <input class="search__input" type="text" placeholder="Search">
+        </div> 
+
+        <div class="profile-link">
+            <img src="/public/images/profiletemp.png">
+            Profile
+        </div>
+    </div>
+
+    <div class="main-body">
+        <div class="main-body-header"><h3>Profile</h3>
+        <p class="welcome-message">View your profile details</p>
+        </div>
+
+        <div class="form-container">
+            
+            <div class="form">
+
+            <form action="/profile/update" method="POST">
+
+
+                <div class="form-group">
+                    <div class="profile-picture-container">
+                        <img src="/public/images/profiletemp.png" alt="Profile Picture">
+                        <input type="file" id="profilePicture" name="profilePicture" accept="image/*">
+                    </div>
+
+                    <br>
+
+                </div>
+        
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" value="Username123" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" value="John" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" value="Doe" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="johndoe@example.com" required>
+                </div>
+        
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Save Changes</button>
+                    <a href="/profile" class="btn-cancel">Cancel</a>
+                </div>
+
+            </form>
+
+        </div>
+
+        </div>
+
+
+    </div>
+</body>
+</html>

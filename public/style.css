@@ -78,6 +78,7 @@ h1, h2 {
 .logo {
     text-align: center;
     margin-bottom: 0 0px;
+    marign-top: 20px;
 }
   
 .logo img {
@@ -116,6 +117,7 @@ h1, h2 {
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.9s ease, color 0.6s ease;
+    max-height: 1.5rem;
     }
 
 .module-link img {
@@ -1024,11 +1026,13 @@ input:focus, select:focus {
     }
 }
 
-.btn-edit {
+.btn-actions {
     background-color: #4CAF50;
     color: white;
     border: none;
     padding: 8px 16px;
+    margin-bottom: 10px;
+    margin-right: 5px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -1040,7 +1044,26 @@ input:focus, select:focus {
     font-weight: 600;
 }
 
-.btn-edit:hover {
+.btn-actions:hover {
     background-color: #69f06d; /* Darker green when hovering */
 }
 
+.profile-picture-container {
+    display: flex;
+    align-items: center;
+}
+
+.profile-picture-container img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    border: 2px solid #c9af7f;
+}
+
+.profile-picture-container input {
+    width: 15rem;
+    margin-left: 20px;
+    align-items: center;
+}

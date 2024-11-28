@@ -20,6 +20,16 @@ This project is a web application designed to manage student discipline cases, i
 - **Mongoose**: ODM (Object Data Modeling) library for MongoDB and Node.js.
 - **Handlebars**: Templating engine for rendering HTML views.
 
+## Troubleshooting
+
+If something doesnt work then
+
+1. Delete node_modules (right click then delete it should have a pop up that says "move to recycle bin")
+
+2. Open terminal then type in the prompt: 
+
+    npm i
+
 ## Installation
 
 1. Clone the repository:
