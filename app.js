@@ -1,17 +1,20 @@
 const express = require('express');
 const session = require('express-session');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const hbs = require('hbs');
 const Entry = require('./models/Entry');  // Ensure the correct model path
+const LostFoundEntry = require('./models/LostFoundEntry');
+const DisciplinaryCase = require('./models/DisciplinaryCase');
 const Handlebars = require('handlebars');
+const router = express.Router();
 
 // Initialize app and middleware
 const app = express();
 app.set('view engine', 'hbs');
 app.use(express.static('public'));
-
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json()); // json is better for mongodb 
+//app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: 'mySecret', resave: false, saveUninitialized: true }));
 
 // MongoDB connection
@@ -435,7 +438,9 @@ app.use('/createDisciplinaryCase', disciplinaryCaseRoute);
 app.use('/editNonFraternityContract', editNonFraternityContractRoute);  
 app.use('/editDrugTestConsent', editDrugTestConsentRoute);  
 app.use('/editLostFoundEntry', editLostFoundRoute);  
-app.use('/editDisciplinaryCase', editDisciplinaryCaseRoute);  
+app.use('/editDisciplinaryCase', editDisciplinaryCaseRoute);
+
+//
 
 // Start the server
 const PORT = process.env.PORT || 3000;
