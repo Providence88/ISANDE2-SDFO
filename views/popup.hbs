@@ -1,0 +1,19 @@
+<div class="popup" id="popup" style="display: none;">
+    <div class="popup-content">
+        <h1>Success!</h1>
+        <p>You have successfully entered information, thank you.</p>
+        <button class="btn-actions" onclick="closePopup()">Proceed</button>
+    </div>
+</div>
+
+<button class="btn-actions" onclick="openPopup()">Show Popup</button>
+
+<script>
+    function openPopup() {
+        document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+        document.getElementById("popup").style.display = "none";
+    }
+</script>

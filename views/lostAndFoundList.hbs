@@ -12,12 +12,10 @@
         </div>
         <div class="module-links">
             {{#each moduleLinks}}
-            <div class="module-link">
-                <a href="{{this.link}}">
+                <a href="{{this.link}}" class="module-link">
                     <img src="/images/{{this.icon}}">
                     {{this.name}}
                 </a>
-            </div>
             {{/each}}
         </div>
     </div>
@@ -72,7 +70,7 @@
                             <td>{{claimedConfirmedBy}}</td>
                             <td>{{dateClaimed}}</td>
                             <td>
-                                <button class="btn-edit" onclick="editEntry('{{_id}}')">Edit</button>
+                                <a href="/views/editLostFoundEntry/{{this._id}}" class="btn-edit">Edit</a>
                             </td>
                         </tr>
                         {{/each}}

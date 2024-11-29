@@ -12,12 +12,10 @@
         </div>
         <div class="module-links">
             {{#each moduleLinks}}
-            <div class="module-link">
-                <a href="{{this.link}}">
+                <a href="{{this.link}}" class="module-link">
                     <img src="/images/{{this.icon}}">
                     {{this.name}}
                 </a>
-            </div>
             {{/each}}
         </div>
     </div>
@@ -89,8 +87,10 @@
                 </div>
         
                 <div class="form-actions">
-                    <button type="submit" class="btn-submit">Save Changes</button>
+
                     <a href="/main" class="btn-cancel">Cancel</a>
+                    <button type="submit" class="btn-submit">Save Changes</button>
+                    
                 </div>
             </form>
             </div>

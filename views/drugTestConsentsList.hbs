@@ -12,12 +12,10 @@
         </div>
         <div class="module-links">
             {{#each moduleLinks}}
-            <div class="module-link">
-                <a href="{{this.link}}">
+                <a href="{{this.link}}" class="module-link">
                     <img src="/images/{{this.icon}}">
                     {{this.name}}
                 </a>
-            </div>
             {{/each}}
         </div>
     </div>
@@ -68,7 +66,9 @@
                         <td>{{signature}}</td>
                         <td>{{consent}}</td>
                         <td>{{submitted}}</td>
-                        <td><button class="btn-edit" onclick="editEntry({{idNumber}})">Edit</button></td> <!-- Edit button -->
+                        <td>
+                            <a href="/views/editDrugTestConsent/{{this._id}}" class="btn-edit">Edit</a>
+                        </td> <!-- Edit button -->
                     </tr>
                     {{/each}}
                 </tbody>

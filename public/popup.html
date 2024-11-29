@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Popup Example</title>
+</head>
+<body>
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <h1>Success!</h1>
+            <p>You have successfully entered information, thank you.</p>
+            <button class="btn-actions" onclick="closePopup()">Proceed</button>
+        </div>
+    </div>
+
+    <button class="btn-actions" onclick="openPopup()">Show Popup</button>
+
+    <script>
+        function openPopup() {
+            document.getElementById("popup").style.display = "flex";
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+    </script>
+</body>
+</html>
