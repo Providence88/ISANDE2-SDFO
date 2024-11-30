@@ -35,7 +35,7 @@ router.get('/edit/:id', async (req, res) => {
         if (!entry) {
             return res.status(404).send('Entry not found');
         }
-        res.render('editNonFraternityContract', { entry }); // Pass entry data to Handlebars template
+        res.render('/editNonFraternityContract', { entry }); // Pass entry data to Handlebars template
     } catch (error) {
         res.status(400).send(error);
     }
@@ -44,7 +44,7 @@ router.get('/edit/:id', async (req, res) => {
 // Get All Non-Fraternity Contracts (using the sample data)
 router.get('/', (req, res) => {
     try {
-        res.render('nonFraternityContracts', { contracts: fratSamples });
+        res.render('/nonFraternityContracts', { contracts: fratSamples });
     } catch (error) {
         res.status(400).send(error);
     }

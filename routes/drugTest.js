@@ -56,7 +56,7 @@ router.get('/drugTestConsentsList', async (req, res) => {
         // Fetch all entries from the database
         const entries = await Entry.find();
         
-        res.render('drugTestConsentsList', { entries });
+        res.render('/drugTestConsentsList', { entries });
     } catch (error) {
         res.status(400).send(error);
     }

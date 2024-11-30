@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
         const entries = sampleEntries.slice(skip, skip + limit);
         const total = sampleEntries.length;
 
-        res.render('lostFoundList', {
+        res.render('/lostFoundList', {
             entries,
             currentPage: page,
             totalPages: Math.ceil(total / limit),
@@ -33,7 +33,7 @@ router.get('/edit/:id', async (req, res) => {
         if (!entry) {
             return res.status(404).render('errorPage', { message: 'Entry not found.' });
         }
-        res.render('editLostFoundEntry', { entry });
+        res.render('/editLostFoundEntry', { entry });
     } catch (error) {
         res.status(500).render('errorPage', { message: 'Error retrieving the entry.' });
     }
@@ -49,7 +49,7 @@ router.post(
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).render('createLostFoundEntry', { errors: errors.array(), data: req.body });
+            return res.status(400).render('/createLostFoundEntry', { errors: errors.array(), data: req.body });
         }
         try {
             const newEntry = { ...req.body, _id: `entry${Date.now()}` };
@@ -71,7 +71,7 @@ router.post('/edit/:id', async (req, res) => {
         sampleEntries[entryIndex] = { ...sampleEntries[entryIndex], ...req.body };
         res.redirect(LOST_FOUND_ROUTE);
     } catch (error) {
-        res.status(400).render('editLostFoundEntry', { entry: req.body, errors: [{ msg: 'Error updating the entry.' }] });
+        res.status(400).render('/editLostFoundEntry', { entry: req.body, errors: [{ msg: 'Error updating the entry.' }] });
     }
 });
 
