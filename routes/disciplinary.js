@@ -7,7 +7,7 @@ router.post('/createDisciplinaryCase', async (req, res) => {
     try {
         // Assuming req.body contains all the form data sent from the form
         const { complainantId, complainantName, complainantEmail, respondentId, respondentName, respondentEmail, currentLevelOfEscalation, confirmedBy } = req.body;
-        
+        // or actually use const data = req.body, see what works huhuhuhuhuhu
         const newCase = new DisciplinaryCase({
             complainantId,
             complainantName,
@@ -23,14 +23,14 @@ router.post('/createDisciplinaryCase', async (req, res) => {
         await newCase.save();
         res.status(201).json({ message: 'Disciplinary case created successfully!' });
         // Redirect to the disciplinary cases list or another page
-        res.redirect('/createDisciplinaryCase');
+        res.redirect('/createDisciplinaryCase'); //might want to change the path? :O
     } catch (error) {
         res.status(400).send(error);
     }
 });
 
 // Edit Case
-router.put('/edit/:id', async (req, res) => {
+router.put('/editDisciplinaryCase/:id', async (req, res) => {
     try {
         const { id } = req.params ;
         const { complainantId, complainantName, complainantEmail, respondentId, respondentName, respondentEmail, currentLevelOfEscalation, confirmedBy } = req.body;
@@ -42,7 +42,6 @@ router.put('/edit/:id', async (req, res) => {
         );
 
         if (updatedCase){
-            res.status(200).json({ message: 'Disciplinary case edited successfully!', updatedCase });
             res.redirect('/editDisciplinaryCase');
         } else {
             res.status(404).json({ error: 'Case not edited.' });

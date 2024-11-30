@@ -41,7 +41,7 @@
         <div class="form-container">
             <div class="form">
             <!-- Removed the url helper and replaced with direct URL -->
-            <form action="/module/disciplinary-cases/create" method="POST">
+            <form id='discEdit' action="/disciplinary/editDisciplinaryCase/{{caseId}}" method="POST">
                 <div class="form-group">
                     <label for="complainantId">Complainant ID</label>
                     <input type="text" id="complainantId" name="complainantId" value="{{complainantId}}" required>
@@ -93,6 +93,7 @@
                     
                 </div>
             </form>
+            <script src="/public/js/editDisciplinaryCase.js"></script>
             </div>
         </div>
     </div>

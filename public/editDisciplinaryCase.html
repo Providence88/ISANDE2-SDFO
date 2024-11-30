@@ -62,7 +62,7 @@
 
         <div class="form-container">
             <div class="form">
-            <form id='discEdit' action="/module/disciplinary-cases/create" method="POST">
+            <form id='discEdit' action="/disciplinary/editDisciplinaryCase/{{caseId}}" method="POST">
                 <div class="form-group">
                     <label for="complainantId">Complainant ID</label>
                     <input type="text" id="complainantId" name="complainantId" required>
@@ -116,7 +116,6 @@
                     <a href="/module/disciplinary-cases" class="btn-cancel">Cancel</a>
                 </div>
             </form>
-            <script src=""></script>
             </div>
         </div>
     </div>

@@ -41,7 +41,7 @@
 
         <div class="form-container">
             <div class="form">
-                <form action="/module/lost-found/edit/{{entry._id}}" method="POST">
+                <form id='landfEdit' action="/module/lost-found/edit/{{entry._id}}" method="PUT">
                     <div class="form-group">
                         <label for="itemId">Item ID</label>
                         <input type="text" id="itemId" name="itemId" value="{{entry.itemId}}" required readonly>
@@ -97,6 +97,7 @@
                        
                     </div>
                 </form>
+                <script src="/public/js/editLostFoundEntry.js"></script>
             </div>
         </div>
     </div>

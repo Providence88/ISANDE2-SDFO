@@ -15,7 +15,7 @@ document.getElementById('discEdit').addEventListener('submit', async (event) => 
     const caseId = getCaseIdFromURL(); // Get the ID of the case being edited
 
     try {
-        const response = await fetch(`/disciplinary/edit/${caseId}`, {
+        const response = await fetch(`/disciplinary/editDisciplinaryCase/${caseId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData), // Convert data to JSON

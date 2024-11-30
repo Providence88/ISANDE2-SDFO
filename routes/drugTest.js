@@ -14,7 +14,7 @@ router.post('/create', async (req, res) => {
 });
 
 // Edit Entry
-router.post('/edit/:id', async (req, res) => {
+router.put('/edit/:id', async (req, res) => {
     try {
         await Entry.findByIdAndUpdate(req.params.id, req.body);
         res.redirect(`/editDrugTestConsent/${req.params.id}`); // Redirect to the correct edit page

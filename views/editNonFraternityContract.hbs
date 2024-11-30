@@ -39,7 +39,7 @@
 
         <div class="form-container">
             <div class="form">
-                <form action="/module/nonFraternityContract/edit/{{contract.id}}" method="POST">
+                <form action="/module/nonFraternityContract/edit/{{contract.id}}" method="PUT">
                     <div class="form-group">
                         <label for="idNumber">ID Number</label>
                         <input type="text" id="idNumber" name="idNumber" value="{{contract.idNumber}}" required>
@@ -108,6 +108,7 @@
                         
                     </div>
                 </form>
+                <script src="/public/js/editNonFraternityContract.js"></script>
             </div>
         </div>
     </div>

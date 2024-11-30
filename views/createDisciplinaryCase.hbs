@@ -41,7 +41,7 @@
 
         <div class="form-container">
             <div class="form">
-            <form action="/module/disciplinary-cases/create" method="POST">
+            <form id='discCreate' action='/disciplinary/createDisciplinaryCase' method="POST">
                 <div class="form-group">
                     <label for="complainantId">Complainant ID</label>
                     <input type="text" id="complainantId" name="complainantId" required>
@@ -92,6 +92,7 @@
                     <button type="submit" class="btn-submit" onclick="openPopup()">Create Case</button>
                 </div>
             </form>
+            <script src="/public/js/createDisciplinaryCase.js"></script>
             </div>
         </div>
 

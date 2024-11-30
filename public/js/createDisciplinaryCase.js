@@ -24,7 +24,6 @@ document.getElementById('discCreate').addEventListener('submit', async (event) =
         const data = await response.json(); // Parse the response
 
         if (response.ok) {
-            alert('Disciplinary case created successfully!');
             // Optionally clear the form or redirect
             document.getElementById('submitForm').reset();
         } else {
@@ -32,6 +31,5 @@ document.getElementById('discCreate').addEventListener('submit', async (event) =
         }
     } catch (error) {
         console.error('Error submitting form:', error);
-        alert('Something went wrong while creating the case.');
     }
 });

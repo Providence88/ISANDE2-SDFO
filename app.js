@@ -1,6 +1,6 @@
 const express = require('express');
 const session = require('express-session');
-//const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const hbs = require('hbs');
 const Entry = require('./models/Entry');  // Ensure the correct model path
@@ -13,8 +13,9 @@ const router = express.Router();
 const app = express();
 app.set('view engine', 'hbs');
 app.use(express.static('public'));
-app.use(express.json()); // json is better for mongodb 
-//app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: 'mySecret', resave: false, saveUninitialized: true }));
 
 // MongoDB connection
@@ -431,14 +432,14 @@ app.use('/main', mainRoute); // Ensure main route is mounted
 app.use('/createNonFraternityContract', nonFraternityContractRoute);  
 app.use('/createDrugTestConsent', drugTestConsentRoute);  
 app.use('/createLostFoundEntry', lostFoundRoute);  
-app.use('/createDisciplinaryCase', disciplinaryCaseRoute);  
+app.use('/disciplinary', disciplinaryCaseRoute);  
 
 
 
 app.use('/editNonFraternityContract', editNonFraternityContractRoute);  
 app.use('/editDrugTestConsent', editDrugTestConsentRoute);  
 app.use('/editLostFoundEntry', editLostFoundRoute);  
-app.use('/editDisciplinaryCase', editDisciplinaryCaseRoute);
+app.use('/disciplinary', editDisciplinaryCaseRoute);
 
 //
 
