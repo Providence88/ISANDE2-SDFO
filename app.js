@@ -432,14 +432,14 @@ app.use('/main', mainRoute); // Ensure main route is mounted
 app.use('/createNonFraternityContract', nonFraternityContractRoute);  
 app.use('/createDrugTestConsent', drugTestConsentRoute);  
 app.use('/createLostFoundEntry', lostFoundRoute);  
-app.use('/disciplinary', disciplinaryCaseRoute);  
+app.use('/createDisciplinaryCase', disciplinaryCaseRoute);  
 
 
 
 app.use('/editNonFraternityContract', editNonFraternityContractRoute);  
 app.use('/editDrugTestConsent', editDrugTestConsentRoute);  
 app.use('/editLostFoundEntry', editLostFoundRoute);  
-app.use('/disciplinary', editDisciplinaryCaseRoute);
+app.use('/editDisciplinaryCase', editDisciplinaryCaseRoute);
 
 //
 

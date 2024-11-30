@@ -15,7 +15,7 @@ document.getElementById('discCreate').addEventListener('submit', async (event) =
 
     try {
         // Send data to the backend
-        const response = await fetch('/disciplinary/createDisciplinaryCase', {
+        const response = await fetch('/createDisciplinaryCase', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData), // Convert data to JSON
@@ -25,7 +25,7 @@ document.getElementById('discCreate').addEventListener('submit', async (event) =
 
         if (response.ok) {
             // Optionally clear the form or redirect
-            document.getElementById('submitForm').reset();
+            document.getElementById('discCreate').reset();
         } else {
             alert(`Error: ${data.error}`);
         }

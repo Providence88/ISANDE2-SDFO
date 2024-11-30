@@ -6,24 +6,13 @@ const router = express.Router();
 router.post('/createDisciplinaryCase', async (req, res) => {
     try {
         // Assuming req.body contains all the form data sent from the form
-        const { complainantId, complainantName, complainantEmail, respondentId, respondentName, respondentEmail, currentLevelOfEscalation, confirmedBy } = req.body;
-        // or actually use const data = req.body, see what works huhuhuhuhuhu
-        const newCase = new DisciplinaryCase({
-            complainantId,
-            complainantName,
-            complainantEmail,
-            respondentId,
-            respondentName,
-            respondentEmail,
-            currentLevelOfEscalation,
-            confirmedBy
-        });
+        const newCase = new DisciplinaryCase(req.body);
 
         // Save the new case to the database
         await newCase.save();
         res.status(201).json({ message: 'Disciplinary case created successfully!' });
         // Redirect to the disciplinary cases list or another page
-        res.redirect('/createDisciplinaryCase'); //might want to change the path? :O
+        res.redirect('/createDisciplinaryCase');
     } catch (error) {
         res.status(400).send(error);
     }
@@ -32,14 +21,7 @@ router.post('/createDisciplinaryCase', async (req, res) => {
 // Edit Case
 router.put('/editDisciplinaryCase/:id', async (req, res) => {
     try {
-        const { id } = req.params ;
-        const { complainantId, complainantName, complainantEmail, respondentId, respondentName, respondentEmail, currentLevelOfEscalation, confirmedBy } = req.body;
-        
-        const updatedCase = await DisciplinaryCase.findByIdAndUpdate(
-            id,
-            { complainantId, complainantName, complainantEmail, respondentId, respondentName, respondentEmail, currentLevelOfEscalation, confirmedBy },
-            { new: true } //Return the edited case
-        );
+        const updatedCase = await DisciplinaryCase.findByIdAndUpdate(req.params.id, req.body);
 
         if (updatedCase){
             res.redirect('/editDisciplinaryCase');

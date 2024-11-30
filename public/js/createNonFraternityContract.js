@@ -1,26 +1,22 @@
-// the logic in createDisciplinaryCase will be the same logic for creating
-// the other modules, I'll put dito sa baba yung code content dun sa cases
-// then change na lang
-
-/*
-document.getElementById('discCreate').addEventListener('submit', async (event) => {
+document.getElementById('nfcCreate').addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the page from refreshing
 
     // Collect inputs
     const formData = {
-        complainantId: document.getElementById('complaintId').value,
-        complainantName: document.getElementById('complainantName').value,
-        complainantEmail: document.getElementById('complainantEmail').value,
-        respondentId: document.getElementById('respondentId').value,
-        respondentName: document.getElementById('respondentName').value,
-        respondentEmail: document.getElementById('respondentEmail').value,
-        currentLevelOfEscalation: document.getElementById('currentLevelOfEscalation').value,
-        confirmedBy: document.getElementById('confirmedBy').value
+        idNumber: document.getElementById('idNumber').value,
+        lastName: document.getElementById('lastName').value,
+        firstName: document.getElementById('firstName').value,
+        middleInitial: document.getElementById('middleInitial').value,
+        cellphoneNumber: document.getElementById('cellphoneNumber').value,
+        schoolEmail: document.getElementById('schoolEmail').value,
+        signature: document.getElementById('signature').value,
+        consent: document.getElementById('consent').value,
+        submitted: document.getElementById('submitted').value,
     };
 
     try {
         // Send data to the backend
-        const response = await fetch('/disciplinary/createDisciplinaryCase', {
+        const response = await fetch('/createNonFraternityContract', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData), // Convert data to JSON
@@ -30,7 +26,7 @@ document.getElementById('discCreate').addEventListener('submit', async (event) =
 
         if (response.ok) {
             // Optionally clear the form or redirect
-            document.getElementById('submitForm').reset();
+            document.getElementById('nfcCreate').reset();
         } else {
             alert(`Error: ${data.error}`);
         }
@@ -38,4 +34,3 @@ document.getElementById('discCreate').addEventListener('submit', async (event) =
         console.error('Error submitting form:', error);
     }
 });
-*/

@@ -15,7 +15,7 @@ document.getElementById('discEdit').addEventListener('submit', async (event) => 
     const caseId = getCaseIdFromURL(); // Get the ID of the case being edited
 
     try {
-        const response = await fetch(`/disciplinary/editDisciplinaryCase/${caseId}`, {
+        const response = await fetch(`/editDisciplinaryCase/${caseId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData), // Convert data to JSON
@@ -24,14 +24,13 @@ document.getElementById('discEdit').addEventListener('submit', async (event) => 
         const data = await response.json();
 
         if (response.ok) {
-            alert('Disciplinary case edited successfully!');
             // Optionally redirect or refresh the data
+            document.getElementById('discEdit').reset();
         } else {
             alert(`Error: ${data.error}`);
         }
     } catch (error) {
         console.error('Error submitting edit form:', error);
-        alert('Something went wrong while updating the case.');
     }
 });
 
