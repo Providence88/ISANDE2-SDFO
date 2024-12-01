@@ -3,6 +3,9 @@
 <head>
     <title>Create Disciplinary Case</title>
     <link rel="stylesheet" href="/style.css">
+
+    <script src="/public/js/popup.js"></script>
+
 </head>
 <body>
     <div class="sidebar">
@@ -10,7 +13,7 @@
             <img src="/images/anunalogo-final.png" alt="Logo">
             <h1>My S D F O</h1>
         </div>
-  <div class="module-links">
+    <div class="module-links">
             {{#each moduleLinks}}
             <a href="{{this.link}}" class="module-link">
                     <img src="/images/{{this.icon}}">
@@ -103,8 +106,6 @@
                 <button class="btn-actions" onclick="closePopup()">Proceed</button>
             </div>
         </div>
-
-        <script src="/public/js/popup.js"></script>
 
     </div>
 </body>

@@ -110,6 +110,7 @@ hbs.registerHelper('eq', function (a, b) {
       { name: "Drug Test Consent Form", icon: "drug-test.png", link: "/drugTestConsentsList" },
       { name: "Lost and Found", icon: "lost-luggage.png", link: "/lostAndFoundList" },
       { name: "Disciplinary Cases", icon: "gavel.png", link: "/disciplinaryCasesList" },
+      { name: "Students", icon: "graduation.png", link: "/studentList" },
       { name: "Log Out", icon: "log-out.png", link: "/logout" },
     ];
     
@@ -223,26 +224,48 @@ const discSample = [
   }
 ];
 
-
-
+const studentSample = [
+  {
+      studentId: '12019631',
+      name: 'Timothy Jacob Rivera',
+      email: 'timothy_jacob_rivera@dlsu.edu.ph',
+      colleges: 'CCS',
+      _id: 1
+  },
+  {
+      studentId: '12345678',
+      name: 'John Doe',
+      email: 'johndoe@example.com',
+      colleges: 'COB',
+      _id: 2
+  }
+];
 
 
 // Root route to redirect to main page
 app.get('/', (req, res) => {
-  res.render('signin', {
-    layout: 'signin',
-    title: 'Register | Sign Up',
+  res.render('login', {
+    layout: 'login',
+    title: 'Log Into Existing Account',
     css: 'signup.css'
   });
 });
 
-app.get('/login', (req, res) => {
-  res.render('login', { 
+app.get('/signin', (req, res) => {
+  res.render('signin', { 
     error: null,
+    layout: 'signin',
+    title: 'Contact ITS',
+    css: 'signup.css'
+    }); // Render the login.hbs view
+});
+
+app.get('/login', (req, res) => {
+  res.render('login', {
     layout: 'login',
     title: 'Log Into Existing Account',
     css: 'signup.css'
-    }); // Render the login.hbs view
+  });
 });
 
 // Routes
@@ -387,6 +410,16 @@ app.get('/profile', (req, res) => {
       moduleLinks,
       colleges: colleges, 
       alphabet: alphabet
+  });
+});
+
+app.get('/studentlist', (req, res) => {
+  res.render('studentlist', {
+      title: 'Students',
+      students: studentSample,
+      modules,
+      moduleLinks: moduleLinks,
+      colleges: colleges, 
   });
 });
 
