@@ -1,42 +1,48 @@
-document.getElementById('dtcfEdit').addEventListener('submit', async (event) => {
-    event.preventDefault(); // Prevent the page from refreshing
+// Assuming the form is already available on the page
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('dtcfEdit');
 
-    const formData = {
-        idNumber: document.getElementById('idNumber').value,
-        lastName: document.getElementById('lastName').value,
-        firstName: document.getElementById('firstName').value,
-        middleInitial: document.getElementById('middleInitial').value,
-        cellphoneNumber: document.getElementById('cellphoneNumber').value,
-        schoolEmail: document.getElementById('schoolEmail').value,
-        signature: document.getElementById('signature').value,
-        consent: document.getElementById('consent').value,
-        submitted: document.getElementById('submitted').value,
-    };
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-    const caseId = getCaseIdFromURL(); // Get the ID of the case being edited
+        const idNumber = document.getElementById('idNumber').value;
+        const lastName = document.getElementById('lastName').value;
+        const firstName = document.getElementById('firstName').value;
+        const middleInitial = document.getElementById('middleInitial').value;
+        const cellphoneNumber = document.getElementById('cellphoneNumber').value;
+        const schoolEmail = document.getElementById('schoolEmail').value;
+        const signature = document.getElementById('signature').value;
+        const consent = document.getElementById('consent').value;
+        const submitted = document.getElementById('submitted').value;
 
-    try {
-        const response = await fetch(`/drugTest/edit/${caseId}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData), // Convert data to JSON
+        const formData = new FormData();
+        formData.append('idNumber', idNumber);
+        formData.append('lastName', lastName);
+        formData.append('firstName', firstName);
+        formData.append('middleInitial', middleInitial);
+        formData.append('cellphoneNumber', cellphoneNumber);
+        formData.append('schoolEmail', schoolEmail);
+        formData.append('signature', signature);
+        formData.append('consent', consent);
+        formData.append('submitted', submitted);
+
+        const actionUrl = form.action;
+
+        fetch(actionUrl, {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = '/drugTest/list'; // Redirect on success
+            } else {
+                alert('Error updating the consent form');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error updating the consent form');
         });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            // Optionally redirect or refresh the data
-            document.getElementById('dtcfEdit').reset();
-        } else {
-            alert(`Error: ${data.error}`);
-        }
-    } catch (error) {
-        console.error('Error submitting edit form:', error);
-    }
+    });
 });
-
-// Helper function to get case ID from URL (or wherever it's stored)
-function getCaseIdFromURL() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('id'); // Assumes the case ID is in the URL as ?id=123
-}

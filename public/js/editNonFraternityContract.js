@@ -9,15 +9,14 @@ document.getElementById('nfcEdit').addEventListener('submit', async (event) => {
         cellphoneNumber: document.getElementById('cellphoneNumber').value,
         schoolEmail: document.getElementById('schoolEmail').value,
         signature: document.getElementById('signature').value,
-        consent: document.getElementById('consent').value,
         submitted: document.getElementById('submitted').value,
     };
 
-    const caseId = getCaseIdFromURL(); // Get the ID of the case being edited
+    const contractId = getContractIdFromURL(); // Get the ID of the contract being edited
 
     try {
-        const response = await fetch(`/editNonFraternityContract/${caseId}`, {
-            method: 'PUT',
+        const response = await fetch(`/nonFraternity/edit/${contractId}`, {
+            method: 'POST', // We use 'POST' because this is an update request
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData), // Convert data to JSON
         });
@@ -26,17 +25,19 @@ document.getElementById('nfcEdit').addEventListener('submit', async (event) => {
 
         if (response.ok) {
             // Optionally redirect or refresh the data
-            document.getElementById('nfcEdit').reset();
+            alert('Contract updated successfully!');
+            window.location.href = `/nonFraternity/view/${contractId}`; // Redirect to the contract's view page
         } else {
             alert(`Error: ${data.error}`);
         }
     } catch (error) {
         console.error('Error submitting edit form:', error);
+        alert('An error occurred while submitting the form.');
     }
 });
 
-// Helper function to get case ID from URL (or wherever it's stored)
-function getCaseIdFromURL() {
+// Helper function to get contract ID from URL (or wherever it's stored)
+function getContractIdFromURL() {
     const params = new URLSearchParams(window.location.search);
-    return params.get('id'); // Assumes the case ID is in the URL as ?id=123
+    return params.get('id'); // Assumes the contract ID is in the URL as ?id=123
 }

@@ -3,11 +3,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const hbs = require('hbs');
-const Entry = require('./models/Entry');  // Ensure the correct model path
-const LostFoundEntry = require('./models/LostFoundEntry');
-const DisciplinaryCase = require('./models/DisciplinaryCase');
-const Handlebars = require('handlebars');
-const router = express.Router();
+
 
 // Initialize app and middleware
 const app = express();

@@ -1,42 +1,44 @@
-document.getElementById('landfEdit').addEventListener('submit', async (event) => {
-    event.preventDefault(); // Prevent the page from refreshing
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById('landfEdit');
 
-    const formData = {
-        itemId: document.getElementById('').value,
-        itemName: document.getElementById('').value,
-        locationFound: document.getElementById('').value,
-        dateTimeFound: document.getElementById('').value,
-        confirmedBy: document.getElementById('').value,
-        claimed: document.getElementById('').value,
-        claimedBy: document.getElementById('').value,
-        claimConfirmedBy: document.getElementById('').value,
-        dateClaimed: document.getElementById('').value,
-    };
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();  // Prevent form from submitting normally
 
-    const caseId = getCaseIdFromURL(); // Get the ID of the case being edited
+        // Get form data
+        const formData = new FormData(form);
+        const data = {
+            itemId: formData.get('itemId'),
+            itemName: formData.get('itemName'),
+            locationFound: formData.get('locationFound'),
+            dateTimeFound: formData.get('dateTimeFound'),
+            confirmedBy: formData.get('confirmedBy'),
+            claimed: formData.get('claimed'),
+            claimedBy: formData.get('claimedBy'),
+            claimConfirmedBy: formData.get('claimConfirmedBy'),
+            dateClaimed: formData.get('dateClaimed')
+        };
 
-    try {
-        const response = await fetch(`/editLostFoundEntry/${caseId}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData), // Convert data to JSON
+        // Send an AJAX request to update the lost and found entry
+        fetch('/lostFound/edit/' + formData.get('itemId'), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Lost and Found entry updated successfully!');
+                // Redirect to the main page or another appropriate page
+                window.location.href = '/main';
+            } else {
+                alert('Error updating entry: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Something went wrong. Please try again later.');
         });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            // Optionally redirect or refresh the data
-            document.getElementById('landfEdit').reset();
-        } else {
-            alert(`Error: ${data.error}`);
-        }
-    } catch (error) {
-        console.error('Error submitting edit form:', error);
-    }
+    });
 });
-
-// Helper function to get case ID from URL (or wherever it's stored)
-function getCaseIdFromURL() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('id'); // Assumes the case ID is in the URL as ?id=123
-}

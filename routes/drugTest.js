@@ -35,42 +35,70 @@ router.post('/create', async (req, res) => {
     }
 });
 
-// Render Edit Drug Test Consent page (GET)
-router.get('/edit/:id', async (req, res) => {
-    try {
-        const entryId = req.params.id;
-        const entry = await Entry.findById(entryId);
+router.get('/edit/:id', (req, res) => {
+    const consentId = req.params.id;
 
-        if (!entry) {
-            return res.status(404).render('errorPage', { message: 'Drug test consent not found' });
-        }
+    Entry.findById(consentId)
+        .then(consentForm => {
+            if (!consentForm) {
+                return res.status(404).send('Consent form not found');
+            }
 
-        res.render('editDrugTestConsent', {
-            title: 'Edit Drug Test Consent',
-            moduleLinks,
-            entry,
-            alphabet
+            res.render('editDrugTestConsent', {
+                moduleLinks,
+                consentId: consentId,
+                idNumber: consentForm.idNumber,
+                lastName: consentForm.lastName,
+                firstName: consentForm.firstName,
+                middleInitial: consentForm.middleInitial,
+                cellphoneNumber: consentForm.cellphoneNumber,
+                schoolEmail: consentForm.schoolEmail,
+                signature: consentForm.signature,
+                consent: consentForm.consent,
+                submitted: consentForm.submitted,
+                alphabet
+            });
+        })
+        .catch(err => {
+            console.error('Error fetching consent form:', err);
+            res.status(500).send('Error retrieving consent form');
         });
-    } catch (error) {
-        console.error(error);
-        res.status(500).render('errorPage', { message: 'Error retrieving drug test consent data' });
-    }
 });
 
-// Edit Drug Test Consent (PUT)
-router.put('/edit/:id', async (req, res) => {
-    try {
-        const updatedEntry = await Entry.findByIdAndUpdate(req.params.id, req.body, { new: true });
+// Route to handle updating the drug test consent form
+router.post('/edit/:id', (req, res) => {
+    const { idNumber, lastName, firstName, middleInitial, cellphoneNumber, schoolEmail, signature, consent, submitted } = req.body;
+    const consentId = req.params.id;
 
-        if (!updatedEntry) {
-            return res.status(404).json({ error: 'Entry not found or not updated' });
+    // Validate the input
+    if (!idNumber || !lastName || !firstName || !middleInitial || !cellphoneNumber || !schoolEmail || signature === undefined || consent === undefined || submitted === undefined) {
+        return res.status(400).json({ success: false, message: 'All fields are required.' });
+    }
+
+    // Update the drug test consent form using Entry (not DrugTestConsent)
+    Entry.findByIdAndUpdate(consentId, {
+        idNumber,
+        lastName,
+        firstName,
+        middleInitial,
+        cellphoneNumber,
+        schoolEmail,
+        signature,
+        consent,
+        submitted
+    }, { new: true })
+    .then(updatedConsentForm => {
+        if (!updatedConsentForm) {
+            return res.status(404).json({ success: false, message: 'Consent form not found' });
         }
 
-        res.status(200).redirect(`/drugTest/list`);
-    } catch (error) {
-        console.error('Error updating entry:', error);
-        res.status(400).json({ error: 'Error updating the entry' });
-    }
+        // Redirect to the list of drug test consent forms after successful update
+        res.redirect('/drugTest/list'); // Redirect to the list of consent forms after update
+    })
+    .catch(err => {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Error updating consent form' });
+    });
 });
 
 // Delete Drug Test Consent (POST)

@@ -10,19 +10,19 @@ const moduleLinks = [
     { name: "Disciplinary Cases", icon: "gavel.png", link: "/disciplinary/list" },
     { name: "Students", icon: "graduation.png", link: "/studentList" },
     { name: "Log Out", icon: "log-out.png", link: "/logout" },
-  ];
+];
+
 const colleges = ["BAGCED", "CCS", "CLA", "COB", "COS", "GCOE"];
 const alphabet = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
 const escalationLevels = [
-  'Investigation',
-  'Further Assessment',
-  'Evaluation',
-  'Hearing',
-  'Mediation',
-  'On-Going',
-  'Solved'
-  ];
-
+    'Investigation',
+    'Further Assessment',
+    'Evaluation',
+    'Hearing',
+    'Mediation',
+    'On-Going',
+    'Solved'
+];
 
 // Render the "Create Disciplinary Case" page (GET)
 router.get('/create', (req, res) => {
@@ -45,68 +45,84 @@ router.post('/create', async (req, res) => {
     }
 });
 
-// Render Edit Disciplinary Case page (GET)
-router.get('/edit/:id', async (req, res) => {
-    try {
-        const caseId = req.params.id;
-        const disciplinaryCase = await DisciplinaryCase.findById(caseId);
+// Route to render the Edit Disciplinary Case page
+router.get('/edit/:id', (req, res) => {
+    const caseId = req.params.id;
 
-        if (!disciplinaryCase) {
-            return res.status(404).render('errorPage', { message: 'Disciplinary case not found' });
-        }
+    // Find the disciplinary case by ID using promise-based syntax
+    DisciplinaryCase.findById(caseId)
+        .then(disciplinaryCase => {
+            if (!disciplinaryCase) {
+                return res.status(404).send('Case not found');
+            }
 
-        res.render('editDisciplinaryCase', {
-            title: 'Edit Disciplinary Case',
-            moduleLinks,
-            escalationLevels,
-            caseId: disciplinaryCase._id,
-            complainantId: disciplinaryCase.complainantId,
-            complainantName: disciplinaryCase.complainantName,
-            complainantEmail: disciplinaryCase.complainantEmail,
-            respondentId: disciplinaryCase.respondentId,
-            respondentName: disciplinaryCase.respondentName,
-            respondentEmail: disciplinaryCase.respondentEmail,
-            currentLevelOfEscalation: disciplinaryCase.currentLevelOfEscalation,
-            confirmedBy: disciplinaryCase.confirmedBy,
+            // Render the Edit Disciplinary Case page with the case data and escalation levels
+            res.render('editDisciplinaryCase', {
+                moduleLinks,
+                caseId: caseId, // Pass caseId to the template
+                complainantId: disciplinaryCase.complainantId,
+                complainantName: disciplinaryCase.complainantName,
+                complainantEmail: disciplinaryCase.complainantEmail,
+                respondentId: disciplinaryCase.respondentId,
+                respondentName: disciplinaryCase.respondentName,
+                respondentEmail: disciplinaryCase.respondentEmail,
+                currentLevelOfEscalation: disciplinaryCase.currentLevelOfEscalation,
+                confirmedBy: disciplinaryCase.confirmedBy,
+                escalationLevels: escalationLevels // Passing the predefined escalation levels
+            });
+        })
+        .catch(err => {
+            console.error('Error fetching case:', err);
+            res.status(500).send('Error retrieving case');
         });
-    } catch (error) {
-        console.error(error);
-        res.status(500).render('errorPage', { message: 'Error retrieving disciplinary case data' });
-    }
 });
 
-// Edit Disciplinary Case (PUT)
-router.put('/edit/:id', async (req, res) => {
-    try {
-        console.log('Received data:', req.body); // Log the incoming data to check if it's coming through
+// Route to handle updating the disciplinary case
+router.post('/update/:id', (req, res) => {
+    const { complainantId, complainantName, complainantEmail, respondentId, respondentName, respondentEmail, currentLevelOfEscalation, confirmedBy } = req.body;
+    const caseId = req.params.id;
 
-        const updatedCase = await DisciplinaryCase.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    // Validate the input
+    if (!complainantId || !complainantName || !complainantEmail || !respondentId || !respondentName || !respondentEmail || !currentLevelOfEscalation || !confirmedBy) {
+        return res.status(400).json({ success: false, message: 'All fields are required.' });
+    }
 
+    // Update the disciplinary case
+    DisciplinaryCase.findByIdAndUpdate(caseId, {
+        complainantId,
+        complainantName,
+        complainantEmail,
+        respondentId,
+        respondentName,
+        respondentEmail,
+        currentLevelOfEscalation, // Using the updated escalation level from the form
+        confirmedBy
+    }, { new: true })
+    .then(updatedCase => {
         if (!updatedCase) {
-            return res.status(404).json({ error: 'Case not found or not updated' });
+            return res.status(404).json({ success: false, message: 'Case not found' });
         }
 
-        console.log('Updated case:', updatedCase); // Log the updated case data
-
-        // Redirect to the updated case's detail page or back to the list
-        res.status(200).redirect(`/disciplinary/list`);
-    } catch (error) {
-        console.error('Error updating case:', error);
-        res.status(400).json({ error: 'Error updating the case' });
-    }
+        // Redirect to the list of disciplinary cases after successful update
+        res.redirect('/disciplinary/list');
+    })
+    .catch(err => {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Error updating case' });
+    });
 });
-
 
 // Delete Case
 router.post('/delete/:id', async (req, res) => {
     try {
         await DisciplinaryCase.findByIdAndDelete(req.params.id);
-        res.redirect('/createDisciplinaryCase');
+        res.redirect('/disciplinary/list');
     } catch (error) {
         res.status(400).send(error);
     }
 });
 
+// List Disciplinary Cases
 router.get('/list', async (req, res) => {
     try {
         const cases = await DisciplinaryCase.find();

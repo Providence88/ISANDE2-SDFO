@@ -42,17 +42,20 @@
                 <form id='nfcCreate' action="/nonFraternity/create" method="POST">
                     <div class="form-group">
                         <label for="idNumber">ID Number</label>
-                        <input type="text" id="idNumber" name="idNumber" required>
+                        <input type="text" id="idNumber" name="idNumber" value="{{data.idNumber}}" required>
+                        {{#if errors.idNumber}}<div class="error">{{errors.idNumber}}</div>{{/if}}
                     </div>
             
                     <div class="form-group">
                         <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" name="lastName" required>
+                        <input type="text" id="lastName" name="lastName" value="{{data.lastName}}" required>
+                        {{#if errors.lastName}}<div class="error">{{errors.lastName}}</div>{{/if}}
                     </div>
             
                     <div class="form-group">
                         <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" name="firstName" required>
+                        <input type="text" id="firstName" name="firstName" value="{{data.firstName}}" required>
+                        {{#if errors.firstName}}<div class="error">{{errors.firstName}}</div>{{/if}}
                     </div>
             
                     <div class="form-group">
@@ -60,53 +63,45 @@
                         <select id="middleInitial" name="middleInitial" required>
                             <option value="" disabled selected>Select</option>
                             {{#each alphabet}}
-                                <option value="{{this}}">{{this}}</option>
+                                <option value="{{this}}" {{#if (eq this data.middleInitial)}}selected{{/if}}>{{this}}</option>
                             {{/each}}
                         </select>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="college">College</label>
-                        <select id="college" name="college" required>
-                            <option value="" disabled selected>Select</option>
-                            {{#each colleges}}
-                                <option value="{{this}}">{{this}}</option>
-                            {{/each}}
-                        </select>
+                        {{#if errors.middleInitial}}<div class="error">{{errors.middleInitial}}</div>{{/if}}
                     </div>
             
                     <div class="form-group">
                         <label for="cellphoneNumber">Cellphone Number</label>
-                        <input type="text" id="cellphoneNumber" name="cellphoneNumber" required>
+                        <input type="text" id="cellphoneNumber" name="cellphoneNumber" value="{{data.cellphoneNumber}}" required>
+                        {{#if errors.cellphoneNumber}}<div class="error">{{errors.cellphoneNumber}}</div>{{/if}}
                     </div>
             
                     <div class="form-group">
                         <label for="schoolEmail">School Email</label>
-                        <input type="email" id="schoolEmail" name="schoolEmail" required>
+                        <input type="email" id="schoolEmail" name="schoolEmail" value="{{data.schoolEmail}}" required>
+                        {{#if errors.schoolEmail}}<div class="error">{{errors.schoolEmail}}</div>{{/if}}
                     </div>
             
                     <div class="form-group">
                         <label for="signature">Signature?</label>
                         <select id="signature" name="signature" required>
-                            <option value="true">Yes</option>
-                            <option value="false">No</option>
+                            <option value="true" {{#if (eq data.signature 'true')}}selected{{/if}}>Yes</option>
+                            <option value="false" {{#if (eq data.signature 'false')}}selected{{/if}}>No</option>
                         </select>
+                        {{#if errors.signature}}<div class="error">{{errors.signature}}</div>{{/if}}
                     </div>
 
                     <div class="form-group">
                         <label for="submitted">Submitted?</label>
                         <select id="submitted" name="submitted" required>
-                            <option value="true">Yes</option>
-                            <option value="false">No</option>
+                            <option value="true" {{#if (eq data.submitted 'true')}}selected{{/if}}>Yes</option>
+                            <option value="false" {{#if (eq data.submitted 'false')}}selected{{/if}}>No</option>
                         </select>
+                        {{#if errors.submitted}}<div class="error">{{errors.submitted}}</div>{{/if}}
                     </div>
             
                     <div class="form-actions">
-
                         <a href="/main" class="btn-cancel">Cancel</a>
                         <button type="submit" class="btn-submit">Create Contract</button>
-                        
                     </div>
                 </form>
                 <script src="/public/js/createNonFraternityContract.js"></script>

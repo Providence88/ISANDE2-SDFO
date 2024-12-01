@@ -41,7 +41,7 @@
 
         <div class="form-container">
             <div class="form">
-                <form id='landfEdit' action="/lostFound/edit{{entry._id}}" method="POST">
+                <form id="landfEdit" action="/lostFound/edit/{{entry._id}}" method="POST">
                     <div class="form-group">
                         <label for="itemId">Item ID</label>
                         <input type="text" id="itemId" name="itemId" value="{{entry.itemId}}" required readonly>
@@ -58,9 +58,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="dateTimeFound">Date and Time Found</label>
-                        <input type="datetime-local" id="dateTimeFound" name="dateTimeFound" value="{{entry.dateTimeFound}}" required readonly>
-                    </div>
+                        <label for="dateTimeFound">Date and Time Found:</label>
+                        <input type="datetime-local" id="dateTimeFound" name="dateTimeFound" value="{{entry.dateTimeFound}}">
+                        </div>
 
                     <div class="form-group">
                         <label for="confirmedBy">Confirmed By</label>
@@ -79,12 +79,7 @@
                         <label for="claimedBy">Claimed By</label>
                         <input type="text" id="claimedBy" name="claimedBy" value="{{entry.claimedBy}}" required>
                     </div>
-
-                    <div class="form-group">
-                        <label for="claimConfirmedBy">Claim Confirmed By</label>
-                        <input type="text" id="claimConfirmedBy" name="claimConfirmedBy" value="{{entry.claimConfirmedBy}}" required>
-                    </div>
-
+                    
                     <div class="form-group">
                         <label for="dateClaimed">Date Claimed</label>
                         <input type="date" id="dateClaimed" name="dateClaimed" value="{{entry.dateClaimed}}" required>

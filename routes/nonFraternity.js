@@ -1,5 +1,6 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
+const NonFratContract = require('../models/NonFratContract'); // Correct casing
 const router = express.Router();
 
 // Module links for the sidebar
@@ -13,27 +14,29 @@ const moduleLinks = [
     { name: "Log Out", icon: "log-out.png", link: "/logout" },
 ];
 
-// Get All Non-Fraternity Contracts (with pagination)
+const alphabet = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+
+
+
 router.get('/list', async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = 10;
         const skip = (page - 1) * limit;
 
-        // Replace the following line with your actual data retrieval logic
-        // Example: const contracts = await Contract.find().skip(skip).limit(limit);
-        const contracts = []; // Replace this with actual data from your database
-        const total = contracts.length;
+        const contracts = await NonFratContract.find().skip(skip).limit(limit);
+        const total = await NonFratContract.countDocuments();
 
+        console.log(contracts); // Debug output to check if contracts are correctly fetched
         res.render('nonFraternityContractsList', {
             title: 'Non-Fraternity Contracts List',
             contracts,
+            alphabet,
             currentPage: page,
             totalPages: Math.ceil(total / limit),
             moduleLinks
         });
     } catch (error) {
-        console.error(error);
         res.status(500).render('errorPage', { message: 'Error retrieving non-fraternity contracts.' });
     }
 });
@@ -42,83 +45,102 @@ router.get('/list', async (req, res) => {
 router.get('/create', (req, res) => {
     res.render('createNonFraternityContract', {
         title: 'Create Non-Fraternity Contract',
-        moduleLinks
+        moduleLinks,
+        alphabet
     });
 });
 
-// Create Non-Fraternity Contract (POST)
 router.post('/create', [
-    body('name').notEmpty().withMessage('Name is required.'),
-    body('college').notEmpty().withMessage('College is required.'),
-    body('phone').notEmpty().withMessage('Phone number is required.'),
-    body('email').isEmail().withMessage('Valid email is required.'),
+    body('idNumber').notEmpty().withMessage('ID Number is required.'),
+    body('lastName').notEmpty().withMessage('Last Name is required.'),
+    body('firstName').notEmpty().withMessage('First Name is required.'),
+    body('middleInitial').notEmpty().withMessage('Middle Initial is required.'),
+    body('cellphoneNumber').notEmpty().withMessage('Phone number is required.'),
+    body('schoolEmail').isEmail().withMessage('Valid email is required.'),
+    body('signature').notEmpty().withMessage('Signature is required.'),
+    body('submitted').notEmpty().withMessage('Submission status is required.')
 ], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).render('createNonFraternityContract', {
-            errors: errors.array(),
-            data: req.body,
-            title: 'Create Non-Fraternity Contract',
-            moduleLinks
-        });
+        return res.status(400).json({ errors: errors.array() }); // Return errors as JSON
     }
 
     try {
-        const newContract = { ...req.body, id: `contract${Date.now()}` };
-        // Save the contract to the database (e.g., Contract.create(newContract))
+        const newContract = new NonFratContract(req.body); // Create new contract from the form data
+        await newContract.save(); // Save the contract to the database
+
         res.redirect('/nonFraternity/list');
     } catch (error) {
         console.error(error);
-        res.status(500).render('errorPage', { message: 'Error creating non-fraternity contract.' });
+        res.status(500).json({ error: 'Error creating non-fraternity contract.' });
     }
 });
 
-// Render Edit Non-Fraternity Contract page (GET)
-router.get('/edit/:id', (req, res) => {
+// Edit Non-Fraternity Contract
+router.get('/edit/:id', async (req, res) => {
+    const contractId = req.params.id;
+
     try {
-        // Replace with logic to find contract from database (e.g., Contract.findById(req.params.id))
-        const contract = null; // Replace with actual logic to retrieve contract
+        const contract = await NonFratContract.findById(contractId);
         if (!contract) {
-            return res.status(404).render('errorPage', { message: 'Contract not found' });
+            return res.status(404).send('Non-Fraternity contract not found');
         }
+
         res.render('editNonFraternityContract', {
-            title: 'Edit Non-Fraternity Contract',
-            contract,
-            moduleLinks
+            contract: { ...contract.toObject(), id: contract._id },
+            moduleLinks,
+            alphabet
         });
-    } catch (error) {
-        console.error(error);
-        res.status(500).render('errorPage', { message: 'Error retrieving contract for editing.' });
+    } catch (err) {
+        console.error('Error fetching contract:', err);
+        res.status(500).send('Error retrieving contract');
     }
 });
 
-// Edit Non-Fraternity Contract (POST)
 router.post('/edit/:id', async (req, res) => {
+    const { idNumber, lastName, firstName, middleInitial, cellphoneNumber, schoolEmail, signature, submitted } = req.body;
+    const contractId = req.params.id;
+
+    // Validate required fields
+    if (!idNumber || !lastName || !firstName || !cellphoneNumber || !schoolEmail) {
+        return res.status(400).send('Missing required fields');
+    }
+
     try {
-        // Replace with logic to find and update contract from database (e.g., Contract.findByIdAndUpdate)
-        const contract = null; // Replace with actual logic to retrieve contract
-        if (!contract) {
-            return res.status(404).render('errorPage', { message: 'Contract not found' });
+        const updatedContract = await NonFratContract.findByIdAndUpdate(
+            contractId,
+            {
+                idNumber: idNumber.trim(),
+                lastName: lastName.trim(),
+                firstName: firstName.trim(),
+                middleInitial: middleInitial.trim(),
+                cellphoneNumber: cellphoneNumber.trim(),
+                schoolEmail: schoolEmail.trim(),
+                signature: signature === 'true', // Convert to boolean
+                submitted: submitted === 'true'  // Convert to boolean
+            },
+            { new: true, runValidators: true }
+        );
+
+        if (!updatedContract) {
+            return res.status(404).send('Contract not found');
         }
 
-        // Update contract in database (e.g., Contract.findByIdAndUpdate(req.params.id, req.body))
-        res.redirect('/nonFraternity/list');
-    } catch (error) {
-        console.error(error);
-        res.status(500).render('errorPage', { message: 'Error updating contract.' });
+        res.redirect('/nonFraternity/list');  // Redirect back to the list page
+    } catch (err) {
+        console.error('Error updating contract:', err);
+        res.status(500).send('Error updating contract');
     }
 });
 
 // Delete Non-Fraternity Contract
 router.post('/delete/:id', async (req, res) => {
     try {
-        // Replace with logic to delete contract from database (e.g., Contract.findByIdAndDelete)
-        const contract = null; // Replace with actual logic to retrieve contract
+        const contract = await NonFratContract.findByIdAndDelete(req.params.id);
         if (!contract) {
             return res.status(404).render('errorPage', { message: 'Contract not found' });
         }
 
-        // Delete contract from database (e.g., Contract.findByIdAndDelete(req.params.id))
         res.redirect('/nonFraternity/list');
     } catch (error) {
         console.error(error);

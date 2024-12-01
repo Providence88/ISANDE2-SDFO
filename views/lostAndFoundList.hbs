@@ -7,7 +7,7 @@
 <body>
     <div class="sidebar">
         <div class="logo">
-            <img src="images/anunalogo-final.png" alt="Logo">
+            <img src="/images/anunalogo-final.png" alt="Logo">
             <h1>M y S D F O</h1>
         </div>
         <div class="module-links">
@@ -40,7 +40,7 @@
 
         <div class="form-container">
             <div class="report-container">
-                <a href="/createLostFoundEntry" class="btn-actions">Create</a>
+                <a href="/lostFound/create" class="btn-actions">Create</a>
                 <button class="btn-actions">Filter</button>
                 <table class="report-table">
                     <thead>
@@ -52,7 +52,6 @@
                             <th>Confirmed By</th>
                             <th>Claimed</th>
                             <th>Claimed By</th>
-                            <th>Confirmed By</th>
                             <th>Date Claimed</th>
                             <th>Edit</th>
                         </tr>
@@ -67,10 +66,9 @@
                             <td>{{confirmedBy}}</td>
                             <td>{{#if claimed}}Yes{{else}}No{{/if}}</td>
                             <td>{{claimedBy}}</td>
-                            <td>{{claimedConfirmedBy}}</td>
                             <td>{{dateClaimed}}</td>
                             <td>
-                                <a href="/lostFound/edit{{this._id}}" class="btn-edit">Edit</a>
+                                <a href="/lostFound/edit/{{this._id}}" class="btn-edit">Edit</a>
                             </td>
                         </tr>
                         {{/each}}

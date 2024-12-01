@@ -25,9 +25,9 @@
             <input class="search__input" type="text" placeholder="Search">
         </div> 
 
-       <a href="/profile" class="profile-link">
-                <img src="/images/profiletemp.png" alt="Profile Picture">
-                Profile
+        <a href="/profile" class="profile-link">
+            <img src="/images/profiletemp.png" alt="Profile Picture">
+            Profile
         </a>
     </div>
 
@@ -40,62 +40,64 @@
 
         <div class="form-container">
             <div class="form">
-            <form id='discEdit' >
-                <div class="form-group">
-                    <label for="complainantId">Complainant ID</label>
-                    <input type="text" id="complainantId" name="complainantId" value="{{complainantId}}" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="complainantName">Complainant Name</label>
-                    <input type="text" id="complainantName" name="complainantName" value="{{complainantName}}" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="complainantEmail">Complainant Email</label>
-                    <input type="email" id="complainantEmail" name="complainantEmail" value="{{complainantEmail}}" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="respondentId">Respondent ID</label>
-                    <input type="text" id="respondentId" name="respondentId" value="{{respondentId}}" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="respondentName">Respondent Name</label>
-                    <input type="text" id="respondentName" name="respondentName" value="{{respondentName}}" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="respondentEmail">Respondent Email</label>
-                    <input type="email" id="respondentEmail" name="respondentEmail" value="{{respondentEmail}}" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="currentLevelOfEscalation">Current Level of Escalation</label>
-                    <select id="currentLevelOfEscalation" name="currentLevelOfEscalation" required>
-                        {{#each escalationLevels}}
-                            <option value="{{this}}" {{#ifCond currentLevelOfEscalation this}}selected{{/ifCond}}>{{this}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-        
-                <div class="form-group">
-                    <label for="confirmedBy">Confirmed By</label>
-                    <input type="text" id="confirmedBy" name="confirmedBy" value="{{confirmedBy}}" required>
-                </div>
-        
-                <div class="form-actions">
+                <!-- Updated Form with method POST and action pointing to the correct route -->
+                <form id="discEdit" action="/disciplinary/update/{{caseId}}" method="POST">
+                    <div class="form-group">
+                        <label for="complainantId">Complainant ID</label>
+                        <input type="text" id="complainantId" name="complainantId" value="{{complainantId}}" required>
+                    </div>
 
-                    <a href="/main" class="btn-cancel">Cancel</a>
-                    <button type="submit" class="btn-submit">Save Changes</button>
-                    
-                </div>
-            </form>
-            <script src="/public/js/editDisciplinaryCase.js"></script>
+                    <div class="form-group">
+                        <label for="complainantName">Complainant Name</label>
+                        <input type="text" id="complainantName" name="complainantName" value="{{complainantName}}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="complainantEmail">Complainant Email</label>
+                        <input type="email" id="complainantEmail" name="complainantEmail" value="{{complainantEmail}}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="respondentId">Respondent ID</label>
+                        <input type="text" id="respondentId" name="respondentId" value="{{respondentId}}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="respondentName">Respondent Name</label>
+                        <input type="text" id="respondentName" name="respondentName" value="{{respondentName}}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="respondentEmail">Respondent Email</label>
+                        <input type="email" id="respondentEmail" name="respondentEmail" value="{{respondentEmail}}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currentLevelOfEscalation">Current Level of Escalation</label>
+                        <select id="currentLevelOfEscalation" name="currentLevelOfEscalation" required>
+                            {{#each escalationLevels}}
+                                <option value="{{this}}" {{#ifCond currentLevelOfEscalation this}}selected{{/ifCond}}>{{this}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmedBy">Confirmed By</label>
+                        <input type="text" id="confirmedBy" name="confirmedBy" value="{{confirmedBy}}" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <!-- Cancel button -->
+                        <a href="/main" class="btn-cancel">Cancel</a>
+                        <!-- Submit button for saving changes -->
+                        <button type="submit" class="btn-submit">Save Changes</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
+    <!-- Optional script for client-side validation or other JS functionality -->
+    <script src="/public/js/editDisciplinaryCase.js"></script>
 </body>
 </html>

@@ -8,7 +8,7 @@
     <div class="sidebar">
         <div class="logo">
             <img src="/images/anunalogo-final.png" alt="Logo">
-            <h1>M y S D F O</h1>
+            <h1>My S D F O</h1>
         </div>
         <div class="module-links">
             {{#each moduleLinks}}
@@ -26,8 +26,8 @@
         </div> 
 
         <a href="/profile" class="profile-link">
-                <img src="/images/profiletemp.png" alt="Profile Picture">
-                Profile
+            <img src="/images/profiletemp.png" alt="Profile Picture">
+            Profile
         </a>
     </div>
 
@@ -38,41 +38,37 @@
         </div>
 
         <div class="report-container">
-            
-            <a href="/createNonFraternityContract" class="btn-actions">Create</a>
+            <a href="/nonFraternity/create" class="btn-actions">Create</a>
             <button class="btn-actions">Filter</button>
             <table class="report-table">
                 <thead>
                     <tr>
                         <th>ID Number</th>
                         <th>Full Name</th>
-                        <th>College</th>
                         <th>Cellphone Number</th>
                         <th>School Email</th>
                         <th>Signature</th>
                         <th>Submitted</th>
-                        <th>Action</th> <!-- New column for Edit button -->
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each contracts}}
                       <tr>
-                        <td>{{id}}</td>
-                        <td>{{name}}</td>
-                        <td>{{college}}</td>
-                        <td>{{phone}}</td>
-                        <td>{{email}}</td>
-                        <td>{{consent1}}</td>
-                        <td>{{consent2}}</td>
+                        <td>{{idNumber}}</td> <!-- Updated to reflect 'idNumber' -->
+                        <td>{{firstName}} {{middleInitial}}. {{lastName}}</td> <!-- Combined name fields -->
+                        <td>{{cellphoneNumber}}</td> <!-- Updated to reflect 'cellphoneNumber' -->
+                        <td>{{schoolEmail}}</td> <!-- Updated to reflect 'schoolEmail' -->
+                        <td>{{#if signature}}Yes{{else}}No{{/if}}</td> <!-- Render Yes/No for signature -->
+                        <td>{{#if submitted}}Yes{{else}}No{{/if}}</td> <!-- Render Yes/No for submitted -->
                         <td>
-                            <a href="/nonFraternity/edit{{this._id}}" class="btn-edit">Edit</a>
+                            <a href="/nonFraternity/edit/{{this._id}}" class="btn-edit">Edit</a>
                         </td>
                     </tr>
                     {{/each}}
                 </tbody>
             </table>
         </div>
-        
     </div>
 </body>
 </html>

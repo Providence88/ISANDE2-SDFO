@@ -39,7 +39,7 @@
 
         <div class="form-container">
             <div class="form">
-                <form action="/nonFraternity/edit{{contract.id}}" method="POST">
+                <form action="/nonFraternity/edit/{{contract.id}}" method="POST">
                     <div class="form-group">
                         <label for="idNumber">ID Number</label>
                         <input type="text" id="idNumber" name="idNumber" value="{{contract.idNumber}}" required>
@@ -58,23 +58,15 @@
                     <div class="form-group">
                         <label for="middleInitial">Middle Initial</label>
                         <select id="middleInitial" name="middleInitial" required>
-                            <option value="" disabled>Select</option>
-                            {{#each middleInitials}}
-                                <option value="{{this}}" {{#ifCond contract.middleInitial this}}selected{{/ifCond}}>{{this}}</option>
+                            <option value="" disabled selected>Select</option>
+                            {{#each alphabet}}
+                                <option value="{{this}}" {{#if (eq this data.middleInitial)}}selected{{/if}}>{{this}}</option>
                             {{/each}}
                         </select>
+                        {{#if errors.middleInitial}}<div class="error">{{errors.middleInitial}}</div>{{/if}}
                     </div>
 
-                    <div class="form-group">
-                        <label for="college">College</label>
-                        <select id="college" name="college" required>
-                            <option value="" disabled>Select</option>
-                            {{#each colleges}}
-                                <option value="{{this.value}}" {{#ifCond contract.college this.value}}selected{{/ifCond}}>{{this.name}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-            
+        
                     <div class="form-group">
                         <label for="cellphoneNumber">Cellphone Number</label>
                         <input type="text" id="cellphoneNumber" name="cellphoneNumber" value="{{contract.cellphoneNumber}}" required>

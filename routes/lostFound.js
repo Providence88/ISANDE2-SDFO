@@ -14,7 +14,6 @@ const moduleLinks = [
     { name: "Log Out", icon: "log-out.png", link: "/logout" },
 ];
 
-// Route for listing all Lost and Found entries (with pagination)
 router.get('/list', async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
@@ -24,6 +23,7 @@ router.get('/list', async (req, res) => {
         const entries = await LostFoundEntry.find().skip(skip).limit(limit);
         const total = await LostFoundEntry.countDocuments();
 
+        console.log(entries);  // Debug output to check if entries are correctly fetched
         res.render('lostAndFoundList', {
             title: 'Lost and Found Entries',
             entries,
@@ -36,6 +36,7 @@ router.get('/list', async (req, res) => {
     }
 });
 
+
 // Render the "Create Lost and Found Entry" page (GET)
 router.get('/create', (req, res) => {
     res.render('createLostFoundEntry', {
@@ -44,69 +45,70 @@ router.get('/create', (req, res) => {
     });
 });
 
-// Create Lost and Found Entry (POST)
-router.post('/create', [
-    body('itemId').notEmpty().withMessage('Item ID is required.'),
-    body('itemName').notEmpty().withMessage('Item Name is required.'),
-    body('location').notEmpty().withMessage('Location is required.'),
-    body('description').notEmpty().withMessage('Description is required.'),
-    body('dateLost').notEmpty().withMessage('Date Lost is required.')
-], async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).render('createLostFoundEntry', { 
-            title: 'Create Lost and Found Entry',
-            errors: errors.array(),
-            data: req.body,
-            moduleLinks
-        });
+router.post('/edit/:id', (req, res) => {
+    const { itemId, itemName, locationFound, dateTimeFound, confirmedBy, claimed, claimedBy, claimConfirmedBy, dateClaimed } = req.body;
+    const entryId = req.params.id;
+
+    // Convert dateTimeFound string to a Date object
+    const parsedDateTimeFound = new Date(dateTimeFound); // Converts string to Date object
+
+    // Validate input fields
+    if (!itemId || !itemName || !locationFound || !dateTimeFound || !confirmedBy || claimed === undefined || !claimedBy || !claimConfirmedBy || !dateClaimed) {
+        return res.status(400).json({ success: false, message: 'All fields are required.' });
     }
 
-    try {
-        const newEntry = new LostFoundEntry(req.body);
-        await newEntry.save();
-        res.redirect('/lostFound/list');
-    } catch (error) {
-        res.status(500).render('errorPage', { message: 'Error creating the entry.' });
-    }
-});
-
-// Render Edit Lost and Found Entry page (GET)
-router.get('/edit/:id', async (req, res) => {
-    try {
-        const entry = await LostFoundEntry.findById(req.params.id);
-        if (!entry) {
-            return res.status(404).render('errorPage', { message: 'Entry not found' });
+    // Update the Lost and Found entry
+    LostFoundEntry.findByIdAndUpdate(entryId, {
+        itemId,
+        itemName,
+        locationFound,
+        dateTimeFound: parsedDateTimeFound, // Store the Date object
+        confirmedBy,
+        claimed,
+        claimedBy,
+        claimConfirmedBy,
+        dateClaimed
+    }, { new: true })
+    .then(updatedEntry => {
+        if (!updatedEntry) {
+            return res.status(404).json({ success: false, message: 'Lost and Found entry not found' });
         }
 
-        res.render('editLostFoundEntry', {
-            title: 'Edit Lost and Found Entry',
-            entry,
-            moduleLinks
-        });
-    } catch (error) {
-        res.status(500).render('errorPage', { message: 'Error retrieving the entry.' });
-    }
+        // After update, render the list with the updated entry
+        res.redirect('/lostFound/list');  // This should refresh the list of entries
+    })
+    .catch(err => {
+        console.error('Error updating Lost and Found entry:', err);
+        res.status(500).json({ success: false, message: 'Error updating Lost and Found entry' });
+    });
 });
 
-// Edit Lost and Found Entry (POST)
-router.post('/edit/:id', async (req, res) => {
-    try {
-        const entry = await LostFoundEntry.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!entry) {
-            return res.status(404).render('errorPage', { message: 'Entry not found' });
-        }
+router.get('/edit/:id', (req, res) => {
+    const entryId = req.params.id;
 
-        res.redirect('/lostFound/list');
-    } catch (error) {
-        res.status(500).render('editLostFoundEntry', {
-            title: 'Edit Lost and Found Entry',
-            entry: req.body,
-            errors: [{ msg: 'Error updating the entry.' }],
-            moduleLinks
+    LostFoundEntry.findById(entryId)
+        .then(entry => {
+            if (!entry) {
+                return res.status(404).send('Lost and Found entry not found');
+            }
+
+            // Log the entry data to check if claimedConfirmedBy is present
+            console.log(entry); // Check if claimedConfirmedBy exists in the logged entry
+
+            // Format the dateTimeFound to match the input's expected format (YYYY-MM-DDTHH:MM)
+            const formattedDate = entry.dateTimeFound ? entry.dateTimeFound.toISOString().slice(0, 16) : '';
+
+            res.render('editLostFoundEntry', {
+                entry: { ...entry.toObject(), dateTimeFound: formattedDate },
+                moduleLinks
+            });
+        })
+        .catch(err => {
+            console.error('Error fetching entry:', err);
+            res.status(500).send('Error retrieving Lost and Found entry');
         });
-    }
 });
+
 
 // Delete Lost and Found Entry
 router.post('/delete/:id', async (req, res) => {
