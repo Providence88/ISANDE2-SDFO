@@ -112,15 +112,6 @@ router.post('/update/:id', (req, res) => {
     });
 });
 
-// Delete Case
-router.post('/delete/:id', async (req, res) => {
-    try {
-        await DisciplinaryCase.findByIdAndDelete(req.params.id);
-        res.redirect('/disciplinary/list');
-    } catch (error) {
-        res.status(400).send(error);
-    }
-});
 
 // List Disciplinary Cases with Filters (including College)
 router.get('/list', async (req, res) => {

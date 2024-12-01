@@ -101,17 +101,6 @@ router.post('/edit/:id', (req, res) => {
     });
 });
 
-// Delete Drug Test Consent (POST)
-router.post('/delete/:id', async (req, res) => {
-    try {
-        await Entry.findByIdAndDelete(req.params.id);
-        res.redirect('/drugTest/list'); // Redirect to the list after deletion
-    } catch (error) {
-        console.error(error);
-        res.status(400).send(error);
-    }
-});
-
 // Render Drug Test Consents List page (GET)
 router.get('/list', async (req, res) => {
     try {

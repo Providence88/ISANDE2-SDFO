@@ -148,21 +148,4 @@ router.get('/list', async (req, res) => {
 });
 
 
-
-
-// Delete Non-Fraternity Contract
-router.post('/delete/:id', async (req, res) => {
-    try {
-        const contract = await NonFratContract.findByIdAndDelete(req.params.id);
-        if (!contract) {
-            return res.status(404).render('errorPage', { message: 'Contract not found' });
-        }
-
-        res.redirect('/nonFraternity/list');
-    } catch (error) {
-        console.error(error);
-        res.status(500).render('errorPage', { message: 'Error deleting contract.' });
-    }
-});
-
 module.exports = router;

@@ -119,18 +119,4 @@ router.get('/edit/:id', (req, res) => {
         });
 });
 
-
-// Delete Lost and Found Entry
-router.post('/delete/:id', async (req, res) => {
-    try {
-        const entry = await LostFoundEntry.findByIdAndDelete(req.params.id);
-        if (!entry) {
-            return res.status(404).render('errorPage', { message: 'Entry not found' });
-        }
-        res.redirect('/lostFound/list');
-    } catch (error) {
-        res.status(500).render('errorPage', { message: 'Error deleting the entry.' });
-    }
-});
-
 module.exports = router;
