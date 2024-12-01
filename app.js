@@ -69,7 +69,7 @@ hbs.registerHelper('eq', function (a, b) {
         "image": "discipline.jpg",
         "title": "Disciplinary Cases",
         "actions": [
-          { "label": "New", "link": "/createDisciplinaryCase" },
+          { "label": "New", "link": "/disciplinary/create" },
           { "label": "Edit", "link": "/editDisciplinaryCase" },
           { "label": "See List", "link": "/disciplinaryCasesList" }
         ]
@@ -364,26 +364,8 @@ app.get('/editDrugTestConsent', (req, res) => {
     }
 });
 
-app.get('/createDisciplinaryCase', (req, res) => {
-  res.render('createDisciplinaryCase', { 
-      title: 'Create Disciplinary Case',
-      modules,
-      moduleLinks,
-      escalationLevels
-  });
-});
-  
-app.get('/editDisciplinaryCase', (req, res) => {
-  res.render('editDisciplinaryCase', { 
-      title: 'Edit Disciplinary Case ',
-      entries: discSample,
-      modules,
-      moduleLinks,
-     escalationLevels
-  });
-});
 
-app.get('/disciplinaryCasesList', (req, res) => {
+app.get('/disciplinaryCaseRoute', (req, res) => {
   try {
     res.render('disciplinaryCasesList', {
       title: 'Disciplinary Cases List',
@@ -434,7 +416,7 @@ app.use('/createDrugTestConsent', drugTestConsentRoute);
 app.use('/createLostFoundEntry', lostFoundRoute);  
 app.use('/createDisciplinaryCase', disciplinaryCaseRoute);  
 
-
+app.use('/disciplinary', disciplinaryCaseRoute);
 
 app.use('/editNonFraternityContract', editNonFraternityContractRoute);  
 app.use('/editDrugTestConsent', editDrugTestConsentRoute);  

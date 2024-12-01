@@ -2,21 +2,37 @@ const express = require('express');
 const DisciplinaryCase = require('../models/DisciplinaryCase');
 const router = express.Router();
 
+// Render the "Create Disciplinary Case" page (GET)
+router.get('/create', (req, res) => {
+    res.render('createDisciplinaryCase', {
+        title: 'Create Disciplinary Case',
+        modules: req.app.locals.modules,  // Assuming `modules` is stored in app.locals
+        moduleLinks: req.app.locals.moduleLinks,
+        escalationLevels: [ // Use a colon here instead of an equals sign
+            'Investigation',
+            'Further Assessment',
+            'Evaluation',
+            'Hearing',
+            'Mediation',
+            'On-Going',
+            'Solved'
+        ]
+    });
+});
 // Create Disciplinary Case (POST)
-router.post('/createDisciplinaryCase', async (req, res) => {
+router.post('/create', async (req, res) => {
     try {
-        // Assuming req.body contains all the form data sent from the form
         const newCase = new DisciplinaryCase(req.body);
-
-        // Save the new case to the database
         await newCase.save();
-        res.status(201).json({ message: 'Disciplinary case created successfully!' });
-        // Redirect to the disciplinary cases list or another page
-        res.redirect('/createDisciplinaryCase');
+        res.redirect('/disciplinary/list'); // Redirect to the cases list after successful creation
     } catch (error) {
-        res.status(400).send(error);
+        console.error(error);
+        res.status(500).render('errorPage', { message: 'Error creating disciplinary case.' });
     }
 });
+
+
+
 
 // Edit Case
 router.put('/editDisciplinaryCase/:id', async (req, res) => {
@@ -40,6 +56,22 @@ router.post('/delete/:id', async (req, res) => {
         res.redirect('/createDisciplinaryCase');
     } catch (error) {
         res.status(400).send(error);
+    }
+});
+
+router.get('/list', async (req, res) => {
+    try {
+        const cases = await DisciplinaryCase.find();
+        res.render('disciplinaryCasesList', {
+            title: 'Disciplinary Cases List',
+            entries: cases,
+            modules: req.app.locals.modules,
+            moduleLinks: req.app.locals.moduleLinks,
+            escalationLevels: req.app.locals.escalationLevels
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).render('errorPage', { message: 'Error retrieving disciplinary cases.' });
     }
 });
 
