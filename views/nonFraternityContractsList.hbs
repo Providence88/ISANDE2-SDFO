@@ -38,8 +38,29 @@
         </div>
 
         <div class="report-container">
+             <!-- Create Button -->
             <a href="/nonFraternity/create" class="btn-actions">Create</a>
-            <button class="btn-actions">Filter</button>
+
+            <!-- Filter Form -->
+            <form action="/nonFraternity/list" method="get" class="filter-form-frat">
+                <label for="signature">Signature:</label>
+                <select name="signature" id="signature">
+                    <option value="">All</option>
+                    <option value="true" {{#if (eq filter.signature "true")}}selected{{/if}}>Yes</option>
+                    <option value="false" {{#if (eq filter.signature "false")}}selected{{/if}}>No</option>
+                </select>
+
+                <label for="submitted">Submitted:</label>
+                <select name="submitted" id="submitted">
+                    <option value="">All</option>
+                    <option value="true" {{#if (eq filter.submitted "true")}}selected{{/if}}>Yes</option>
+                    <option value="false" {{#if (eq filter.submitted "false")}}selected{{/if}}>No</option>
+                </select>
+
+                <button type="submit" class="btn-actions-frat">Filter</button>
+            </form>
+
+           
             <table class="report-table">
                 <thead>
                     <tr>
@@ -55,12 +76,12 @@
                 <tbody>
                     {{#each contracts}}
                       <tr>
-                        <td>{{idNumber}}</td> <!-- Updated to reflect 'idNumber' -->
-                        <td>{{firstName}} {{middleInitial}}. {{lastName}}</td> <!-- Combined name fields -->
-                        <td>{{cellphoneNumber}}</td> <!-- Updated to reflect 'cellphoneNumber' -->
-                        <td>{{schoolEmail}}</td> <!-- Updated to reflect 'schoolEmail' -->
-                        <td>{{#if signature}}Yes{{else}}No{{/if}}</td> <!-- Render Yes/No for signature -->
-                        <td>{{#if submitted}}Yes{{else}}No{{/if}}</td> <!-- Render Yes/No for submitted -->
+                        <td>{{idNumber}}</td>
+                        <td>{{firstName}} {{middleInitial}}. {{lastName}}</td>
+                        <td>{{cellphoneNumber}}</td>
+                        <td>{{schoolEmail}}</td>
+                        <td>{{#if signature}}Yes{{else}}No{{/if}}</td>
+                        <td>{{#if submitted}}Yes{{else}}No{{/if}}</td>
                         <td>
                             <a href="/nonFraternity/edit/{{this._id}}" class="btn-edit">Edit</a>
                         </td>

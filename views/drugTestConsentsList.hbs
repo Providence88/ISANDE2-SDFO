@@ -20,29 +20,69 @@
         </div>
     </div>
 
-
     <div class="header">
         <div class="search__container">
             <input class="search__input" type="text" placeholder="Search">
         </div> 
 
         <a href="/profile" class="profile-link">
-                <img src="/images/profiletemp.png" alt="Profile Picture">
-                Profile
+            <img src="/images/profiletemp.png" alt="Profile Picture">
+            Profile
         </a>
     </div>
 
     <div class="main-body">
-
         <div class="main-body-header">
             <h3>Drug Test Consents</h3>
             <p class="welcome-message">View all drug test consents</p>
         </div>
 
         <div class="report-container">
-
             <a href="/drugTest/create" class="btn-actions">Create</a>
-            <button class="btn-actions">Filter</button>
+
+            <!-- Filter Form -->
+            <form action="/drugTest/list" method="get" class="filter-form">
+                <!-- ID Prefix Dropdown -->
+                <label for="idFilter">ID Prefix:</label>
+                <select name="idFilter" id="idFilter">
+                    <option value="">Select ID </option>
+                    <option value="117" {{#if (eq filter.idFilter "117")}}selected{{/if}}>117</option>
+                    <option value="118" {{#if (eq filter.idFilter "118")}}selected{{/if}}>118</option>
+                    <option value="119" {{#if (eq filter.idFilter "119")}}selected{{/if}}>119</option>
+                    <option value="120" {{#if (eq filter.idFilter "120")}}selected{{/if}}>120</option>
+                    <option value="121" {{#if (eq filter.idFilter "121")}}selected{{/if}}>121</option>
+                    <option value="122" {{#if (eq filter.idFilter "122")}}selected{{/if}}>122</option>
+                    <option value="123" {{#if (eq filter.idFilter "123")}}selected{{/if}}>123</option>
+                    <option value="124" {{#if (eq filter.idFilter "124")}}selected{{/if}}>124</option>
+                </select>
+
+                <!-- Signature Dropdown -->
+                <label for="signature">Signature:</label>
+                <select name="signature">
+                    <option value="">All</option>
+                    <option value="yes" {{#if (eq filter.signature "yes")}}selected{{/if}}>Yes</option>
+                    <option value="no" {{#if (eq filter.signature "no")}}selected{{/if}}>No</option>
+                </select>
+
+                <!-- Consent Dropdown -->
+                <label for="consent">Consent:</label>
+                <select name="consent">
+                    <option value="">All</option>
+                    <option value="yes" {{#if (eq filter.consent "yes")}}selected{{/if}}>Yes</option>
+                    <option value="no" {{#if (eq filter.consent "no")}}selected{{/if}}>No</option>
+                </select>
+
+                <!-- Submitted Dropdown -->
+                <label for="submitted">Submitted:</label>
+                <select name="submitted">
+                    <option value="">All</option>
+                    <option value="yes" {{#if (eq filter.submitted "yes")}}selected{{/if}}>Yes</option>
+                    <option value="no" {{#if (eq filter.submitted "no")}}selected{{/if}}>No</option>
+                </select>
+
+                <button type="submit" class="btn-actions">Apply Filter</button>
+            </form>
+
             <table class="report-table">
                 <thead>
                     <tr>
@@ -54,7 +94,7 @@
                         <th>Signature</th>
                         <th>Consent</th>
                         <th>Submitted</th>
-                        <th>Action</th> <!-- New column for Edit button -->
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,7 +110,7 @@
                         <td>{{submitted}}</td>
                         <td>
                             <a href="/drugTest/edit/{{this._id}}" class="btn-edit">Edit</a>
-                        </td> <!-- Edit button -->
+                        </td>
                     </tr>
                     {{/each}}
                 </tbody>

@@ -115,16 +115,30 @@ router.post('/delete/:id', async (req, res) => {
 // Render Drug Test Consents List page (GET)
 router.get('/list', async (req, res) => {
     try {
-        const entries = await Entry.find();
+        // Get filter parameters from query
+        const { idNumber, signature, consent, submitted } = req.query;
+
+        // Build the filter query
+        let filter = {};
+        if (idNumber) filter.idNumber = { $regex: idNumber, $options: 'i' }; // case-insensitive match
+        if (signature) filter.signature = signature;
+        if (consent) filter.consent = consent;
+        if (submitted) filter.submitted = submitted;
+
+        // Query database with filter
+        const entries = await Entry.find(filter);
+
         res.render('drugTestConsentsList', {
             title: 'Drug Test Consents List',
             entries,
-            moduleLinks
+            moduleLinks,
+            filter // Pass filter back to template for displaying selected filters
         });
     } catch (error) {
         console.error(error);
         res.status(500).render('errorPage', { message: 'Error retrieving drug test consents.' });
     }
 });
+
 
 module.exports = router;

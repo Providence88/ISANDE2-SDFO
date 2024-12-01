@@ -1271,3 +1271,82 @@ h1, h2 {
     transform: scale(1.05);
     box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
 }
+
+/* Drug Test Consent Filter*/
+.filter-form {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.filter-form label {
+    margin-right: 10px;
+}
+
+.filter-form select, .filter-form input {
+    width: 110px;
+}
+
+
+/* Disciplinary Filter*/
+.filter-form-disc {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.filter-form-disc select, .filter-form-disc input {
+    width: 140px;
+}
+
+.btn-actions-disc {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        margin-bottom: 10px;
+        margin-right: 5px;
+        margin-top: 40px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        height: 40px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: 600;
+}
+
+/* Non Frat Filter*/
+.filter-form-frat {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-right: 40px;
+}
+.filter-form-frat select, .filter-form-frat input {
+    width: 140px;
+}
+
+
+.btn-actions-frat {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin-bottom: 10px;
+    margin-left: 60px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    height: 40px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 600;
+}

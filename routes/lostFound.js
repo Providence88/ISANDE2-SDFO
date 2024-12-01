@@ -20,15 +20,25 @@ router.get('/list', async (req, res) => {
         const limit = 10;
         const skip = (page - 1) * limit;
 
-        const entries = await LostFoundEntry.find().skip(skip).limit(limit);
-        const total = await LostFoundEntry.countDocuments();
+        // Get filter value from query parameters
+        const claimedFilter = req.query.claimed;
+        let filter = {};
 
-        console.log(entries);  // Debug output to check if entries are correctly fetched
+        if (claimedFilter === 'true') {
+            filter.claimed = true;
+        } else if (claimedFilter === 'false') {
+            filter.claimed = false;
+        }
+
+        const entries = await LostFoundEntry.find(filter).skip(skip).limit(limit);
+        const total = await LostFoundEntry.countDocuments(filter);
+
         res.render('lostAndFoundList', {
             title: 'Lost and Found Entries',
             entries,
             currentPage: page,
             totalPages: Math.ceil(total / limit),
+            filter: req.query,
             moduleLinks
         });
     } catch (error) {

@@ -41,7 +41,16 @@
         <div class="form-container">
             <div class="report-container">
                 <a href="/lostFound/create" class="btn-actions">Create</a>
-                <button class="btn-actions">Filter</button>
+                <!-- Filter Form -->
+                <form action="/lostFound/list" method="get" class="filter-form-disc">
+                    <select name="claimed" id="claimed">
+                        <option value="">All</option>
+                        <option value="true" {{#if (eq filter.claimed "true")}}selected{{/if}}>Claimed</option>
+                        <option value="false" {{#if (eq filter.claimed "false")}}selected{{/if}}>Unclaimed</option>
+                    </select>
+                    <button type="submit" class="btn-actions">Filter</button>
+                </form>
+                
                 <table class="report-table">
                     <thead>
                         <tr>
@@ -75,7 +84,6 @@
                     </tbody>
                 </table>
             </div>
-            
         </div>
     </div>
 

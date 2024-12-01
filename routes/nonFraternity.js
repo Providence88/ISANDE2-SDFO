@@ -18,29 +18,6 @@ const alphabet = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
 
 
 
-router.get('/list', async (req, res) => {
-    try {
-        const page = parseInt(req.query.page) || 1;
-        const limit = 10;
-        const skip = (page - 1) * limit;
-
-        const contracts = await NonFratContract.find().skip(skip).limit(limit);
-        const total = await NonFratContract.countDocuments();
-
-        console.log(contracts); // Debug output to check if contracts are correctly fetched
-        res.render('nonFraternityContractsList', {
-            title: 'Non-Fraternity Contracts List',
-            contracts,
-            alphabet,
-            currentPage: page,
-            totalPages: Math.ceil(total / limit),
-            moduleLinks
-        });
-    } catch (error) {
-        res.status(500).render('errorPage', { message: 'Error retrieving non-fraternity contracts.' });
-    }
-});
-
 // Render the "Create Non-Fraternity Contract" page (GET)
 router.get('/create', (req, res) => {
     res.render('createNonFraternityContract', {
@@ -132,6 +109,46 @@ router.post('/edit/:id', async (req, res) => {
         res.status(500).send('Error updating contract');
     }
 });
+
+
+router.get('/list', async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = 10;
+        const skip = (page - 1) * limit;
+
+        // Get the filter values from the query parameters
+        const { signature, submitted } = req.query;
+
+        // Build filter object
+        const filter = {};
+        if (signature) {
+            filter.signature = signature === 'true'; // Convert to boolean
+        }
+        if (submitted) {
+            filter.submitted = submitted === 'true'; // Convert to boolean
+        }
+
+        // Fetch the filtered contracts
+        const contracts = await NonFratContract.find(filter).skip(skip).limit(limit);
+        const total = await NonFratContract.countDocuments(filter);
+
+        res.render('nonFraternityContractsList', {
+            title: 'Non-Fraternity Contracts List',
+            contracts,
+            filter, // Pass the filter to the view for maintaining state
+            alphabet,
+            currentPage: page,
+            totalPages: Math.ceil(total / limit),
+            moduleLinks
+        });
+    } catch (error) {
+        res.status(500).render('errorPage', { message: 'Error retrieving non-fraternity contracts.' });
+    }
+});
+
+
+
 
 // Delete Non-Fraternity Contract
 router.post('/delete/:id', async (req, res) => {

@@ -122,20 +122,50 @@ router.post('/delete/:id', async (req, res) => {
     }
 });
 
-// List Disciplinary Cases
+// List Disciplinary Cases with Filters (including College)
 router.get('/list', async (req, res) => {
     try {
-        const cases = await DisciplinaryCase.find();
+        const { idFilter, escalationFilter, collegeFilter } = req.query;
+
+        // Build the filter query
+        let filterConditions = {};
+
+        // Filter by complainant ID (first 3 digits, between 117-124)
+        if (idFilter && idFilter >= 117 && idFilter <= 124) {
+            const regex = new RegExp(`^${idFilter}`);  // Match the first 3 digits
+            filterConditions.complainantId = { $regex: regex };
+        }
+
+        // Filter by escalation level if provided
+        if (escalationFilter) {
+            filterConditions.currentLevelOfEscalation = escalationFilter;
+        }
+
+        // Filter by college if provided
+        if (collegeFilter) {
+            filterConditions.college = collegeFilter;
+        }
+
+        // Retrieve filtered cases from the database
+        const cases = await DisciplinaryCase.find(filterConditions);
+
+        // Render the list with the filtered results
         res.render('disciplinaryCasesList', {
             title: 'Disciplinary Cases List',
             entries: cases,
             moduleLinks,
-            escalationLevels
+            escalationLevels,
+            colleges,
+            idFilter,  // Pass the current idFilter value back to the view
+            escalationFilter,  // Pass the current escalationFilter value back to the view
+            collegeFilter  // Pass the current collegeFilter value back to the view
         });
     } catch (error) {
         console.error(error);
         res.status(500).render('errorPage', { message: 'Error retrieving disciplinary cases.' });
     }
 });
+
+
 
 module.exports = router;
