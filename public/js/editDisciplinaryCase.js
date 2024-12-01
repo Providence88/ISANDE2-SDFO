@@ -1,8 +1,9 @@
 document.getElementById('discEdit').addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the page from refreshing
 
+    // Collect form data
     const formData = {
-        complainantId: document.getElementById('complaintId').value,
+        complainantId: document.getElementById('complainantId').value,
         complainantName: document.getElementById('complainantName').value,
         complainantEmail: document.getElementById('complainantEmail').value,
         respondentId: document.getElementById('respondentId').value,
@@ -12,30 +13,31 @@ document.getElementById('discEdit').addEventListener('submit', async (event) => 
         confirmedBy: document.getElementById('confirmedBy').value
     };
 
-    const caseId = getCaseIdFromURL(); // Get the ID of the case being edited
+    // Get the caseId from the URL
+    const caseId = getCaseIdFromURL();
 
     try {
-        const response = await fetch(`/editDisciplinaryCase/${caseId}`, {
-            method: 'PUT',
+        const response = await fetch(`/disciplinary/edit/${caseId}`, {
+            method: 'PUT',  // Use PUT method for updating
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData), // Convert data to JSON
+            body: JSON.stringify(formData), // Send data as JSON
         });
 
-        const data = await response.json();
-
         if (response.ok) {
-            // Optionally redirect or refresh the data
-            document.getElementById('discEdit').reset();
+            // Redirect to the list page after successful update
+            window.location.href = '/disciplinary/list'; // Update this to wherever you want to navigate
         } else {
-            alert(`Error: ${data.error}`);
+            // Handle failure (optional: you could show a more descriptive error)
+            alert('Failed to update the case');
         }
     } catch (error) {
         console.error('Error submitting edit form:', error);
+        alert('An error occurred while submitting the form');
     }
 });
 
-// Helper function to get case ID from URL (or wherever it's stored)
+// Helper function to get caseId from URL
 function getCaseIdFromURL() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('id'); // Assumes the case ID is in the URL as ?id=123
+    const pathParts = window.location.pathname.split('/');
+    return pathParts[pathParts.length - 1]; // Case ID is the last part of the URL
 }

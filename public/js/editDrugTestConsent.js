@@ -16,7 +16,7 @@ document.getElementById('dtcfEdit').addEventListener('submit', async (event) => 
     const caseId = getCaseIdFromURL(); // Get the ID of the case being edited
 
     try {
-        const response = await fetch(`/editDrugTestConsent/${caseId}`, {
+        const response = await fetch(`/drugTest/edit/${caseId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData), // Convert data to JSON

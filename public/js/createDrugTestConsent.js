@@ -16,7 +16,7 @@ document.getElementById('dtcfCreate').addEventListener('submit', async (event) =
 
     try {
         // Send data to the backend
-        const response = await fetch('/createDrugTestConsent', {
+        const response = await fetch('/drugTest/create', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData), // Convert data to JSON

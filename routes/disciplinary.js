@@ -2,23 +2,37 @@ const express = require('express');
 const DisciplinaryCase = require('../models/DisciplinaryCase');
 const router = express.Router();
 
+const moduleLinks = [
+    { name: "Home", icon: "home.png", link: "/main" },
+    { name: "Non Fraternity Contract", icon: "fraternity.png", link: "/nonFraternity/list" },
+    { name: "Drug Test Consent Form", icon: "drug-test.png", link: "/drugTest/list" },
+    { name: "Lost and Found", icon: "lost-luggage.png", link: "/lostFound/list" },
+    { name: "Disciplinary Cases", icon: "gavel.png", link: "/disciplinary/list" },
+    { name: "Students", icon: "graduation.png", link: "/studentList" },
+    { name: "Log Out", icon: "log-out.png", link: "/logout" },
+  ];
+const colleges = ["BAGCED", "CCS", "CLA", "COB", "COS", "GCOE"];
+const alphabet = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+const escalationLevels = [
+  'Investigation',
+  'Further Assessment',
+  'Evaluation',
+  'Hearing',
+  'Mediation',
+  'On-Going',
+  'Solved'
+  ];
+
+
 // Render the "Create Disciplinary Case" page (GET)
 router.get('/create', (req, res) => {
     res.render('createDisciplinaryCase', {
         title: 'Create Disciplinary Case',
-        modules: req.app.locals.modules,  // Assuming `modules` is stored in app.locals
-        moduleLinks: req.app.locals.moduleLinks,
-        escalationLevels: [ // Use a colon here instead of an equals sign
-            'Investigation',
-            'Further Assessment',
-            'Evaluation',
-            'Hearing',
-            'Mediation',
-            'On-Going',
-            'Solved'
-        ]
+        moduleLinks,
+        escalationLevels,
     });
 });
+
 // Create Disciplinary Case (POST)
 router.post('/create', async (req, res) => {
     try {
@@ -31,23 +45,57 @@ router.post('/create', async (req, res) => {
     }
 });
 
-
-
-
-// Edit Case
-router.put('/editDisciplinaryCase/:id', async (req, res) => {
+// Render Edit Disciplinary Case page (GET)
+router.get('/edit/:id', async (req, res) => {
     try {
-        const updatedCase = await DisciplinaryCase.findByIdAndUpdate(req.params.id, req.body);
+        const caseId = req.params.id;
+        const disciplinaryCase = await DisciplinaryCase.findById(caseId);
 
-        if (updatedCase){
-            res.redirect('/editDisciplinaryCase');
-        } else {
-            res.status(404).json({ error: 'Case not edited.' });
+        if (!disciplinaryCase) {
+            return res.status(404).render('errorPage', { message: 'Disciplinary case not found' });
         }
+
+        res.render('editDisciplinaryCase', {
+            title: 'Edit Disciplinary Case',
+            moduleLinks,
+            escalationLevels,
+            caseId: disciplinaryCase._id,
+            complainantId: disciplinaryCase.complainantId,
+            complainantName: disciplinaryCase.complainantName,
+            complainantEmail: disciplinaryCase.complainantEmail,
+            respondentId: disciplinaryCase.respondentId,
+            respondentName: disciplinaryCase.respondentName,
+            respondentEmail: disciplinaryCase.respondentEmail,
+            currentLevelOfEscalation: disciplinaryCase.currentLevelOfEscalation,
+            confirmedBy: disciplinaryCase.confirmedBy,
+        });
     } catch (error) {
-        res.status(400).send(error);
+        console.error(error);
+        res.status(500).render('errorPage', { message: 'Error retrieving disciplinary case data' });
     }
 });
+
+// Edit Disciplinary Case (PUT)
+router.put('/edit/:id', async (req, res) => {
+    try {
+        console.log('Received data:', req.body); // Log the incoming data to check if it's coming through
+
+        const updatedCase = await DisciplinaryCase.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+        if (!updatedCase) {
+            return res.status(404).json({ error: 'Case not found or not updated' });
+        }
+
+        console.log('Updated case:', updatedCase); // Log the updated case data
+
+        // Redirect to the updated case's detail page or back to the list
+        res.status(200).redirect(`/disciplinary/list`);
+    } catch (error) {
+        console.error('Error updating case:', error);
+        res.status(400).json({ error: 'Error updating the case' });
+    }
+});
+
 
 // Delete Case
 router.post('/delete/:id', async (req, res) => {
@@ -65,9 +113,8 @@ router.get('/list', async (req, res) => {
         res.render('disciplinaryCasesList', {
             title: 'Disciplinary Cases List',
             entries: cases,
-            modules: req.app.locals.modules,
-            moduleLinks: req.app.locals.moduleLinks,
-            escalationLevels: req.app.locals.escalationLevels
+            moduleLinks,
+            escalationLevels
         });
     } catch (error) {
         console.error(error);

@@ -40,7 +40,7 @@
 
         <div class="report-container">
 
-            <a href="/createDisciplinaryCase" class="btn-actions">Create</a>
+            <a href="/disciplinary/create" class="btn-actions">Create</a>
             <button class="btn-actions">Filter</button>
             <table class="report-table">
                 <thead>
@@ -68,7 +68,7 @@
                         <td>{{this.currentLevelOfEscalation}}</td>
                         <td>{{this.confirmedBy}}</td>
                         <td>
-                            <a href="/views/editDisciplinaryCase/{{this._id}}" class="btn-edit">Edit</a>
+                            <a href="/disciplinary/edit/{{this._id}}" class="btn-edit">Edit</a>
                         </td>
                     </tr>
                     {{/each}}

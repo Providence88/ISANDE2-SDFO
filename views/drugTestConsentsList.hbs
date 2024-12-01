@@ -41,7 +41,7 @@
 
         <div class="report-container">
 
-            <a href="/createDrugTestConsent" class="btn-actions">Create</a>
+            <a href="/drugTest/create" class="btn-actions">Create</a>
             <button class="btn-actions">Filter</button>
             <table class="report-table">
                 <thead>
@@ -67,7 +67,7 @@
                         <td>{{consent}}</td>
                         <td>{{submitted}}</td>
                         <td>
-                            <a href="/views/editDrugTestConsent/{{this._id}}" class="btn-edit">Edit</a>
+                            <a href="/drugTest/edit{{this._id}}" class="btn-edit">Edit</a>
                         </td> <!-- Edit button -->
                     </tr>
                     {{/each}}

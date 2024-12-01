@@ -15,7 +15,7 @@ document.getElementById('discCreate').addEventListener('submit', async (event) =
 
     try {
         // Send data to the backend
-        const response = await fetch('/createDisciplinaryCase', {
+        const response = await fetch('/disciplinary/create', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData), // Convert data to JSON
