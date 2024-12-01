@@ -828,3 +828,377 @@ h1, h2 {
     font-size: 16px;
     transition: background-color 0.3s ease;
 }
+
+/* General styling */
+.reports-body {
+    border-radius: 10px;
+    display: flex; /* Make it a flex container */
+    flex-direction: column; /* Align items vertically */
+    justify-content: center; /* Align items vertically in the container */
+    align-items: center; /* Align items horizontally in the container */
+    position: relative;
+}
+
+
+/* Progress bar container */
+.progress-bar-container {
+    width: 100%;
+    max-width: 500px; /* Optional, to limit the width */
+    background-color: #e0e0e0; /* Light gray background */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Ensure progress stays inside rounded edges */
+    margin: 10px auto; /* Center it horizontally */
+    height: 25px; /* Height of the progress bar */
+}
+
+.progress-bar-body {
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Default shadow */
+    padding-bottom: 20px;
+    padding-top: 10px;
+    width: 95%;
+}
+
+/* Inner progress bar */
+.progress-bar {
+    width: 100%; /* Matches the container width */
+    height: 100%; /* Matches the container height */
+}
+
+/* Dynamic progress styling */
+.progress {
+    background-color: #4caf50; /* Green color for progress */
+    height: 100%;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center; /* Centers text horizontally */
+    line-height: 25px; /* Aligns text vertically */
+    transition: width 0.3s ease; /* Smooth width change animation */
+    font-family: 'Jet Brains Mono', sans-serif;
+    font-weight: 450;
+}
+
+/* Container for the pie chart */
+.pie-chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    flex-direction: column; /* Stack header and chart content vertically */
+    position: relative; /* Ensure positioning context for hover effects */
+
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Default shadow */
+    padding-bottom: 20px;
+    padding-top: 10px;
+    width: 95%;
+}
+
+/* The circular pie chart*/
+.escalation-pie-chart {
+    position: relative;
+    width: 200px; /* Diameter of the pie chart */
+    height: 200px;
+    border-radius: 50%; /* Makes it a circle */
+    background: conic-gradient(
+        #232655 0% 8%,    /* Slice 1: Dark Blue (8%) */
+        #3235e6 8% 20%,   /* Slice 2: Sky Blue (12%) */
+        #8f5dcf 20% 35%,  /* Slice 3: Light Blue (15%) */
+        #34d399 35% 45%,  /* Slice 4: Light Green (10%) */
+        #10b981 45% 58%,  /* Slice 5: Green (13%) */
+        #84cc16 58% 75%,  /* Slice 6: Yellow Green (17%) */
+        #fb923c 75% 88%,  /* Slice 7: Orange (13%) */
+        #ccb90f 88% 100%  /* Slice 8: Dark Orange (12%) */
+    );
+    transform: scale(1); /* Default scale */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Default shadow */
+}
+
+/* Text slices placeholder (Optional) */
+.slice {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    
+}
+
+/* Hover Effect */
+.escalation-pie-chart:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+}
+
+/* Legend Styling */
+.legend-container {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.legend-label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.chart-header {
+    margin-bottom: 20px; /* Space between the header and chart */
+    text-align: center;
+}
+
+.chart-header h2 {
+    font-size: 24px;
+    color: #333;
+    font-weight: 400;
+}
+
+/* Chart content with pie and legend */
+.chart-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.severity-pie-chart {
+    position: relative;
+    width: 200px; /* Diameter of the pie chart */
+    height: 200px;
+    border-radius: 50%; /* Makes it a circle */
+    background: conic-gradient(
+        #af3434 0% 15%,   /* Slice 1: Major Cases (85%) */
+        #d17e78 15% 100%  /* Slice 2: Minor Cases (15%) */
+    );
+    transform: scale(1); /* Default scale */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Default shadow */
+}
+
+.severity-pie-chart:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+}
+
+.card-body {
+    display: flex;
+    justify-content: space-between; /* Space cards evenly across the body */
+    gap: 10px; /* Adds space between cards */
+    flex-wrap: wrap; /* Allows cards to wrap in case of smaller screen sizes */
+    padding: 20px;
+    width: 95%;
+}
+
+.card-container {
+    flex: center; /* Each card will take up roughly 22% of the container, allowing for equal width */
+    min-width: 250px; /* Ensures cards don’t get too narrow */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Soft shadow for the cards */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align the text inside the card */
+    justify-content: center;
+    text-align: center;
+}
+
+.card-value {
+    font-size: 3rem; /* Makes the card value bigger */
+    font-weight: 400;
+    font-family: 'Jet Brains Mono', sans-serif;
+    color: #333; /* Darker color for the value */
+}
+
+.card-title {
+    font-size: 1rem; /* Makes the title smaller */
+    color: #777; /* Lighter color for the title */
+    margin-top: 5px; /* Adds space between the value and title */
+}
+
+.card-container:hover {
+    transform: scale(1.05); /* Slightly increase the card size on hover */
+    transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .card-container {
+        flex: 1 1 45%; /* Stack the cards on smaller screens (less than 768px) */
+    }
+}
+
+@media (max-width: 480px) {
+    .card-container {
+        flex: 1 1 100%; /* Stack the cards vertically on mobile screens */
+    }
+}
+
+.month-filter {
+    justify-content: flex-start;
+    width: 95%;
+}
+
+/* Container to style the select element */
+.months-container {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Style the select dropdown */
+.months {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 13px;
+    font-family: 'Noto Sans', sans-serif;
+    color: #333;
+    width: 200px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* On hover, change border color and add a subtle shadow */
+.months:hover {
+    border-color: #4fa8ff;
+    box-shadow: 0 0 5px rgba(72, 143, 228, 0.3);
+}
+
+/* On focus, change border and background */
+.months:focus {
+    border-color: #4fa8ff;
+    background-color: #e8f1ff;
+    outline: none;
+}
+
+/* Style for the option text inside the select */
+.months option {
+    padding: 8px;
+    font-size: 13px;
+    background-color: #fff;
+}
+
+/* Style the label above the select */
+.months-label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.bar-chart-container {
+    width: 93%;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Soft shadow for the cards */
+}
+
+.bar-chart-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px; /* Optional: adjust based on container width */
+}
+
+/* The bar chart itself */
+.bar-chart {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+/* Individual bars */
+.bar {
+    width: 8%;
+    background-color: #ccc;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+.bar:hover {
+    background-color: #888; /* Darken the background color */
+    transform: translateY(-3px); /* Lift the bar by 3px */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+}
+
+.bar-label {
+    position: absolute;
+    bottom: 20px;
+    font-size: 13px;
+    color: white;
+    text-align: center;
+    font-family: 'JetBrains Mono', sans-serif;
+}
+
+.claimed-pie-chart {
+    position: relative;
+    width: 200px; /* Diameter of the pie chart */
+    height: 200px;
+    border-radius: 50%; /* Makes it a circle */
+    background: conic-gradient(
+        #101672 0% 42%,   /* Slice 1: Major Cases (85%) */
+        #496ed3 42% 100%  /* Slice 2: Minor Cases (15%) */
+    );
+    transform: scale(1); /* Default scale */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Default shadow */
+}
+
+/* Hover Effect */
+.claimed-pie-chart:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+}
+
+.lostitem-pie-chart {
+    position: relative;
+    width: 200px; /* Diameter of the pie chart */
+    height: 200px;
+    border-radius: 50%; /* Makes it a circle */
+    background: conic-gradient(
+        #232655 0% 31%,    /* Slice 1: Dark Blue (16.6%) */
+        #3235e6 31% 39%, /* Slice 2: Sky Blue (16.6%) */
+        #8f5dcf 39% 67%,   /* Slice 3: Light Blue (16.7%) */
+        #34d399 67% 82%,   /* Slice 4: Light Green (16.6%) */
+        #10b981 82% 89%, /* Slice 5: Green (16.7%) */
+        #84cc16 89% 100%   /* Slice 6: Yellow Green (16.7%) */
+    );
+    transform: scale(1); /* Default scale */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Default shadow */
+}
+
+/* Hover Effect */
+.lostitem-pie-chart:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+}
+

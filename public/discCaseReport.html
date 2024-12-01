@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Disciplinary Cases Report</title>
+        <link rel="stylesheet" href ="style.css" />
+      </head>
+<body>
+    <div class="sidebar">
+    <div class="logo">
+        <img src="/public/images/anunalogo-final.png">
+        <h1>M y S D F O</h1>
+    </div>
+        <div class="module-links">
+            <div class="module-link">
+                <img src="/public/images/home.png">
+                Home
+            </div>
+            <div class="module-link">
+                <img src="/public/images/fraternity.png">
+                Non Fraternity Contract
+            </div>
+            <div class="module-link">
+                <img src="/public/images/drug-test.png">
+                Drug Test Consent Form
+            </div>
+            <div class="module-link">
+                <img src="/public/images/lost-luggage.png">
+                Lost and Found
+            </div>
+            <div class="module-link">
+                <img src="/public/images/gavel.png">
+                Disciplinary Cases
+            </div>
+            <div class="module-link">
+                <img src="/public/images/settings.png">
+                Settings
+            </div>
+            <div class="module-link">
+                <img src="/public/images/log-out.png">
+                Log Out
+            </div>
+    </div>
+    </div>
+
+    <div class="header">
+        <div class="search__container">
+            <input class="search__input" type="text" placeholder="Search">
+        </div> 
+
+        <div class="profile-link">
+            <img src="/public/images/profiletemp.png">
+            Profile
+        </div>
+    </div>
+
+    <div class="main-body">
+        <div class="main-body-header"><h3>Disciplinary Case Report</h3>
+        <p class="welcome-message">Here are the monthly findings for the Disiciplinary Cases</p>
+        </div>
+
+        <div class="reports-body">
+            
+            <div class="month-filter">
+                
+                <div class="months-container">
+                    <select class="months" id="months" name="months" required>
+                        <option value="January">Last Fiscal 30 Days</option>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                </div>
+                
+            </div>
+
+            <div class="card-body">
+
+                <div class="card-container">
+                    <div class="card-value">
+                        25
+                    </div>
+                    <div class="card-title">
+                        New Cases this month
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <div class="card-value">
+                        14
+                    </div>
+                    <div class="card-title">
+                        Average Case Length (Days)
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <div class="card-value">
+                        9
+                    </div>
+                    <div class="card-title">
+                        Total Unsolved Cases
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <div class="card-value">
+                        51
+                    </div>
+                    <div class="card-title">
+                        Total Students Involved
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="progress-bar-body">
+                <div class="chart-header">
+                    <h2>Solved Cases</h2>
+                </div>
+
+                <div class="progress-bar-container">
+                    <div class="progress-bar">
+                        <div class="progress" style="width:76%">76%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pie-chart-container">
+                <div class="chart-header">
+                    <h2>Case Escalation Levels</h2>
+                </div>
+            
+                <div class="chart-content">
+                    <div class="escalation-pie-chart">
+                        <div class="slice slice-1"></div>
+                        <div class="slice slice-2"></div>
+                        <div class="slice slice-3"></div>
+                        <div class="slice slice-4"></div>
+                        <div class="slice slice-5"></div>
+                        <div class="slice slice-6"></div>
+                        <div class="slice slice-7"></div>
+                    </div>
+            
+                    <div class="legend-container">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #232655;"></div>
+                            <div class="legend-label">Investigation</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #3235e6;"></div>
+                            <div class="legend-label">Further Assessment</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #8f5dcf;"></div>
+                            <div class="legend-label">Evaluation</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #34d399;"></div>
+                            <div class="legend-label">Hearing</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #10b981;"></div>
+                            <div class="legend-label">Mediation</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #84cc16;"></div>
+                            <div class="legend-label">On-Going</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #ccb90f;"></div>
+                            <div class="legend-label">Solved</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="pie-chart-container">
+                <div class="chart-header">
+                    <h2>Case Severity</h2>
+                </div>
+            
+                <div class="chart-content">
+                    <div class="severity-pie-chart">
+                        <div class="slice slice-1"></div>
+                        <div class="slice slice-2"></div>
+                    </div>
+            
+                    <div class="legend-container">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #af3434;"></div>
+                            <div class="legend-label">Major Cases</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #d17e78;"></div>
+                            <div class="legend-label">Minor Cases</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

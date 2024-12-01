@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lost and Found Report</title>
+        <link rel="stylesheet" href ="style.css" />
+      </head>
+<body>
+    <div class="sidebar">
+    <div class="logo">
+        <img src="/public/images/anunalogo-final.png">
+        <h1>M y S D F O</h1>
+    </div>
+        <div class="module-links">
+            <div class="module-link">
+                <img src="/public/images/home.png">
+                Home
+            </div>
+            <div class="module-link">
+                <img src="/public/images/fraternity.png">
+                Non Fraternity Contract
+            </div>
+            <div class="module-link">
+                <img src="/public/images/drug-test.png">
+                Drug Test Consent Form
+            </div>
+            <div class="module-link">
+                <img src="/public/images/lost-luggage.png">
+                Lost and Found
+            </div>
+            <div class="module-link">
+                <img src="/public/images/gavel.png">
+                Disciplinary Cases
+            </div>
+            <div class="module-link">
+                <img src="/public/images/settings.png">
+                Settings
+            </div>
+            <div class="module-link">
+                <img src="/public/images/log-out.png">
+                Log Out
+            </div>
+    </div>
+    </div>
+
+    <div class="header">
+        <div class="search__container">
+            <input class="search__input" type="text" placeholder="Search">
+        </div> 
+
+        <div class="profile-link">
+            <img src="/public/images/profiletemp.png">
+            Profile
+        </div>
+    </div>
+
+    <div class="main-body">
+        <div class="main-body-header"><h3>Lost and Found Report</h3>
+        <p class="welcome-message">Here are the monthly findings for the Lost and Found</p>
+        </div>
+
+        <div class="reports-body">
+            
+            <div class="month-filter">
+                
+                <div class="months-container">
+                    <select class="months" id="months" name="months" required>
+                        <option value="January">Last Fiscal 30 Days</option>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                </div>
+                
+            </div>
+
+            <div class="card-body">
+
+                <div class="card-container">
+                    <div class="card-value">
+                        115
+                    </div>
+                    <div class="card-title">
+                        Newly Reported Lost Items
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <div class="card-value">
+                        2.35
+                    </div>
+                    <div class="card-title">
+                        Average Days to Claim
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <div class="card-value">
+                        11
+                    </div>
+                    <div class="card-title">
+                        Total Unclaimed Items
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <div class="card-value">
+                        124
+                    </div>
+                    <div class="card-title">
+                        Total Students Involved
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="progress-bar-body">
+                <div class="chart-header">
+                    <h2>Items Claimed</h2>
+                </div>
+
+                <div class="progress-bar-container">
+                    <div class="progress-bar">
+                        <div class="progress" style="width:42%">42%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pie-chart-container">
+                <div class="chart-header">
+                    <h2>Items lost by Type</h2>
+                </div>
+            
+                <div class="chart-content">
+                    <div class="lostitem-pie-chart">
+                        <div class="slice slice-1"></div>
+                        <div class="slice slice-2"></div>
+                        <div class="slice slice-3"></div>
+                        <div class="slice slice-4"></div>
+                        <div class="slice slice-5"></div>
+                        <div class="slice slice-6"></div>
+                    </div>
+            
+                    <div class="legend-container">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #232655;"></div>
+                            <div class="legend-label">ID</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #3235e6;"></div>
+                            <div class="legend-label">Papers/Material</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #8f5dcf;"></div>
+                            <div class="legend-label">Electronics</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #34d399;"></div>
+                            <div class="legend-label">Bags</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #10b981;"></div>
+                            <div class="legend-label">Keys/Jewelry</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #84cc16;"></div>
+                            <div class="legend-label">Money</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="pie-chart-container">
+                <div class="chart-header">
+                    <h2>Lost Item Status</h2>
+                </div>
+            
+                <div class="chart-content">
+                    <div class="claimed-pie-chart">
+                        <div class="slice slice-1"></div>
+                        <div class="slice slice-2"></div>
+                    </div>
+            
+                    <div class="legend-container">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #101672;"></div>
+                            <div class="legend-label">Claimed</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #496ed3;"></div>
+                            <div class="legend-label">Unclaimed</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="bar-chart-container">
+                <div class="chart-header">
+                    <h2>Reported Lost Items Per Location</h2>
+                </div>
+
+                <div class="bar-chart-content">
+                    <div class="bar-chart">
+                        
+                        <div class="bar" style="height: 75%; background-color: #232655;">
+                            <div class="bar-label">16</div>
+                        </div>
+                        <div class="bar" style="height: 50%; background-color: #ff5733;">
+                            <div class="bar-label">11</div>
+                        </div>
+                        <div class="bar" style="height: 60%; background-color: #c70039;">
+                            <div class="bar-label">13</div>
+                        </div>
+                        <div class="bar" style="height: 80%; background-color: #900c3f;">
+                            <div class="bar-label">18</div>
+                        </div>
+                        <div class="bar" style="height: 65%; background-color: #ffbd00;">
+                            <div class="bar-label">15</div>
+                        </div>
+                        <div class="bar" style="height: 55%; background-color: #c70085;">
+                            <div class="bar-label">12</div>
+                        </div>
+                        <div class="bar" style="height: 40%; background-color: #6a1b9a;">
+                            <div class="bar-label">9</div>
+                        </div>
+                        <div class="bar" style="height: 45%; background-color: #8e24aa;">
+                            <div class="bar-label">10</div>
+                        </div>
+                        <div class="bar" style="height: 50%; background-color: #00bcd4;">
+                            <div class="bar-label">11</div>
+                        </div>
+                        <div class="bar" style="height: 55%; background-color: #00796b;">
+                            <div class="bar-label">12</div>
+                        </div>
+                        
+
+                    </div>
+                
+                    <div class="legend-container">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #232655;"></div>
+                            <div class="legend-label">Andrew Gonzalez</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #ff5733;"></div>
+                            <div class="legend-label">Gokongwei Hall</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #c70039;"></div>
+                            <div class="legend-label">St. Joseph Hall</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #900c3f;"></div>
+                            <div class="legend-label">Velasco Hall</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #ffbd00;"></div>
+                            <div class="legend-label">Henry Sy</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #c70085;"></div>
+                            <div class="legend-label">St. La Salle Hall</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #6a1b9a;"></div>
+                            <div class="legend-label">Bloemen Hall</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #8e24aa;"></div>
+                            <div class="legend-label">Miguel Hall</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #00bcd4;"></div>
+                            <div class="legend-label">Enrique Razon</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #00796b;"></div>
+                            <div class="legend-label">Science and Technology</div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+</body>
+</html>
