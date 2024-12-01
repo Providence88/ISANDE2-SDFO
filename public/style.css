@@ -1118,7 +1118,7 @@ h1, h2 {
 
 .bar-chart-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
     max-width: 1200px; /* Optional: adjust based on container width */
 }
@@ -1127,9 +1127,10 @@ h1, h2 {
 .bar-chart {
     width: 80%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: flex-end;
     margin-bottom: 20px;
+    gap: 10px;
 }
 
 /* Individual bars */
@@ -1202,3 +1203,71 @@ h1, h2 {
     box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
 }
 
+
+.signed-pie-chart {
+    position: relative;
+    width: 200px; /* Diameter of the pie chart */
+    height: 200px;
+    border-radius: 50%; /* Makes it a circle */
+    background: conic-gradient(
+        #101672 0% 93%,   /* Slice 1: Major Cases (85%) */
+        #496ed3 93% 100%  /* Slice 2: Minor Cases (15%) */
+    );
+    transform: scale(1); /* Default scale */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Default shadow */
+}
+
+/* Hover Effect */
+.signed-pie-chart:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+}
+
+.collegenfc-pie-chart {
+    position: relative;
+    width: 200px; /* Diameter of the pie chart */
+    height: 200px;
+    border-radius: 50%; /* Makes it a circle */
+    background: conic-gradient(
+        #232655 0% 12%,    /* Slice 1: Dark Blue (16.6%) */
+        #3235e6 12% 31%, /* Slice 2: Sky Blue (16.6%) */
+        #8f5dcf 31% 54%,   /* Slice 3: Light Blue (16.7%) */
+        #34d399 54% 69%,   /* Slice 4: Light Green (16.6%) */
+        #10b981 69% 87%, /* Slice 5: Green (16.7%) */
+        #84cc16 87% 100%   /* Slice 6: Yellow Green (16.7%) */
+    );
+    transform: scale(1); /* Default scale */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Default shadow */
+}
+
+/* Hover Effect */
+.collegenfc-pie-chart:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+}
+
+.collegedrugtest-pie-chart {
+    position: relative;
+    width: 200px; /* Diameter of the pie chart */
+    height: 200px;
+    border-radius: 50%; /* Makes it a circle */
+    background: conic-gradient(
+        #232655 0% 13%,    /* Slice 1: Dark Blue (16.6%) */
+        #3235e6 13% 34%, /* Slice 2: Sky Blue (16.6%) */
+        #8f5dcf 34% 47%,   /* Slice 3: Light Blue (16.7%) */
+        #34d399 47% 63%,   /* Slice 4: Light Green (16.6%) */
+        #10b981 63% 79%, /* Slice 5: Green (16.7%) */
+        #84cc16 79% 100%   /* Slice 6: Yellow Green (16.7%) */
+    );
+    transform: scale(1); /* Default scale */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Default shadow */
+}
+
+/* Hover Effect */
+.collegedrugtest-pie-chart:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+}
