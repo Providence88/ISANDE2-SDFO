@@ -39,7 +39,50 @@
 
         <div class="form-container">
             <div class="report-container">
-                <button class="btn-actions">Filter</button>
+               <div class="filters-container">
+            <!-- Filter Form -->
+            <form action="/disciplinary/list" method="get" class="filter-form-disc">
+                <!-- Complainant ID Filter -->
+                <div class="filter-item">
+                    <label for="idFilterDisc">Complainant ID:</label>
+                    <select name="idFilter" id="idFilter">
+                        <option value="">Select ID </option>
+                        <option value="117" {{#if (eq idFilter "117")}}selected{{/if}}>117</option>
+                        <option value="118" {{#if (eq idFilter "118")}}selected{{/if}}>118</option>
+                        <option value="119" {{#if (eq idFilter "119")}}selected{{/if}}>119</option>
+                        <option value="120" {{#if (eq idFilter "120")}}selected{{/if}}>120</option>
+                        <option value="121" {{#if (eq idFilter "121")}}selected{{/if}}>121</option>
+                        <option value="122" {{#if (eq idFilter "122")}}selected{{/if}}>122</option>
+                        <option value="123" {{#if (eq idFilter "123")}}selected{{/if}}>123</option>
+                        <option value="124" {{#if (eq idFilter "124")}}selected{{/if}}>124</option>
+                    </select>
+                </div>
+
+                <!-- Escalation Level Filter -->
+                <div class="filter-item">
+                    <label for="escalationFilterDisc">Level of Escalation:</label>
+                    <select name="escalationFilter" id="escalationFilter">
+                        <option value="">Select Level</option>
+                        {{#each escalationLevels}}
+                            <option value="{{this}}" {{#if (eq escalationFilter this)}}selected{{/if}}>{{this}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <!-- College Filter -->
+                <div class="filter-item">
+                    <label for="collegeFilterDisc">College:</label>
+                    <select name="collegeFilter" id="collegeFilter">
+                        <option value="">Select College</option>
+                        {{#each colleges}}
+                            <option value="{{this}}" {{#if (eq collegeFilter this)}}selected{{/if}}>{{this}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-actions-disc">Apply Filter</button>
+            </form>
+                </div>
                 <table class="report-table">
                     <thead>
                         <tr>
