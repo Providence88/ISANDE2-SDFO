@@ -41,47 +41,58 @@
             <a href="/drugTest/create" class="btn-actions">Create</a>
 
             <!-- Filter Form -->
-            <form action="/drugTest/list" method="get" class="filter-form">
-                <!-- ID Prefix Dropdown -->
-                <label for="idFilter">ID Prefix:</label>
-                <select name="idFilter" id="idFilter">
-                    <option value="">Select ID </option>
-                    <option value="117" {{#if (eq filter.idFilter "117")}}selected{{/if}}>117</option>
-                    <option value="118" {{#if (eq filter.idFilter "118")}}selected{{/if}}>118</option>
-                    <option value="119" {{#if (eq filter.idFilter "119")}}selected{{/if}}>119</option>
-                    <option value="120" {{#if (eq filter.idFilter "120")}}selected{{/if}}>120</option>
-                    <option value="121" {{#if (eq filter.idFilter "121")}}selected{{/if}}>121</option>
-                    <option value="122" {{#if (eq filter.idFilter "122")}}selected{{/if}}>122</option>
-                    <option value="123" {{#if (eq filter.idFilter "123")}}selected{{/if}}>123</option>
-                    <option value="124" {{#if (eq filter.idFilter "124")}}selected{{/if}}>124</option>
-                </select>
+            <div class="filters-container">
+                <form action="/drugTest/list" method="get" class="filter-form-disc">
+                    
+                    <div class="filter-item">
+                        <!-- ID Prefix Dropdown -->
+                        <label for="idFilter">ID Prefix:</label>
+                        <select name="idFilter" id="idFilter">
+                            <option value="">Select ID </option>
+                            <option value="117" {{#if (eq filter.idFilter "117")}}selected{{/if}}>117</option>
+                            <option value="118" {{#if (eq filter.idFilter "118")}}selected{{/if}}>118</option>
+                            <option value="119" {{#if (eq filter.idFilter "119")}}selected{{/if}}>119</option>
+                            <option value="120" {{#if (eq filter.idFilter "120")}}selected{{/if}}>120</option>
+                            <option value="121" {{#if (eq filter.idFilter "121")}}selected{{/if}}>121</option>
+                            <option value="122" {{#if (eq filter.idFilter "122")}}selected{{/if}}>122</option>
+                            <option value="123" {{#if (eq filter.idFilter "123")}}selected{{/if}}>123</option>
+                            <option value="124" {{#if (eq filter.idFilter "124")}}selected{{/if}}>124</option>
+                        </select>
+                    </div>
+            
+                    <div class="filter-item">
+                        <!-- Signature Dropdown -->
+                        <label for="signature">Signature:</label>
+                        <select name="signature">
+                            <option value="">All</option>
+                            <option value="yes" {{#if (eq filter.signature "yes")}}selected{{/if}}>Yes</option>
+                            <option value="no" {{#if (eq filter.signature "no")}}selected{{/if}}>No</option>
+                        </select>
+                    </div>
 
-                <!-- Signature Dropdown -->
-                <label for="signature">Signature:</label>
-                <select name="signature">
-                    <option value="">All</option>
-                    <option value="yes" {{#if (eq filter.signature "yes")}}selected{{/if}}>Yes</option>
-                    <option value="no" {{#if (eq filter.signature "no")}}selected{{/if}}>No</option>
-                </select>
+                    <div class="filter-item">
+                        <!-- Consent Dropdown -->
+                        <label for="consent">Consent:</label>
+                        <select name="consent">
+                            <option value="">All</option>
+                            <option value="yes" {{#if (eq filter.consent "yes")}}selected{{/if}}>Yes</option>
+                            <option value="no" {{#if (eq filter.consent "no")}}selected{{/if}}>No</option>
+                        </select>
+                    </div>
 
-                <!-- Consent Dropdown -->
-                <label for="consent">Consent:</label>
-                <select name="consent">
-                    <option value="">All</option>
-                    <option value="yes" {{#if (eq filter.consent "yes")}}selected{{/if}}>Yes</option>
-                    <option value="no" {{#if (eq filter.consent "no")}}selected{{/if}}>No</option>
-                </select>
+                    <div class="filter-item">
+                        <!-- Submitted Dropdown -->
+                        <label for="submitted">Submitted:</label>
+                        <select name="submitted">
+                            <option value="">All</option>
+                            <option value="yes" {{#if (eq filter.submitted "yes")}}selected{{/if}}>Yes</option>
+                            <option value="no" {{#if (eq filter.submitted "no")}}selected{{/if}}>No</option>
+                        </select>
+                    </div>
 
-                <!-- Submitted Dropdown -->
-                <label for="submitted">Submitted:</label>
-                <select name="submitted">
-                    <option value="">All</option>
-                    <option value="yes" {{#if (eq filter.submitted "yes")}}selected{{/if}}>Yes</option>
-                    <option value="no" {{#if (eq filter.submitted "no")}}selected{{/if}}>No</option>
-                </select>
-
-                <button type="submit" class="btn-actions">Apply Filter</button>
-            </form>
+                    <button type="submit" class="btn-actions-disc">Apply Filter</button>
+                </form>
+            </div>
 
             <table class="report-table">
                 <thead>

@@ -1301,13 +1301,13 @@ h1, h2 {
 }
 
 .btn-actions-disc {
-        background-color: #4CAF50;
+        background-color: #333;
         color: white;
         border: none;
         padding: 8px 16px;
+        margin: 20px;
         margin-bottom: 10px;
-        margin-right: 5px;
-        margin-top: 40px;
+        margin-top: 20px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
@@ -1318,6 +1318,10 @@ h1, h2 {
         transition: background-color 0.3s;
         font-family: 'Noto Sans', sans-serif;
         font-weight: 600;
+}
+
+.btn-actions-disc:hover {
+    background-color: #777; /* Darker green when hovering */
 }
 
 /* Non Frat Filter*/
@@ -1333,20 +1337,56 @@ h1, h2 {
 
 
 .btn-actions-frat {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    margin-bottom: 10px;
-    margin-left: 60px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    height: 40px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-    font-family: 'Noto Sans', sans-serif;
-    font-weight: 600;
+        background-color: #333;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        margin: 20px;
+        margin-bottom: 10px;
+        margin-top: 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        height: 40px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: 600;
+}
+
+.btn-actions-frat:hover {
+    background-color: #777; /* Darker green when hovering */
+}
+
+.filters-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px; /* Add space between the button and the filter form */
+    align-items: center; /* Vertically center items if needed */
+    padding-left: 5px;
+    margin-bottom: 20px;
+    padding-top: 5px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Soft shadow for the cards */
+}
+
+.filter-item label {
+    font-size: 13px;
+    padding-left: 10px;
+}
+
+.filter-item select {
+    height: 2.5rem;
+    margin-left: 10px;
+    font-size: 11.5px;
+}
+
+.filter-item option {
+    font-size: 12px;
+}
+
+.filter-item input {
+    font-size: 12px;
 }

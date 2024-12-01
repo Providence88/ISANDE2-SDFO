@@ -42,23 +42,30 @@
             <a href="/nonFraternity/create" class="btn-actions">Create</a>
 
             <!-- Filter Form -->
-            <form action="/nonFraternity/list" method="get" class="filter-form-frat">
-                <label for="signature">Signature:</label>
-                <select name="signature" id="signature">
-                    <option value="">All</option>
-                    <option value="true" {{#if (eq filter.signature "true")}}selected{{/if}}>Yes</option>
-                    <option value="false" {{#if (eq filter.signature "false")}}selected{{/if}}>No</option>
-                </select>
+            <div class="filters-container">
+                <form action="/nonFraternity/list" method="get" class="filter-form-frat">
 
-                <label for="submitted">Submitted:</label>
-                <select name="submitted" id="submitted">
-                    <option value="">All</option>
-                    <option value="true" {{#if (eq filter.submitted "true")}}selected{{/if}}>Yes</option>
-                    <option value="false" {{#if (eq filter.submitted "false")}}selected{{/if}}>No</option>
-                </select>
+                    <div class="filter-item">
+                        <label for="signature">Signature:</label>
+                        <select name="signature" id="signature">
+                            <option value="">All</option>
+                            <option value="true" {{#if (eq filter.signature "true")}}selected{{/if}}>Yes</option>
+                            <option value="false" {{#if (eq filter.signature "false")}}selected{{/if}}>No</option>
+                        </select>
+                    </div>
 
-                <button type="submit" class="btn-actions-frat">Filter</button>
-            </form>
+                    <div class="filter-item">
+                        <label for="submitted">Submitted:</label>
+                        <select name="submitted" id="submitted">
+                            <option value="">All</option>
+                            <option value="true" {{#if (eq filter.submitted "true")}}selected{{/if}}>Yes</option>
+                            <option value="false" {{#if (eq filter.submitted "false")}}selected{{/if}}>No</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-actions-frat">Filter</button>
+                </form>
+            </div>
 
            
             <table class="report-table">
