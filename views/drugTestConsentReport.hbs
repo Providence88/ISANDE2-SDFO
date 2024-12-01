@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Drug Test Consent Report</title>
+        <link rel="stylesheet" href ="style.css" />
+      </head>
+<body>
+    <div class="sidebar">
+    <div class="logo">
+        <img src="/images/anunalogo-final.png">
+        <h1>M y S D F O</h1>
+    </div>
+           <div class="module-links">
+            {{#each moduleLinks}}
+                <a href="{{this.link}}" class="module-link">
+                    <img src="/images/{{this.icon}}">
+                    {{this.name}}
+                </a>
+            {{/each}}
+        </div>
+    </div>
+ 
+
+    <div class="header">
+        <div class="search__container">
+            <input class="search__input" type="text" placeholder="Search">
+        </div> 
+
+        <div class="profile-link">
+            <img src="/images/profiletemp.png">
+            Profile
+        </div>
+    </div>
+
+    <div class="main-body">
+        <div class="main-body-header"><h3>Drug Test Consent Report</h3>
+        <p class="welcome-message">Here are the monthly findings for Drug Test Consents</p>
+        </div>
+
+        <div class="reports-body">
+            
+            <div class="month-filter">
+                
+                <div class="months-container">
+                    <select class="months" id="months" name="months" required>
+                        <option value="January">Last Fiscal 30 Days</option>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                </div>
+                
+            </div>
+
+            <div class="card-body">
+
+                <div class="card-container">
+                    <div class="card-value">
+                        16481
+                    </div>
+                    <div class="card-title">
+                        Drug Test Consents Submitted
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <div class="card-value">
+                        1.93
+                    </div>
+                    <div class="card-title">
+                        Average Days Between Consent and Test
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <div class="card-value">
+                        3893
+                    </div>
+                    <div class="card-title">
+                        Total Students Who Did Not Submit
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <div class="card-value">
+                        7322
+                    </div>
+                    <div class="card-title">
+                        Total Untested Students
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="progress-bar-body">
+                <div class="chart-header">
+                    <h2>Submitted Drug Test Consents</h2>
+                </div>
+
+                <div class="progress-bar-container">
+                    <div class="progress-bar">
+                        <div class="progress" style="width:82%">82%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-bar-body">
+                <div class="chart-header">
+                    <h2>Total Students Tested</h2>
+                </div>
+
+                <div class="progress-bar-container">
+                    <div class="progress-bar">
+                        <div class="progress" style="width:84%">84%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pie-chart-container">
+                <div class="chart-header">
+                    <h2>Unsubmitted Consents per College</h2>
+                </div>
+            
+                <div class="chart-content">
+                    <div class="collegedrugtest-pie-chart">
+                        <div class="slice slice-1"></div>
+                        <div class="slice slice-2"></div>
+                        <div class="slice slice-3"></div>
+                        <div class="slice slice-4"></div>
+                        <div class="slice slice-5"></div>
+                        <div class="slice slice-6"></div>
+                    </div>
+            
+                    <div class="legend-container">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #232655;"></div>
+                            <div class="legend-label">BAGCED</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #3235e6;"></div>
+                            <div class="legend-label">CCS</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #8f5dcf;"></div>
+                            <div class="legend-label">CLA</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #34d399;"></div>
+                            <div class="legend-label">COB</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #10b981;"></div>
+                            <div class="legend-label">COS</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #84cc16;"></div>
+                            <div class="legend-label">GCOE</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="pie-chart-container">
+                <div class="chart-header">
+                    <h2>Students Who Submitted but Untested</h2>
+                </div>
+            
+                <div class="chart-content">
+                    <div class="signed-pie-chart">
+                        <div class="slice slice-1"></div>
+                        <div class="slice slice-2"></div>
+                    </div>
+            
+                    <div class="legend-container">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #101672;"></div>
+                            <div class="legend-label">Tested</div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #496ed3;"></div>
+                            <div class="legend-label">Untested</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+           <div class="bar-chart-container">
+    <div class="chart-header">
+        <h2>Unsubmitted Consents Per ID Number</h2>
+    </div>
+
+    <div class="bar-chart-content">
+        <div class="bar-chart">
+            
+            <div class="bar" style="height: 75%; background-color: #232655;">
+                <div class="bar-label">567</div>
+            </div>
+            <div class="bar" style="height: 50%; background-color: #ff5733;">
+                <div class="bar-label">296</div>
+            </div>
+            <div class="bar" style="height: 60%; background-color: #c70039;">
+                <div class="bar-label">342</div>
+            </div>
+            <div class="bar" style="height: 80%; background-color: #900c3f;">
+                <div class="bar-label">245</div>
+            </div>
+            <div class="bar" style="height: 65%; background-color: #ffbd00;">
+                <div class="bar-label">711</div>
+            </div>
+            <div class="bar" style="height: 55%; background-color: #c70085;">
+                <div class="bar-label">453</div>
+            </div>
+            <div class="bar" style="height: 40%; background-color: #6a1b9a;">
+                <div class="bar-label">586</div>
+            </div>
+
+        </div>
+    
+        <div class="legend-container">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #232655;"></div>
+                <div class="legend-label">118</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #ff5733;"></div>
+                <div class="legend-label">119</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #c70039;"></div>
+                <div class="legend-label">120</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #900c3f;"></div>
+                <div class="legend-label">121</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #ffbd00;"></div>
+                <div class="legend-label">122</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #c70085;"></div>
+                <div class="legend-label">123</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #6a1b9a;"></div>
+                <div class="legend-label">124</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            
+        </div>
+        
+    </div>
+</body>
+</html>

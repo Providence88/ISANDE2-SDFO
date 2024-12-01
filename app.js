@@ -189,6 +189,30 @@ app.get('/studentlist', (req, res) => {
   });
 });
 
+app.get('/nonFraternityContractReport', (req, res) => {
+  res.render('nonFraternityContractReport', {
+    moduleLinks: moduleLinks,
+  });  
+});
+
+app.get('/drugTestConsentReport', (req, res) => {
+  res.render('drugTestConsentReport', {
+    moduleLinks: moduleLinks,
+  });  
+});
+
+app.get('/lostFoundReport', (req, res) => {
+  res.render('lostFoundReport', {
+    moduleLinks: moduleLinks,
+  });   
+});
+
+app.get('/discCaseReport', (req, res) => {
+  res.render('discCaseReport', {
+    moduleLinks: moduleLinks,
+  });  
+});
+
 
 // Routes
 const loginRoute = require('./routes/login');
