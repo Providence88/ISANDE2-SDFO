@@ -74,9 +74,9 @@ const modules = [
         "image": "drugtest.jpg",
         "title": "Drug Test Consent",
         "actions": [
-          { "label": "New", "link": "/drugTest/create" },
-          { "label": "Edit", "link": "/drugTest/list" },
-          { "label": "See List", "link": "/drugTest/list" }
+          { "label": "New", "link": "/dtcfNFC/create" },
+          { "label": "Edit", "link": "/dtcfNFC/list" },
+          { "label": "See List", "link": "/dtcfNFC/list" }
         ]
       },
       {
@@ -92,17 +92,17 @@ const modules = [
         "image": "frat.jpg",
         "title": "Non-Fraternity Contracts",
         "actions": [
-          { "label": "New", "link": "/nonFraternity/create" },
-          { "label": "Edit", "link": "/nonFraternity/list" },
-          { "label": "See List", "link": "/nonFraternity/list" }
+          { "label": "New", "link": "/dtcfNFC/create" },
+          { "label": "Edit", "link": "/dtcfNFC/list" },
+          { "label": "See List", "link": "/dtcfNFC/list" }
         ]
       }
     ];
 
   const moduleLinks = [
       { name: "Home", icon: "home.png", link: "/main" },
-      { name: "Non Fraternity Contract", icon: "fraternity.png", link: "/nonFraternity/list" },
-      { name: "Drug Test Consent Form", icon: "drug-test.png", link: "/drugTest/list" },
+      { name: "Non Fraternity Contract", icon: "fraternity.png", link: "/dtcfNFC/list" },
+      { name: "Drug Test Consent Form", icon: "drug-test.png", link: "/dtcfNFC/list" },
       { name: "Lost and Found", icon: "lost-luggage.png", link: "/lostFound/list" },
       { name: "Disciplinary Cases", icon: "gavel.png", link: "/disciplinary/list" },
       { name: "Students", icon: "graduation.png", link: "/studentList" },
@@ -219,9 +219,8 @@ const loginRoute = require('./routes/login');
 const mainRoute = require('./routes/main');
 
 // Add specific module routes
-const nonFraternityContractRoute = require('./routes/nonFraternity');  
 const disciplinaryCaseRoute = require('./routes/disciplinary');
-const drugTestConsentRoute = require('./routes/drugTest');
+const dtcfNFCRoute = require('./routes/dtcfNFC');
 const lostFoundRoute = require('./routes/lostFound');
 
 
@@ -231,9 +230,8 @@ app.use('/main', mainRoute); // Ensure main route is mounted
 
 
 app.use('/disciplinary', disciplinaryCaseRoute);
-app.use('/drugTest', drugTestConsentRoute);
+app.use('/dtcfNFC', dtcfNFCRoute);
 app.use('/lostFound', lostFoundRoute);
-app.use('/nonFraternity', nonFraternityContractRoute);
 
 //
 
