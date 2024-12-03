@@ -6,8 +6,8 @@ const router = express.Router();
 // Module links for the sidebar
 const moduleLinks = [
     { name: "Home", icon: "home.png", link: "/main" },
-    { name: "Non Fraternity Contract", icon: "fraternity.png", link: "/nonFraternity/list" },
-    { name: "Drug Test Consent Form", icon: "drug-test.png", link: "/drugTest/list" },
+    { name: "Non Fraternity Contract", icon: "fraternity.png", link: "/dtcfNFC/list" },
+    { name: "Drug Test Consent Form", icon: "drug-test.png", link: "/dtcfNFC/list" },
     { name: "Lost and Found", icon: "lost-luggage.png", link: "/lostFound/list" },
     { name: "Disciplinary Cases", icon: "gavel.png", link: "/disciplinary/list" },
     { name: "Students", icon: "graduation.png", link: "/studentList" },

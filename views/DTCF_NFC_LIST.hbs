@@ -33,16 +33,16 @@
 
     <div class="main-body">
         <div class="main-body-header">
-            <h3>Drug Test Consents</h3>
-            <p class="welcome-message">View all drug test consents</p>
+            <h3>Drug Test Consent and Non Fraternity Contract Record</h3>
+            <p class="welcome-message">View all DTCF and NFC Records</p>
         </div>
 
         <div class="report-container">
-            <a href="/drugTest/create" class="btn-actions">Create</a>
+            <a href="/dtcfNFC/create" class="btn-actions">Create</a>
 
             <!-- Filter Form -->
             <div class="filters-container">
-                <form action="/drugTest/list" method="get" class="filter-form-disc">
+                <form action="/dtcfNFC/list" method="get" class="filter-form-disc">
                     
                     <div class="filter-item">
                         <!-- ID Prefix Dropdown -->
@@ -65,28 +65,38 @@
                         <label for="signature">Signature:</label>
                         <select name="signature">
                             <option value="">All</option>
-                            <option value="yes" {{#if (eq filter.signature "yes")}}selected{{/if}}>Yes</option>
-                            <option value="no" {{#if (eq filter.signature "no")}}selected{{/if}}>No</option>
+                            <option value="true" {{#if (eq filter.signature "true")}}selected{{/if}}>Yes</option>
+                            <option value="false" {{#if (eq filter.signature "false")}}selected{{/if}}>No</option>
                         </select>
                     </div>
 
                     <div class="filter-item">
                         <!-- Consent Dropdown -->
-                        <label for="consent">Consent:</label>
-                        <select name="consent">
+                        <label for="consentDTCF">Consent:</label>
+                        <select name="consentDTCF">
                             <option value="">All</option>
-                            <option value="yes" {{#if (eq filter.consent "yes")}}selected{{/if}}>Yes</option>
-                            <option value="no" {{#if (eq filter.consent "no")}}selected{{/if}}>No</option>
+                            <option value="true" {{#if (eq filter.consentDTCF "true")}}selected{{/if}}>Yes</option>
+                            <option value="false" {{#if (eq filter.consentDTCF "false")}}selected{{/if}}>No</option>
                         </select>
                     </div>
 
                     <div class="filter-item">
-                        <!-- Submitted Dropdown -->
-                        <label for="submitted">Submitted:</label>
-                        <select name="submitted">
+                        <!-- Submitted DTCF Dropdown -->
+                        <label for="submittedDTCF">Submitted (DTCF):</label>
+                        <select name="submittedDTCF">
                             <option value="">All</option>
-                            <option value="yes" {{#if (eq filter.submitted "yes")}}selected{{/if}}>Yes</option>
-                            <option value="no" {{#if (eq filter.submitted "no")}}selected{{/if}}>No</option>
+                            <option value="true" {{#if (eq filter.submittedDTCF "true")}}selected{{/if}}>Yes</option>
+                            <option value="false" {{#if (eq filter.submittedDTCF "false")}}selected{{/if}}>No</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-item">
+                        <!-- Submitted NFC Dropdown -->
+                        <label for="submittedNFC">Submitted (NFC):</label>
+                        <select name="submittedNFC">
+                            <option value="">All</option>
+                            <option value="true" {{#if (eq filter.submittedNFC "true")}}selected{{/if}}>Yes</option>
+                            <option value="false" {{#if (eq filter.submittedNFC "false")}}selected{{/if}}>No</option>
                         </select>
                     </div>
 
@@ -103,8 +113,9 @@
                         <th>Cellphone Number</th>
                         <th>School Email</th>
                         <th>Signature</th>
+                        <th>Submitted (NFC)</th>
                         <th>Consent</th>
-                        <th>Submitted</th>
+                        <th>Submitted (DTCF)</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -116,14 +127,15 @@
                         <td>{{firstName}}</td>
                         <td>{{cellphoneNumber}}</td>
                         <td>{{schoolEmail}}</td>
-                        <td>{{signature}}</td>
-                        <td>{{consent}}</td>
-                        <td>{{submitted}}</td>
+                        <td>{{#if signature}}Yes{{else}}No{{/if}}</td>
+                        <td>{{#if submittedNFC}}Yes{{else}}No{{/if}}</td>
+                        <td>{{#if consentDTCF}}Yes{{else}}No{{/if}}</td>
+                        <td>{{#if submittedDTCF}}Yes{{else}}No{{/if}}</td>
                         <td>
-                            <a href="/drugTest/edit/{{this._id}}" class="btn-edit">Edit</a>
+                            <a href="/dtcfNFC/edit/{{this._id}}" class="btn-edit">Edit</a>
                         </td>
                     </tr>
-                    {{/each}}
+                  {{/each}}
                 </tbody>
             </table>
         </div>
