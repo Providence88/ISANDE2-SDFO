@@ -55,6 +55,40 @@ router.get('/create', (req, res) => {
     });
 });
 
+
+router.post('/create', async (req, res) => {
+    const { itemId, itemName, locationFound, dateTimeFound, confirmedBy, claimed, claimedBy, claimConfirmedBy, dateClaimed } = req.body;
+
+    try {
+        // Convert dateTimeFound and dateClaimed strings to Date objects if provided
+        const parsedDateTimeFound = dateTimeFound ? new Date(dateTimeFound) : null;
+        const parsedDateClaimed = dateClaimed ? new Date(dateClaimed) : null;
+
+        // Create a new Lost and Found entry
+        const newEntry = new LostFoundEntry({
+            itemId,
+            itemName,
+            locationFound,
+            dateTimeFound: parsedDateTimeFound,
+            confirmedBy,
+            claimed: claimed === 'true', // Convert string to boolean
+            claimedBy: claimed ? claimedBy : null, // Only set claimedBy if claimed is true
+            claimConfirmedBy: claimed ? claimConfirmedBy : null, // Only set claimConfirmedBy if claimed is true
+            dateClaimed: claimed ? parsedDateClaimed : null // Only set dateClaimed if claimed is true
+        });
+
+        // Save the entry to the database
+        await newEntry.save();
+
+        // Redirect to the list page after successful creation
+        res.redirect('/lostFound/list');
+    } catch (error) {
+        console.error('Error creating Lost and Found entry:', error);
+        res.status(500).render('errorPage', { message: 'Error creating Lost and Found entry.' });
+    }
+});
+
+
 router.post('/edit/:id', (req, res) => {
     const { itemId, itemName, locationFound, dateTimeFound, confirmedBy, claimed, claimedBy, claimConfirmedBy, dateClaimed } = req.body;
     const entryId = req.params.id;
