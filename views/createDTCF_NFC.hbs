@@ -38,7 +38,7 @@
             <p class="welcome-message">New Student Record for DTCF and NFC</p>
         </div>
 
-        <div class="form-container">
+        <div class="dtcf-nfc-container">
             <div class="form">
                 <form id="dtcfCreate" action="/dtcfNFC/create" method="POST">
                     <div class="form-group">
@@ -109,6 +109,11 @@
                         </select>
                     </div>
 
+                    <div class="checkbox-container">
+                            <input type="checkbox" id="termsCheckbox" name="termsCheckbox" required>
+                            <label for="termsCheckbox">I agree to enter student information with the necessary consent in accordance with the Data Privacy Act of 2012 and DLSU's Privacy Policy.</label>
+                    </div>
+
 
                     <div class="form-actions">
                         <a href="/main" class="btn-cancel">Cancel</a>
@@ -117,6 +122,13 @@
                 </form>
                 <script src="/public/js/createDTCF_NFC.js"></script>
             </div>
+
+            <div class="ethics-container">
+                    <div class="spoiler-content">
+                            At De La Salle University, we recognize the importance of safeguarding student information. In compliance with the Data Privacy Act of 2012, we ensure that student data is collected, processed, and stored responsibly, fostering trust and accountability in our practices.
+                    </div>
+            </div>
+
         </div>
     </div>
 </body>
