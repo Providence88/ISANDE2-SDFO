@@ -98,17 +98,18 @@ router.post('/edit/:id', async (req, res) => {
     }
 });
 
-// Render Drug Test Consents List (GET)
 router.get('/list', async (req, res) => {
     try {
-        const { idFilter, signature, consent, submitted } = req.query;
+        const { idFilter, signature, consentDTCF, submittedDTCF, submittedNFC } = req.query;
 
         // Build the filter object
         const filter = {};
+        
         if (idFilter) filter.idNumber = { $regex: `^${idFilter}`, $options: 'i' }; // Prefix match, case-insensitive
-        if (signature) filter.signature = signature;
-        if (consent) filter.consentDTCF = consent; // Changed to match consentDTCF
-        if (submitted) filter.submittedDTCF = submitted; // Changed to match submittedDTCF
+        if (signature) filter.signature = signature === 'true'; // Convert to boolean
+        if (consentDTCF) filter.consentDTCF = consentDTCF === 'true'; // Convert to boolean
+        if (submittedDTCF) filter.submittedDTCF = submittedDTCF === 'true'; // Convert to boolean
+        if (submittedNFC) filter.submittedNFC = submittedNFC === 'true'; // Convert to boolean
 
         const entries = await Entry.find(filter);
 
