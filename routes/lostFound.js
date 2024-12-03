@@ -89,44 +89,6 @@ router.post('/create', async (req, res) => {
 });
 
 
-router.post('/edit/:id', (req, res) => {
-    const { itemId, itemName, locationFound, dateTimeFound, confirmedBy, claimed, claimedBy, claimConfirmedBy, dateClaimed } = req.body;
-    const entryId = req.params.id;
-
-    // Convert dateTimeFound string to a Date object
-    const parsedDateTimeFound = new Date(dateTimeFound); // Converts string to Date object
-
-    // Validate input fields
-    if (!itemId || !itemName || !locationFound || !dateTimeFound || !confirmedBy || claimed === undefined || !claimedBy || !claimConfirmedBy || !dateClaimed) {
-        return res.status(400).json({ success: false, message: 'All fields are required.' });
-    }
-
-    // Update the Lost and Found entry
-    LostFoundEntry.findByIdAndUpdate(entryId, {
-        itemId,
-        itemName,
-        locationFound,
-        dateTimeFound: parsedDateTimeFound, // Store the Date object
-        confirmedBy,
-        claimed,
-        claimedBy,
-        claimConfirmedBy,
-        dateClaimed
-    }, { new: true })
-    .then(updatedEntry => {
-        if (!updatedEntry) {
-            return res.status(404).json({ success: false, message: 'Lost and Found entry not found' });
-        }
-
-        // After update, render the list with the updated entry
-        res.redirect('/lostFound/list');  // This should refresh the list of entries
-    })
-    .catch(err => {
-        console.error('Error updating Lost and Found entry:', err);
-        res.status(500).json({ success: false, message: 'Error updating Lost and Found entry' });
-    });
-});
-
 router.get('/edit/:id', (req, res) => {
     const entryId = req.params.id;
 
@@ -152,5 +114,47 @@ router.get('/edit/:id', (req, res) => {
             res.status(500).send('Error retrieving Lost and Found entry');
         });
 });
+
+
+// Handle the "Edit Lost and Found Entry" form submission (POST)
+router.post('/edit/:id', async (req, res) => {
+    const entryId = req.params.id;
+    const { itemId, itemName, locationFound, dateTimeFound, confirmedBy, claimed, claimedBy, claimConfirmedBy, dateClaimed } = req.body;
+
+    try {
+        // Convert dateTimeFound and dateClaimed strings to Date objects if provided
+        const parsedDateTimeFound = dateTimeFound ? new Date(dateTimeFound) : null;
+        const parsedDateClaimed = dateClaimed ? new Date(dateClaimed) : null;
+
+        // Find the existing entry by ID
+        const entry = await LostFoundEntry.findById(entryId);
+
+        if (!entry) {
+            return res.status(404).send('Lost and Found entry not found');
+        }
+
+        // Update the entry's fields
+        entry.itemId = itemId;
+        entry.itemName = itemName;
+        entry.locationFound = locationFound;
+        entry.dateTimeFound = parsedDateTimeFound;
+        entry.confirmedBy = confirmedBy;
+        entry.claimed = claimed === 'true'; // Convert string to boolean
+        entry.claimedBy = claimed ? claimedBy : null; // Only set claimedBy if claimed is true
+        entry.claimConfirmedBy = claimed ? claimConfirmedBy : null; // Only set claimConfirmedBy if claimed is true
+        entry.dateClaimed = claimed ? parsedDateClaimed : null; // Only set dateClaimed if claimed is true
+
+        // Save the updated entry
+        await entry.save();
+
+        // Redirect to the list page after successful update
+        res.redirect('/lostFound/list');
+    } catch (error) {
+        console.error('Error updating Lost and Found entry:', error);
+        res.status(500).render('errorPage', { message: 'Error updating Lost and Found entry.' });
+    }
+});
+
+
 
 module.exports = router;

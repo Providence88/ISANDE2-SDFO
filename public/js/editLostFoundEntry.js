@@ -18,6 +18,14 @@ document.addEventListener("DOMContentLoaded", function() {
             dateClaimed: formData.get('dateClaimed')
         };
 
+        // Validate that no required field is empty
+        for (const key in data) {
+            if (!data[key]) {
+                alert(`${key} is required!`);
+                return;
+            }
+        }
+
         // Send an AJAX request to update the lost and found entry
         fetch('/lostFound/edit/' + formData.get('itemId'), {
             method: 'POST',

@@ -1,25 +1,33 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Handle form submission
-    const form = document.getElementById('discEdit');
-    
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
+    const form = document.getElementById('landfEdit');
 
-        // Get the form data
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();  // Prevent form from submitting normally
+
+        // Get form data
         const formData = new FormData(form);
         const data = {
-            complainantId: formData.get('complainantId'),
-            complainantName: formData.get('complainantName'),
-            complainantEmail: formData.get('complainantEmail'),
-            respondentId: formData.get('respondentId'),
-            respondentName: formData.get('respondentName'),
-            respondentEmail: formData.get('respondentEmail'),
-            currentLevelOfEscalation: formData.get('currentLevelOfEscalation'),
-            confirmedBy: formData.get('confirmedBy')
+            itemId: formData.get('itemId'),
+            itemName: formData.get('itemName'),
+            locationFound: formData.get('locationFound'),
+            dateTimeFound: formData.get('dateTimeFound'),
+            confirmedBy: formData.get('confirmedBy'),
+            claimed: formData.get('claimed'),
+            claimedBy: formData.get('claimedBy'),
+            claimConfirmedBy: formData.get('claimConfirmedBy'),
+            dateClaimed: formData.get('dateClaimed')
         };
 
-        // Send an AJAX request to update the disciplinary case
-        fetch('/disciplinary/update', {
+        // Validate that no required field is empty
+        for (const key in data) {
+            if (!data[key]) {
+                alert(`${key} is required!`);
+                return;
+            }
+        }
+
+        // Send an AJAX request to update the lost and found entry
+        fetch('/lostFound/edit/' + formData.get('itemId'), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -29,11 +37,11 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert('Disciplinary case updated successfully!');
-                // Redirect to the disciplinary case list page
-                window.location.href = '/disciplinary/list';
+                alert('Lost and Found entry updated successfully!');
+                // Redirect to the main page or another appropriate page
+                window.location.href = '/main';
             } else {
-                alert('Error updating case: ' + data.message);
+                alert('Error updating entry: ' + data.message);
             }
         })
         .catch(error => {
